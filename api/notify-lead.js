@@ -1,21 +1,14 @@
-// Función serverless en Vercel. Supabase la llama automáticamente (vía Database
-// Webhook) cada vez que se inserta una fila nueva en contact_messages, y esta
-// función envía un email de aviso usando Resend.
+// Función serverless en Vercel. La propia web la llama directamente (desde
+// src/pages/Contacto.jsx) justo después de guardar el mensaje en Supabase,
+// y esta función envía un email de aviso usando Resend.
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  // Comprobamos que la llamada viene realmente de nuestro webhook de Supabase
-  // y no de cualquiera que encuentre esta URL.
-  const secret = req.headers['x-webhook-secret']
-  if (!secret || secret !== process.env.WEBHOOK_SECRET) {
-    return res.status(401).json({ error: 'Unauthorized' })
-  }
-
-  const record = req.body?.record
-  if (!record) {
+  const record = req.body
+  if (!record || !record.email || !record.message) {
     return res.status(400).json({ error: 'Missing record' })
   }
 

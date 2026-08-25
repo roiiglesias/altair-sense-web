@@ -39,10 +39,19 @@ export default function Contacto() {
     if (error) {
       console.error(error)
       setStatus('error')
-    } else {
-      setStatus('sent')
-      setForm(initialForm)
+      return
     }
+
+    setStatus('sent')
+    setForm(initialForm)
+
+    // Aviso por email al equipo — si falla, no afecta a la experiencia del
+    // usuario: el lead ya está guardado en Supabase de todas formas.
+    fetch('/api/notify-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...form, locale: lang })
+    }).catch((err) => console.error('notify-lead failed', err))
   }
 
   return (
