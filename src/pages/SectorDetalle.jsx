@@ -38,7 +38,17 @@ export default function SectorDetalle({ slug }) {
         </div>
       </section>
 
-      <section className="bg-as-cream py-16 md:py-20">
+      {sector.heroImage && (
+        <div className="max-w-7xl mx-auto px-5 md:px-8 -mt-10 md:-mt-14 relative z-10">
+          <img
+            src={sector.heroImage}
+            alt={sector.title}
+            className="w-full h-64 md:h-96 object-cover rounded-2xl border border-as-stone shadow-xl"
+          />
+        </div>
+      )}
+
+      <section className="bg-as-cream py-16 md:py-20 pt-12 md:pt-16">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <h2 className="text-xs font-bold tracking-[0.22em] uppercase text-as-moss mb-6">
             {pick('Campañas que impulsan tu negocio', 'Campaigns that drive your business')}

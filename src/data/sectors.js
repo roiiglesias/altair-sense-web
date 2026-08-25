@@ -7,6 +7,7 @@ export function getSectors(pick) {
     {
       slug: 'moda',
       icon: Shirt,
+      heroImage: '/sectores/moda.jpg',
       title: pick('Moda', 'Fashion'),
       tagline: pick('Prepara hoy tu escaparate. Vende más mañana.', 'Prep your shopfront today. Sell more tomorrow.'),
       hero: pick(
@@ -38,6 +39,7 @@ export function getSectors(pick) {
     {
       slug: 'deportes',
       icon: Dumbbell,
+      heroImage: '/sectores/deportivas.jpg',
       title: pick('Deportes', 'Sports'),
       tagline: pick('Tu escaparate, tu mejor entrenador de ventas.', 'Your shopfront, your best sales coach.'),
       hero: pick(
@@ -69,6 +71,7 @@ export function getSectors(pick) {
     {
       slug: 'supermercados',
       icon: ShoppingCart,
+      heroImage: null,
       title: pick('Supermercados', 'Supermarkets'),
       tagline: pick('Cada pasillo, un punto de venta activo.', 'Every aisle, an active point of sale.'),
       hero: pick(
@@ -100,6 +103,7 @@ export function getSectors(pick) {
     {
       slug: 'health',
       icon: HeartPulse,
+      heroImage: '/sectores/farmacias.jpg',
       title: pick('Health', 'Health'),
       tagline: pick('La salud nunca había sido tan relevante como ahora.', 'Health has never mattered more.'),
       hero: pick(
@@ -131,6 +135,7 @@ export function getSectors(pick) {
     {
       slug: 'viajes',
       icon: Plane,
+      heroImage: '/sectores/viajes.jpg',
       title: pick('Viajes', 'Travel'),
       tagline: pick('Tu próxima aventura empieza aquí.', 'Your next adventure starts here.'),
       hero: pick(
@@ -162,6 +167,7 @@ export function getSectors(pick) {
     {
       slug: 'centros-deportivos',
       icon: Trophy,
+      heroImage: '/sectores/surf.jpg',
       title: pick('Centros deportivos', 'Sports centers'),
       tagline: pick('Cada pantalla, un motivo más para entrenar hoy.', 'Every screen, one more reason to train today.'),
       hero: pick(
