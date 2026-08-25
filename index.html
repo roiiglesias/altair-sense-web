@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Altair Sense — Escaparate conectado</title>
+    <meta name="description" content="Altair Sense: soluciones de retail comprometidas con el resultado de venta. Sensores, analítica y escaparate conectado." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;800&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'as-black': '#10150F',   // verde negro
+              'as-lime': '#B4E33D',    // lima
+              'as-moss': '#4C7A3E',    // musgo
+              'as-cream': '#F2F1E8',   // cal
+              'as-moss-2': '#55604C',
+              'as-sage': '#8E8F7C',
+              'as-stone': '#D7D6C8'
+            },
+            fontFamily: {
+              display: ['"Nunito Sans"', 'sans-serif'],
+              body: ['Inter', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      body { font-family: 'Inter', sans-serif; background-color: #F2F1E8; }
+      ::selection { background: #B4E33D; color: #10150F; }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+      }
+      :focus-visible { outline: 2px solid #B4E33D; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

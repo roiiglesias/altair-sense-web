@@ -1,0 +1,80 @@
+import { Link } from '../lib/router.jsx'
+import { useLang } from '../i18n/LanguageContext.jsx'
+import Logo from './Logo.jsx'
+import { Linkedin, Mail } from 'lucide-react'
+
+export default function Footer() {
+  const { t, pick } = useLang()
+  const year = new Date().getFullYear()
+
+  return (
+    <footer className="bg-as-black text-as-cream pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
+        <div className="grid md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+          <div className="md:col-span-1">
+            <Logo variant="onDark" size="sm" />
+            <p className="mt-4 text-sm text-as-cream/60 leading-relaxed max-w-[24ch]">
+              {pick(
+                'Nos comprometemos con tu resultado de venta.',
+                'Committed to your sales result.'
+              )}
+            </p>
+          </div>
+
+          <FooterCol title={t.nav.solutions} items={[
+            { to: '/soluciones', label: pick('Escaparate conectado', 'Connected shopfront') },
+            { to: '/soluciones', label: pick('Sensores y analítica', 'Sensors & analytics') },
+            { to: '/soluciones', label: pick('Integración con Lumen', 'Lumen integration') }
+          ]} />
+
+          <FooterCol title={pick('Compañía', 'Company')} items={[
+            { to: '/acerca-de', label: t.nav.about },
+            { to: '/sectores', label: t.nav.sectors },
+            { to: '/noticias', label: t.nav.news },
+            { to: '/knowledge-base', label: t.nav.kb }
+          ]} />
+
+          <div>
+            <h4 className="text-xs font-bold tracking-[0.2em] text-as-lime uppercase mb-4">
+              {t.nav.contact}
+            </h4>
+            <a href="mailto:hola@altairsense.com" className="flex items-center gap-2 text-sm text-as-cream/75 hover:text-as-lime transition mb-3">
+              <Mail size={16} /> hola@altairsense.com
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-as-cream/75 hover:text-as-lime transition">
+              <Linkedin size={16} /> LinkedIn
+            </a>
+            <Link
+              to="/contacto"
+              className="inline-block mt-5 bg-as-lime text-as-black text-sm font-bold px-5 py-2.5 rounded-full hover:brightness-95 transition"
+            >
+              {t.cta_contact}
+            </Link>
+          </div>
+        </div>
+
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-as-cream/45">
+          <p>© {year} Altair Sense · {t.footer_rights}</p>
+          <p>{t.footer_brand_of} <span className="text-as-cream/70 font-semibold">Altair Tech</span></p>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+function FooterCol({ title, items }) {
+  return (
+    <div>
+      <h4 className="text-xs font-bold tracking-[0.2em] text-as-lime uppercase mb-4">{title}</h4>
+      <ul className="space-y-2.5">
+        {items.map((it, i) => (
+          <li key={i}>
+            <Link to={it.to} className="text-sm text-as-cream/75 hover:text-as-lime transition">
+              {it.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
