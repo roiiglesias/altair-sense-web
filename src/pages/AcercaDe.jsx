@@ -60,8 +60,8 @@ export default function AcercaDe() {
           </div>
           <p className="text-as-black/65 leading-relaxed text-lg">
             {pick(
-              'Trabajamos con equipos de retail que están cansados de decidir por intuición. Instalamos, medimos, explicamos el dato y seguimos ahí cuando toca ajustar la estrategia. Formamos parte de Altair Tech, con la misma disciplina de producto y de soporte que ya conoces en Lumen.',
-              "We work with retail teams tired of deciding by gut feeling. We install, measure, explain the data, and stay involved when it's time to adjust strategy. We're part of Altair Tech, with the same product and support discipline you already know from Lumen."
+              'Trabajamos con equipos de retail que están cansados de decidir por intuición. Instalamos, medimos, explicamos el dato y seguimos ahí cuando toca ajustar la estrategia, en cada sector en el que operamos.',
+              "We work with retail teams tired of deciding by gut feeling. We install, measure, explain the data, and stay involved when it's time to adjust strategy, across every sector we work in."
             )}
           </p>
         </div>

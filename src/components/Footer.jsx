@@ -22,14 +22,15 @@ export default function Footer() {
           </div>
 
           <FooterCol title={t.nav.solutions} items={[
-            { to: '/soluciones', label: pick('Escaparate conectado', 'Connected shopfront') },
-            { to: '/soluciones', label: pick('Sensores y analítica', 'Sensors & analytics') },
-            { to: '/soluciones', label: pick('Integración con Lumen', 'Lumen integration') }
+            { to: '/soluciones', label: pick('Digital Signage', 'Digital Signage') },
+            { to: '/soluciones', label: pick('Retail Analytics', 'Retail Analytics') },
+            { to: '/soluciones', label: pick('Retail Tech', 'Retail Tech') }
           ]} />
 
           <FooterCol title={pick('Compañía', 'Company')} items={[
-            { to: '/acerca-de', label: t.nav.about },
+            { to: '/nosotros', label: t.nav.about },
             { to: '/sectores', label: t.nav.sectors },
+            { to: '/partners', label: t.nav.partners },
             { to: '/noticias', label: t.nav.news },
             { to: '/knowledge-base', label: t.nav.kb }
           ]} />
@@ -53,9 +54,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-as-cream/45">
+        <div className="pt-6 flex items-center justify-center text-xs text-as-cream/45">
           <p>© {year} Altair Sense · {t.footer_rights}</p>
-          <p>{t.footer_brand_of} <span className="text-as-cream/70 font-semibold">Altair Tech</span></p>
         </div>
       </div>
     </footer>

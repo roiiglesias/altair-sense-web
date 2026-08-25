@@ -6,12 +6,14 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import Soluciones from './pages/Soluciones.jsx'
 import Sectores from './pages/Sectores.jsx'
+import SectorDetalle from './pages/SectorDetalle.jsx'
 import AcercaDe from './pages/AcercaDe.jsx'
 import Contacto from './pages/Contacto.jsx'
 import Noticias from './pages/Noticias.jsx'
 import NoticiaDetalle from './pages/NoticiaDetalle.jsx'
 import KnowledgeBase from './pages/KnowledgeBase.jsx'
 import KBArticulo from './pages/KBArticulo.jsx'
+import Partners from './pages/Partners.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function resolve(path) {
@@ -20,16 +22,20 @@ function resolve(path) {
   if (clean === '/') return { Page: Home }
   if (clean === '/soluciones') return { Page: Soluciones }
   if (clean === '/sectores') return { Page: Sectores }
-  if (clean === '/acerca-de') return { Page: AcercaDe }
+  if (clean === '/nosotros') return { Page: AcercaDe }
   if (clean === '/contacto') return { Page: Contacto }
   if (clean === '/noticias') return { Page: Noticias }
   if (clean === '/knowledge-base') return { Page: KnowledgeBase }
+  if (clean === '/partners') return { Page: Partners }
 
   const newsMatch = clean.match(/^\/noticias\/([^/]+)$/)
   if (newsMatch) return { Page: NoticiaDetalle, props: { slug: newsMatch[1] } }
 
   const kbMatch = clean.match(/^\/knowledge-base\/([^/]+)$/)
   if (kbMatch) return { Page: KBArticulo, props: { slug: kbMatch[1] } }
+
+  const sectorMatch = clean.match(/^\/sectores\/([^/]+)$/)
+  if (sectorMatch) return { Page: SectorDetalle, props: { slug: sectorMatch[1] } }
 
   return { Page: NotFound }
 }

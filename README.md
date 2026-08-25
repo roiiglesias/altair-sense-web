@@ -2,9 +2,11 @@
 
 React + Vite + Tailwind (CDN) + Supabase. Mismo stack que Lumen.
 
-Páginas: Inicio, Soluciones, Sectores, Acerca de, Noticias, Knowledge Base
-(con Descargables), Contacto. Bilingüe ES/EN con selector en el header
-(recuerda el idioma en el navegador).
+Páginas: Inicio, Soluciones, Sectores (+ 6 fichas de sector: Moda, Deportes,
+Supermercados, Health, Viajes, Centros deportivos), Noticias, Knowledge Base
+(con Descargables), Partners, Nosotros, Contacto. Bilingüe ES/EN con selector
+en el header (recuerda el idioma en el navegador). Logos: PNG oficiales del
+manual gráfico, en `public/brand/`.
 
 ---
 
@@ -50,6 +52,9 @@ Desde el **Table Editor** de Supabase, insertando filas:
 - **`contact_messages`**: aquí llegan los leads del formulario. Consúltalos
   desde el Table Editor o conecta el proyecto a un Zapier/Make si quieres
   notificaciones automáticas por email/Slack.
+- **`partners`**: sube el logo al bucket `partners`, pega su URL pública en
+  `logo_url`, añade `name` y opcionalmente `url`, márcalo publicado. Aparece
+  en `/partners`.
 
 Nada de esto requiere volver a desplegar la web.
 

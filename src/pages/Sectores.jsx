@@ -1,53 +1,12 @@
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow } from '../components/Bits.jsx'
 import { Link } from '../lib/router.jsx'
-import { Shirt, Glasses, UtensilsCrossed, Smartphone, Sparkles, ArrowRight } from 'lucide-react'
+import { getSectors } from '../data/sectors.js'
+import { ArrowRight } from 'lucide-react'
 
 export default function Sectores() {
   const { pick, t } = useLang()
-
-  const sectors = [
-    {
-      icon: Shirt,
-      title: pick('Moda y complementos', 'Fashion & accessories'),
-      body: pick(
-        'Mide qué escaparate atrae más entradas y qué colección convierte mejor por tienda.',
-        'Measure which shopfront drives more visits and which collection converts best per store.'
-      )
-    },
-    {
-      icon: Glasses,
-      title: pick('Óptica y salud visual', 'Optics & eye health'),
-      body: pick(
-        'Relaciona campañas de captación con citas y ventas reales en centro.',
-        'Connect acquisition campaigns with real in-store appointments and sales.'
-      )
-    },
-    {
-      icon: UtensilsCrossed,
-      title: pick('Alimentación y conveniencia', 'Food & convenience'),
-      body: pick(
-        'Detecta horas punta reales para ajustar personal y reposición.',
-        'Detect real peak hours to adjust staffing and restocking.'
-      )
-    },
-    {
-      icon: Smartphone,
-      title: pick('Electrónica y telecomunicaciones', 'Electronics & telecom'),
-      body: pick(
-        'Escaparate conectado que promociona stock disponible en tiempo real.',
-        'Connected shopfront promoting real-time available stock.'
-      )
-    },
-    {
-      icon: Sparkles,
-      title: pick('Concept stores y flagship', 'Concept stores & flagship'),
-      body: pick(
-        'Experiencias de escaparate que se adaptan a eventos y lanzamientos.',
-        'Shopfront experiences that adapt to events and launches.'
-      )
-    }
-  ]
+  const sectors = getSectors(pick)
 
   return (
     <div>
@@ -59,8 +18,8 @@ export default function Sectores() {
           </h1>
           <p className="mt-6 text-lg text-as-cream/65 max-w-2xl leading-relaxed">
             {pick(
-              'Cada vertical mide el éxito de forma distinta. Adaptamos sensores y paneles al indicador que de verdad te importa.',
-              'Every vertical measures success differently. We adapt sensors and dashboards to the metric that actually matters to you.'
+              'En cada sector aplicamos las mismas tres capacidades: digital signage, retail analytics y retail tech, adaptadas a lo que de verdad importa en tu negocio.',
+              'In every sector we apply the same three capabilities: digital signage, retail analytics and retail tech, adapted to what actually matters for your business.'
             )}
           </p>
         </div>
@@ -68,12 +27,19 @@ export default function Sectores() {
 
       <section className="bg-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sectors.map((s, i) => (
-            <div key={i} className="bg-white border border-as-stone rounded-2xl p-8 flex flex-col">
+          {sectors.map((s) => (
+            <Link
+              key={s.slug}
+              to={`/sectores/${s.slug}`}
+              className="bg-white border border-as-stone rounded-2xl p-8 flex flex-col hover:border-as-moss transition-colors group"
+            >
               <s.icon size={26} className="text-as-moss mb-5" strokeWidth={1.75} />
               <h3 className="font-display font-extrabold text-xl text-as-black mb-2">{s.title}</h3>
-              <p className="text-as-black/60 leading-relaxed text-sm">{s.body}</p>
-            </div>
+              <p className="text-as-black/60 leading-relaxed text-sm flex-1">{s.tagline}</p>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-as-moss font-bold text-sm group-hover:gap-2.5 transition-all">
+                {pick('Ver sector', 'View sector')} <ArrowRight size={14} />
+              </span>
+            </Link>
           ))}
           <div className="bg-as-black text-as-cream rounded-2xl p-8 flex flex-col justify-between">
             <div>

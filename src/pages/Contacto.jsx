@@ -83,14 +83,7 @@ export default function Contacto() {
             <a href="tel:+34900000000" className="flex items-center gap-3 text-as-black/75 hover:text-as-moss transition">
               <Phone size={18} /> +34 900 000 000
             </a>
-            <div className="mt-10 border-t border-as-stone pt-8">
-              <p className="text-sm text-as-black/55 leading-relaxed">
-                {pick(
-                  'Altair Sense es una marca de Altair Tech.',
-                  'Altair Sense is a brand of Altair Tech.'
-                )}
-              </p>
-            </div>
+
           </div>
 
           <form onSubmit={onSubmit} className="bg-white border border-as-stone rounded-2xl p-8 md:p-10">

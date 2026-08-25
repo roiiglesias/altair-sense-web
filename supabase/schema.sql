@@ -91,3 +91,23 @@ create policy "public read published downloads" on downloads
 
 -- Bucket de storage para los PDFs/descargables (crear desde el panel Storage,
 -- marcarlo como público, nombre sugerido: "downloads").
+
+
+-- 5. Partners (logos de partners tecnológicos) ------------------------------
+create table if not exists partners (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  name text not null,
+  logo_url text not null,   -- URL pública del bucket 'partners' (o 'downloads')
+  url text,                 -- web del partner, opcional
+  is_published boolean not null default false,
+  sort_order int default 0
+);
+
+alter table partners enable row level security;
+
+create policy "public read published partners" on partners
+  for select to anon using (is_published = true);
+
+-- Bucket de storage para los logos de partners (crear desde el panel Storage,
+-- marcarlo como público, nombre sugerido: "partners").

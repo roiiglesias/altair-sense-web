@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react'
 
 const common = {
   es: {
-    nav: { home: 'Inicio', solutions: 'Soluciones', sectors: 'Sectores', about: 'Acerca de', news: 'Noticias', kb: 'Knowledge Base', contact: 'Contacto' },
+    nav: { home: 'Inicio', solutions: 'Soluciones', sectors: 'Sectores', news: 'Noticias', kb: 'Knowledge Base', partners: 'Partners', about: 'Nosotros', contact: 'Contacto' },
     cta_contact: 'Hablemos',
     cta_solutions: 'Ver soluciones',
     footer_rights: 'Todos los derechos reservados.',
@@ -14,10 +14,11 @@ const common = {
     empty_news: 'Todavía no hay noticias publicadas.',
     empty_kb: 'Todavía no hay artículos publicados.',
     empty_downloads: 'Todavía no hay descargables disponibles.',
+    empty_partners: 'Próximamente. Estamos incorporando a nuestros partners tecnológicos.',
     lang_name: 'ES'
   },
   en: {
-    nav: { home: 'Home', solutions: 'Solutions', sectors: 'Sectors', about: 'About', news: 'News', kb: 'Knowledge Base', contact: 'Contact' },
+    nav: { home: 'Home', solutions: 'Solutions', sectors: 'Sectors', news: 'News', kb: 'Knowledge Base', partners: 'Partners', about: 'About', contact: 'Contact' },
     cta_contact: "Let's talk",
     cta_solutions: 'See solutions',
     footer_rights: 'All rights reserved.',
@@ -29,6 +30,7 @@ const common = {
     empty_news: 'No news published yet.',
     empty_kb: 'No articles published yet.',
     empty_downloads: 'No downloads available yet.',
+    empty_partners: 'Coming soon. We are onboarding our technology partners.',
     lang_name: 'EN'
   }
 }

@@ -5,12 +5,12 @@ import { useLang } from '../i18n/LanguageContext.jsx'
 import Logo from './Logo.jsx'
 
 const links = [
-  { to: '/', key: 'home' },
   { to: '/soluciones', key: 'solutions' },
   { to: '/sectores', key: 'sectors' },
-  { to: '/acerca-de', key: 'about' },
   { to: '/noticias', key: 'news' },
-  { to: '/knowledge-base', key: 'kb' }
+  { to: '/knowledge-base', key: 'kb' },
+  { to: '/partners', key: 'partners' },
+  { to: '/nosotros', key: 'about' }
 ]
 
 export default function Header() {
