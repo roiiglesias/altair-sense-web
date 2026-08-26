@@ -2,6 +2,7 @@ import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow } from '../components/Bits.jsx'
 import { Link } from '../lib/router.jsx'
 import { getSectors } from '../data/sectors.js'
+import Seo from '../components/Seo.jsx'
 import { ArrowRight } from 'lucide-react'
 
 export default function Sectores() {
@@ -10,6 +11,14 @@ export default function Sectores() {
 
   return (
     <div>
+      <Seo
+        title={pick('Sectores: retail tech por vertical', 'Sectors: retail tech by vertical')}
+        description={pick(
+          'Digital signage, retail media y retail analytics adaptados a moda, deportes, supermercados, health, viajes y centros deportivos.',
+          'Digital signage, retail media and retail analytics adapted to fashion, sports, supermarkets, health, travel and sports centers.'
+        )}
+        path="/sectores"
+      />
       <section className="bg-as-black text-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <Eyebrow>{t.nav.sectors}</Eyebrow>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow } from '../components/Bits.jsx'
 import { supabase } from '../lib/supabaseClient.js'
+import Seo from '../components/Seo.jsx'
 import { Mail, Phone, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 
 const initialForm = { name: '', email: '', company: '', phone: '', sector: '', message: '' }
@@ -56,6 +57,14 @@ export default function Contacto() {
 
   return (
     <div>
+      <Seo
+        title={t.nav.contact}
+        description={pick(
+          'Habla con Altair Sense sobre digital signage, retail media, control de inventario o mantenimiento predictivo, preventivo y correctivo para tu retail.',
+          'Talk to Altair Sense about digital signage, retail media, inventory control or predictive, preventive and corrective maintenance for your retail business.'
+        )}
+        path="/contacto"
+      />
       <section className="bg-as-black text-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <Eyebrow>{t.nav.contact}</Eyebrow>

@@ -1,6 +1,7 @@
 import { Link } from '../lib/router.jsx'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow, PulseDot, Divider } from '../components/Bits.jsx'
+import Seo from '../components/Seo.jsx'
 import { ArrowRight, Radar, LineChart, Store, Boxes } from 'lucide-react'
 
 export default function Home() {
@@ -9,34 +10,34 @@ export default function Home() {
   const solutions = [
     {
       icon: Radar,
-      title: pick('Sensores de escaparate', 'Shopfront sensors'),
+      title: pick('Digital Signage', 'Digital Signage'),
       body: pick(
-        'Detección de tráfico e interacción en punto de venta, en tiempo real.',
-        'Real-time footfall and interaction detection at the point of sale.'
+        'Cartelería digital y CMS de gestión de contenidos para toda tu red de pantallas, en tiempo real.',
+        'Digital signage and a content management system for your entire screen network, in real time.'
       )
     },
     {
       icon: LineChart,
-      title: pick('Analítica de resultado', 'Outcome analytics'),
+      title: pick('Retail Media & Analytics', 'Retail Media & Analytics'),
       body: pick(
-        'De la visita al ticket: paneles que conectan tráfico con venta real.',
-        'From visit to ticket: dashboards that connect footfall with real sales.'
+        'De la visita al ticket: campañas y paneles que conectan tráfico con venta real.',
+        'From visit to ticket: campaigns and dashboards that connect footfall with real sales.'
       )
     },
     {
       icon: Store,
-      title: pick('Escaparate conectado', 'Connected shopfront'),
+      title: pick('Inventario y stock', 'Inventory & stock'),
       body: pick(
-        'Contenido y señalización digital que reacciona a lo que pasa en la calle.',
-        'Content and digital signage that reacts to what happens on the street.'
+        'Control de inventario en tiempo real por tienda, para que el staff nunca trabaje a ciegas.',
+        'Real-time per-store inventory control, so staff never work blind.'
       )
     },
     {
       icon: Boxes,
-      title: pick('Integración con Lumen', 'Lumen integration'),
+      title: pick('Mantenimiento predictivo', 'Predictive maintenance'),
       body: pick(
-        'Inventario, incidencias y field service conectados de punta a punta.',
-        'Inventory, tickets and field service connected end to end.'
+        'Correctivo, preventivo y predictivo: una pantalla apagada nunca es motivo de venta perdida.',
+        'Corrective, preventive and predictive: a screen going dark is never the reason a sale is lost.'
       )
     }
   ]
@@ -49,6 +50,17 @@ export default function Home() {
 
   return (
     <div>
+      <Seo
+        title={pick(
+          'Digital Signage, Retail Media y Retail Tech para tiendas físicas',
+          'Digital Signage, Retail Media and Retail Tech for physical stores'
+        )}
+        description={pick(
+          'Cartelería digital, CMS de gestión de contenidos, control de inventario y mantenimiento predictivo, preventivo y correctivo en una sola plataforma. Resultados en ventas y experiencia de cliente, en cualquier geografía.',
+          'Digital signage, content management system, inventory control and predictive, preventive and corrective maintenance in one platform. Sales and customer experience results, in any geography.'
+        )}
+        path="/"
+      />
       {/* HERO */}
       <section className="relative bg-as-black text-as-cream overflow-hidden">
         <div className="absolute -right-24 top-1/4 w-[420px] h-[420px] rounded-full bg-as-lime/10 blur-3xl" />
@@ -63,8 +75,8 @@ export default function Home() {
           </h1>
           <p className="mt-7 text-lg md:text-xl text-as-cream/70 max-w-2xl leading-relaxed">
             {pick(
-              'Altair Sense conecta el escaparate, el sensor y el dato: sabrás qué pasa en tu tienda antes de que termine el día.',
-              'Altair Sense connects the shopfront, the sensor and the data: know what happens in your store before the day is over.'
+              'Digital signage, retail media y retail tech en una sola plataforma: contenidos, inventario y mantenimiento conectados para que cada tienda venda más y comunique mejor, en cualquier país.',
+              'Digital signage, retail media and retail tech in one platform: content, inventory and maintenance connected so every store sells more and communicates better, in any country.'
             )}
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">

@@ -4,6 +4,7 @@ import { Eyebrow } from '../components/Bits.jsx'
 import { Link } from '../lib/router.jsx'
 import { supabase } from '../lib/supabaseClient.js'
 import { EmptyState } from './Noticias.jsx'
+import Seo from '../components/Seo.jsx'
 import { ArrowRight, BookOpen, FileDown, Loader2 } from 'lucide-react'
 
 export default function KnowledgeBase() {
@@ -31,6 +32,14 @@ export default function KnowledgeBase() {
 
   return (
     <div>
+      <Seo
+        title={t.nav.kb}
+        description={pick(
+          'Documentación técnica y descargables sobre digital signage, CMS, control de inventario y mantenimiento predictivo, preventivo y correctivo.',
+          'Technical documentation and downloads on digital signage, CMS, inventory control and predictive, preventive and corrective maintenance.'
+        )}
+        path="/knowledge-base"
+      />
       <section className="bg-as-black text-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <Eyebrow>{t.nav.kb}</Eyebrow>

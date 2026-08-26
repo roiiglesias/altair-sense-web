@@ -3,6 +3,7 @@ import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow } from '../components/Bits.jsx'
 import { Link } from '../lib/router.jsx'
 import { supabase } from '../lib/supabaseClient.js'
+import Seo from '../components/Seo.jsx'
 import { ArrowRight, Newspaper, Loader2 } from 'lucide-react'
 
 export default function Noticias() {
@@ -29,6 +30,14 @@ export default function Noticias() {
 
   return (
     <div>
+      <Seo
+        title={t.nav.news}
+        description={pick(
+          'Novedades de Altair Sense en digital signage, retail media, retail tech y retail analytics.',
+          'Altair Sense updates on digital signage, retail media, retail tech and retail analytics.'
+        )}
+        path="/noticias"
+      />
       <section className="bg-as-black text-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <Eyebrow>{t.nav.news}</Eyebrow>

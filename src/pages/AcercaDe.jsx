@@ -1,5 +1,6 @@
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow, Divider } from '../components/Bits.jsx'
+import Seo from '../components/Seo.jsx'
 import { Target, Eye, Handshake } from 'lucide-react'
 
 export default function AcercaDe() {
@@ -34,6 +35,14 @@ export default function AcercaDe() {
 
   return (
     <div>
+      <Seo
+        title={t.nav.about}
+        description={pick(
+          'Altair Sense: empresa de retail tech comprometida con el resultado de venta y la experiencia de cliente, en digital signage, retail media, inventario y mantenimiento.',
+          'Altair Sense: a retail tech company committed to sales results and customer experience, across digital signage, retail media, inventory and maintenance.'
+        )}
+        path="/nosotros"
+      />
       <section className="bg-as-black text-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <Eyebrow>{t.nav.about}</Eyebrow>

@@ -131,9 +131,52 @@ supabase/
 
 ---
 
-## Pendiente de tu confirmación
+---
 
-- Email/teléfono de contacto reales (ahora mismo son placeholder:
+## 7. SEO y GEO (posicionamiento en buscadores y motores de IA)
+
+**Aviso importante de arquitectura:** esta web es una SPA (React + Vite). El
+HTML inicial va casi vacío; el contenido lo pinta JavaScript. Google indexa
+esto razonablemente bien porque ejecuta JS, pero **muchos rastreadores de
+motores de IA (los que alimentan ChatGPT Search, Perplexity, etc.) y las
+previews de redes sociales NO ejecutan JavaScript**, así que no ven el título,
+descripción ni imagen que genera el componente `Seo` dinámicamente.
+
+Lo que sí está cubierto con la arquitectura actual:
+- **Meta tags dinámicos por página** (`src/components/Seo.jsx`): título,
+  descripción, Open Graph, Twitter Card, canonical — Google los ve.
+- **JSON-LD estructurado**: Organization (global, en `index.html`, visible
+  sin JS), Service + FAQPage en Soluciones, BreadcrumbList en cada sector,
+  Article/TechArticle en Noticias y Knowledge Base.
+- **`robots.txt`** permitiendo explícitamente crawlers de IA (GPTBot,
+  ClaudeBot, PerplexityBot, Google-Extended...) además de los tradicionales.
+- **Sitemap dinámico** en `/sitemap.xml` (función serverless en
+  `api/sitemap.js`) que incluye automáticamente las noticias y artículos de
+  Knowledge Base publicados en Supabase, sin tocar código al añadir contenido.
+- **Copy orientado a resultado** en Soluciones y Home cubriendo: digital
+  signage, retail media, retail tech, cartelería digital, CMS de gestión de
+  contenidos, control de inventario y stock, mantenimiento correctivo,
+  predictivo y preventivo — con foco en ventas, CX y adaptación por
+  geografía/audiencia.
+
+**Pendiente si se quiere el máximo nivel (fase 2, cambio de arquitectura):**
+migrar a prerendering/SSR (por ejemplo con `vite-plugin-ssg` o pasar a
+Next.js) para que cada URL sirva HTML ya completo sin depender de que el
+rastreador ejecute JavaScript. Esto beneficiaría especialmente a GEO (motores
+de IA) y a las previews de redes sociales. No lo he hecho en esta pasada
+porque implica reestructurar el proyecto (rutas basadas en ficheros, build
+distinto) y quería evitar otro cambio grande justo después de resolver los
+problemas de despliegue.
+
+También pendiente: **hreflang real** — ahora mismo ES/EN es un toggle dentro
+de la misma URL (`/soluciones` sirve ambos idiomas según el navegador), lo
+cual no es óptimo para SEO internacional. Lo correcto sería `/es/soluciones`
+y `/en/solutions` como URLs distintas indexables por separado. Es un cambio
+de routing más grande — decimos si lo abordamos cuando el resto esté estable.
+
+---
+
+## Pendiente de tu confirmación- Email/teléfono de contacto reales (ahora mismo son placeholder:
   `hola@altairsense.com` / `+34 900 000 000`).
 - Enlace real de LinkedIn.
 - Contenido inicial de Noticias/Knowledge Base/Descargables (la web

@@ -4,6 +4,7 @@ import { Eyebrow } from '../components/Bits.jsx'
 import { supabase } from '../lib/supabaseClient.js'
 import { Handshake, Loader2 } from 'lucide-react'
 import { EmptyState } from './Noticias.jsx'
+import Seo from '../components/Seo.jsx'
 
 export default function Partners() {
   const { pick, t, lang } = useLang()
@@ -27,6 +28,14 @@ export default function Partners() {
 
   return (
     <div>
+      <Seo
+        title={t.nav.partners}
+        description={pick(
+          'Ecosistema de partners tecnológicos de Altair Sense en digital signage, retail media y retail tech.',
+          "Altair Sense's technology partner ecosystem in digital signage, retail media and retail tech."
+        )}
+        path="/partners"
+      />
       <section className="bg-as-black text-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <Eyebrow>{t.nav.partners}</Eyebrow>

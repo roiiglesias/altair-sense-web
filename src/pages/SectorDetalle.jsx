@@ -1,6 +1,7 @@
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Link } from '../lib/router.jsx'
 import { getSectors } from '../data/sectors.js'
+import Seo, { SITE_URL } from '../components/Seo.jsx'
 import { ArrowLeft, ArrowRight, Check, Monitor, Smartphone, RefreshCw } from 'lucide-react'
 import NotFound from './NotFound.jsx'
 
@@ -18,8 +19,24 @@ export default function SectorDetalle({ slug }) {
 
   if (!sector) return <NotFound />
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.nav.sectors, item: `${SITE_URL}/sectores` },
+      { '@type': 'ListItem', position: 2, name: sector.title, item: `${SITE_URL}/sectores/${sector.slug}` }
+    ]
+  }
+
   return (
     <div>
+      <Seo
+        title={pick(`Digital signage y retail tech para ${sector.title.toLowerCase()}`, `Digital signage and retail tech for ${sector.title.toLowerCase()}`)}
+        description={sector.hero}
+        path={`/sectores/${sector.slug}`}
+        image={sector.heroImage ? `${SITE_URL}${sector.heroImage}` : undefined}
+        jsonLd={breadcrumbJsonLd}
+      />
       <section className="bg-as-black text-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <Link to="/sectores" className="inline-flex items-center gap-2 text-as-lime/80 font-bold text-sm mb-8 hover:text-as-lime transition">

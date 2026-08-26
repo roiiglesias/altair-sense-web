@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Link } from '../lib/router.jsx'
 import { supabase } from '../lib/supabaseClient.js'
+import Seo from '../components/Seo.jsx'
 import { ArrowLeft, Loader2 } from 'lucide-react'
 
 export default function KBArticulo({ slug }) {
@@ -44,8 +45,19 @@ export default function KBArticulo({ slug }) {
     )
   }
 
+  const title = lang === 'es' ? article.title_es : article.title_en
+  const summary = lang === 'es' ? article.summary_es : article.summary_en
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: title,
+    description: summary,
+    publisher: { '@type': 'Organization', name: 'Altair Sense' }
+  }
+
   return (
     <article className="bg-as-cream">
+      <Seo title={title} description={summary} path={`/knowledge-base/${article.slug}`} type="article" jsonLd={articleJsonLd} />
       <div className="max-w-3xl mx-auto px-5 md:px-8 py-16 md:py-24">
         <Link to="/knowledge-base" className="inline-flex items-center gap-2 text-as-moss font-bold text-sm mb-8 hover:text-as-black transition">
           <ArrowLeft size={16} /> {t.back}
