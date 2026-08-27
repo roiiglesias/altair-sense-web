@@ -1,7 +1,7 @@
 import { Link } from '../lib/router.jsx'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import Logo from './Logo.jsx'
-import { Linkedin, Mail } from 'lucide-react'
+import { Linkedin, Mail, MapPin } from 'lucide-react'
 
 export default function Footer() {
   const { t, pick } = useLang()
@@ -42,6 +42,10 @@ export default function Footer() {
             <a href="mailto:info@altairsense.com" className="flex items-center gap-2 text-sm text-as-cream/75 hover:text-as-lime transition mb-3">
               <Mail size={16} /> info@altairsense.com
             </a>
+            <p className="flex items-start gap-2 text-sm text-as-cream/75 mb-3">
+              <MapPin size={16} className="mt-0.5 shrink-0" />
+              <span>Calle Los Prados 166, Edificio Impulsa, Gijón</span>
+            </p>
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-as-cream/75 hover:text-as-lime transition">
               <Linkedin size={16} /> LinkedIn
             </a>

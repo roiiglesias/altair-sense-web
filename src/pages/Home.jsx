@@ -2,45 +2,12 @@ import { Link } from '../lib/router.jsx'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow, PulseDot, Divider } from '../components/Bits.jsx'
 import Seo from '../components/Seo.jsx'
-import { ArrowRight, Radar, LineChart, Store, Boxes } from 'lucide-react'
+import HeroSlideshow from '../components/HeroSlideshow.jsx'
+import ConnectionDiagram from '../components/ConnectionDiagram.jsx'
+import { ArrowRight } from 'lucide-react'
 
 export default function Home() {
   const { pick, t } = useLang()
-
-  const solutions = [
-    {
-      icon: Radar,
-      title: pick('Digital Signage', 'Digital Signage'),
-      body: pick(
-        'Cartelería digital y CMS de gestión de contenidos para toda tu red de pantallas, en tiempo real.',
-        'Digital signage and a content management system for your entire screen network, in real time.'
-      )
-    },
-    {
-      icon: LineChart,
-      title: pick('Retail Media & Analytics', 'Retail Media & Analytics'),
-      body: pick(
-        'De la visita al ticket: campañas y paneles que conectan tráfico con venta real.',
-        'From visit to ticket: campaigns and dashboards that connect footfall with real sales.'
-      )
-    },
-    {
-      icon: Store,
-      title: pick('Inventario y stock', 'Inventory & stock'),
-      body: pick(
-        'Control de inventario en tiempo real por tienda, para que el staff nunca trabaje a ciegas.',
-        'Real-time per-store inventory control, so staff never work blind.'
-      )
-    },
-    {
-      icon: Boxes,
-      title: pick('Mantenimiento predictivo', 'Predictive maintenance'),
-      body: pick(
-        'Correctivo, preventivo y predictivo: una pantalla apagada nunca es motivo de venta perdida.',
-        'Corrective, preventive and predictive: a screen going dark is never the reason a sale is lost.'
-      )
-    }
-  ]
 
   const stats = [
     { n: '+40', l: pick('clientes retail activos', 'active retail clients') },
@@ -63,15 +30,7 @@ export default function Home() {
       />
       {/* HERO */}
       <section className="relative bg-as-black text-as-cream overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/brand/home-hero.jpg"
-            alt=""
-            className="w-full h-full object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-as-black via-as-black/90 to-as-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-as-black via-transparent to-as-black/40" />
-        </div>
+        <HeroSlideshow />
         <div className="absolute -right-24 top-1/4 w-[420px] h-[420px] rounded-full bg-as-lime/10 blur-3xl" />
         <div className="max-w-7xl mx-auto px-5 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32 relative">
           <div className="flex items-center gap-3 mb-6">
@@ -115,26 +74,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOLUCIONES PREVIEW */}
-      <section className="bg-as-cream py-20 md:py-28">
+      {/* SOLUCIONES PREVIEW — infografía de conexión */}
+      <section className="bg-as-black py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
-          <div className="max-w-2xl mb-14">
-            <Eyebrow tone="moss">{pick('Qué hacemos', 'What we do')}</Eyebrow>
-            <h2 className="font-display font-extrabold text-3xl md:text-5xl text-as-black mt-3">
-              {pick('Cuatro piezas, un mismo objetivo', 'Four pieces, one goal')}
+          <div className="max-w-2xl mb-4">
+            <Eyebrow>{pick('Qué hacemos', 'What we do')}</Eyebrow>
+            <h2 className="font-display font-extrabold text-3xl md:text-5xl text-as-cream mt-3">
+              {pick('Tecnología conectada, un mismo resultado', 'Connected technology, one outcome')}
             </h2>
+            <p className="mt-4 text-as-cream/60 leading-relaxed">
+              {pick(
+                'Cada capacidad funciona sola, pero el resultado aparece cuando están conectadas en una sola plataforma.',
+                'Each capability works on its own, but the result shows up when they run connected in one platform.'
+              )}
+            </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {solutions.map((s, i) => (
-              <div key={i} className="bg-white border border-as-stone rounded-2xl p-8 hover:border-as-moss transition-colors">
-                <s.icon size={28} className="text-as-moss mb-5" strokeWidth={1.75} />
-                <h3 className="font-display font-extrabold text-xl text-as-black mb-2">{s.title}</h3>
-                <p className="text-as-black/60 leading-relaxed">{s.body}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10">
-            <Link to="/soluciones" className="inline-flex items-center gap-2 text-as-moss font-bold hover:text-as-black transition">
+          <ConnectionDiagram pick={pick} />
+          <div className="mt-6">
+            <Link to="/soluciones" className="inline-flex items-center gap-2 text-as-lime font-bold hover:text-white transition">
               {t.cta_solutions} <ArrowRight size={16} />
             </Link>
           </div>

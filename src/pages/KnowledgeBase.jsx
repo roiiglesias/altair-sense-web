@@ -5,11 +5,13 @@ import { Link } from '../lib/router.jsx'
 import { supabase } from '../lib/supabaseClient.js'
 import { EmptyState } from './Noticias.jsx'
 import Seo from '../components/Seo.jsx'
-import { ArrowRight, BookOpen, FileDown, Loader2 } from 'lucide-react'
+import { ArrowRight, BookOpen, FileDown, Loader2, Trophy } from 'lucide-react'
+
+const CASE_STUDY_CATEGORY = 'caso-exito'
 
 export default function KnowledgeBase() {
   const { pick, t, lang } = useLang()
-  const [tab, setTab] = useState('articulos') // articulos | descargables
+  const [tab, setTab] = useState('articulos') // articulos | casos | descargables
   const [articles, setArticles] = useState(null)
   const [downloads, setDownloads] = useState(null)
 
@@ -30,13 +32,16 @@ export default function KnowledgeBase() {
     return () => { active = false }
   }, [])
 
+  const plainArticles = articles?.filter((a) => a.category !== CASE_STUDY_CATEGORY) ?? null
+  const caseStudies = articles?.filter((a) => a.category === CASE_STUDY_CATEGORY) ?? null
+
   return (
     <div>
       <Seo
         title={t.nav.kb}
         description={pick(
-          'Documentación técnica y descargables sobre digital signage, CMS, control de inventario y mantenimiento predictivo, preventivo y correctivo.',
-          'Technical documentation and downloads on digital signage, CMS, inventory control and predictive, preventive and corrective maintenance.'
+          'Documentación técnica, casos de éxito y descargables sobre digital signage, CMS, control de inventario y mantenimiento predictivo, preventivo y correctivo.',
+          'Technical documentation, case studies and downloads on digital signage, CMS, inventory control and predictive, preventive and corrective maintenance.'
         )}
         path="/knowledge-base"
       />
@@ -48,8 +53,8 @@ export default function KnowledgeBase() {
           </h1>
           <p className="mt-6 text-lg text-as-cream/65 max-w-2xl leading-relaxed">
             {pick(
-              'Artículos técnicos, guías de instalación y material descargable.',
-              'Technical articles, installation guides and downloadable material.'
+              'Artículos técnicos, casos de éxito, guías de instalación y material descargable.',
+              'Technical articles, case studies, installation guides and downloadable material.'
             )}
           </p>
         </div>
@@ -61,17 +66,20 @@ export default function KnowledgeBase() {
             <TabButton active={tab === 'articulos'} onClick={() => setTab('articulos')}>
               {pick('Artículos', 'Articles')}
             </TabButton>
+            <TabButton active={tab === 'casos'} onClick={() => setTab('casos')}>
+              {pick('Casos de éxito', 'Case studies')}
+            </TabButton>
             <TabButton active={tab === 'descargables'} onClick={() => setTab('descargables')}>
               {pick('Descargables', 'Downloads')}
             </TabButton>
           </div>
 
-          {tab === 'articulos' ? (
+          {tab === 'articulos' && (
             <>
-              {articles === null && <LoadingRow text={t.loading} />}
-              {articles?.length === 0 && <EmptyState icon={BookOpen} text={t.empty_kb} />}
+              {plainArticles === null && <LoadingRow text={t.loading} />}
+              {plainArticles?.length === 0 && <EmptyState icon={BookOpen} text={t.empty_kb} />}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {articles?.map((a) => (
+                {plainArticles?.map((a) => (
                   <Link
                     key={a.id}
                     to={`/knowledge-base/${a.slug}`}
@@ -93,7 +101,40 @@ export default function KnowledgeBase() {
                 ))}
               </div>
             </>
-          ) : (
+          )}
+
+          {tab === 'casos' && (
+            <>
+              {caseStudies === null && <LoadingRow text={t.loading} />}
+              {caseStudies?.length === 0 && (
+                <EmptyState icon={Trophy} text={pick('Todavía no hay casos de éxito publicados.', 'No case studies published yet.')} />
+              )}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {caseStudies?.map((a) => (
+                  <Link
+                    key={a.id}
+                    to={`/knowledge-base/${a.slug}`}
+                    className="bg-white border border-as-stone rounded-2xl p-6 hover:border-as-moss transition-colors flex flex-col"
+                  >
+                    <span className="text-[11px] font-bold uppercase tracking-wide text-as-lime bg-as-black inline-block px-2 py-1 rounded mb-3 w-fit">
+                      {pick('Caso de éxito', 'Case study')}
+                    </span>
+                    <h3 className="font-display font-extrabold text-lg text-as-black mb-2">
+                      {lang === 'es' ? a.title_es : a.title_en}
+                    </h3>
+                    <p className="text-sm text-as-black/60 leading-relaxed line-clamp-3 flex-1">
+                      {lang === 'es' ? a.summary_es : a.summary_en}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-as-moss font-bold text-sm">
+                      {t.read_more} <ArrowRight size={14} />
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+
+          {tab === 'descargables' && (
             <>
               {downloads === null && <LoadingRow text={t.loading} />}
               {downloads?.length === 0 && <EmptyState icon={FileDown} text={t.empty_downloads} />}

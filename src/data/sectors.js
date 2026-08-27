@@ -1,4 +1,4 @@
-import { Shirt, ShoppingCart, Dumbbell, Pill, Stethoscope, Cross, BedDouble, Car } from 'lucide-react'
+import { Shirt, ShoppingCart, Dumbbell, Pill, Stethoscope, Cross, BedDouble, Car, Building2 } from 'lucide-react'
 
 // pick(es, en) se pasa desde useLang() de cada página que use estos datos.
 export function getSectors(pick) {
@@ -6,7 +6,7 @@ export function getSectors(pick) {
     {
       slug: 'fashion-retail',
       icon: Shirt,
-      heroImage: '/sectores/moda.jpg',
+      heroImage: '/sectores/fashion-retail.jpg',
       title: pick('Fashion Retail', 'Fashion Retail'),
       tagline: pick('Pantallas que comunican mejor cada colección', 'Screens that communicate every collection better'),
       hero: pick(
@@ -26,9 +26,7 @@ export function getSectors(pick) {
       ]
     },
     {
-      slug: 'supermercados',
-      icon: ShoppingCart,
-      heroImage: null,
+      heroImage: '/sectores/supermercados.jpg',
       title: pick('Supermercados', 'Supermarkets'),
       tagline: pick('Cada pasillo, un punto de comunicación activo', 'Every aisle, an active communication point'),
       hero: pick(
@@ -160,7 +158,7 @@ export function getSectors(pick) {
     {
       slug: 'automocion',
       icon: Car,
-      heroImage: null,
+      heroImage: '/sectores/automocion.jpg',
       title: pick('Automoción', 'Automotive'),
       tagline: pick('Concesionarios que comunican mejor cada modelo', 'Dealerships that communicate every model better'),
       hero: pick(
@@ -177,6 +175,28 @@ export function getSectors(pick) {
         { title: pick('Showroom siempre actualizado', 'Always up-to-date showroom'), body: pick('Precios, stock y promociones al instante, sin imprimir nada.', 'Prices, stock and promotions instantly, without printing anything.') },
         { title: pick('Más consultas cualificadas', 'More qualified inquiries'), body: pick('Contenido que ayuda al cliente a decidir antes de hablar con ventas.', 'Content that helps the customer decide before talking to sales.') },
         { title: pick('Consistencia entre concesionarios', 'Consistency across dealerships'), body: pick('El mismo estándar de comunicación en toda la red.', 'The same communication standard across the whole network.') }
+      ]
+    },
+    {
+      slug: 'comunicacion-corporativa',
+      icon: Building2,
+      heroImage: null,
+      title: pick('Comunicación Corporativa', 'Corporate Communication'),
+      tagline: pick('Cartelería digital para comunicar mejor hacia dentro', 'Digital signage to communicate better internally'),
+      hero: pick(
+        'Cartelería digital y otras soluciones para la comunicación corporativa e interna de empresas e industrias que necesitan transmitir más mensajes a sus empleados, en oficinas, plantas y centros de trabajo.',
+        'Digital signage and other solutions for corporate and internal communication in companies and industries that need to deliver more messages to their employees, across offices, plants and workplaces.'
+      ),
+      useCases: [
+        pick('Pantallas de comunicación interna en oficinas y plantas', 'Internal communication screens in offices and plants'),
+        pick('Indicadores y KPIs en tiempo real para equipos', 'Real-time indicators and KPIs for teams'),
+        pick('Comunicación de seguridad y cumplimiento normativo', 'Safety and compliance communication'),
+        pick('CMS multi-sede para comunicación corporativa coherente', 'Multi-site CMS for consistent corporate communication')
+      ],
+      benefits: [
+        { title: pick('Llega a todo el equipo', 'Reaches the whole team'), body: pick('Mensajes visibles incluso para empleados sin acceso a email o intranet.', 'Messages visible even for employees without email or intranet access.') },
+        { title: pick('Comunicación coherente', 'Consistent communication'), body: pick('El mismo mensaje, actualizado a la vez, en todas las sedes o plantas.', 'The same message, updated at once, across every site or plant.') },
+        { title: pick('Refuerza cultura y seguridad', 'Reinforces culture and safety'), body: pick('Espacio permanente para valores de empresa, reconocimientos y avisos críticos.', 'A permanent space for company values, recognition and critical notices.') }
       ]
     }
   ]

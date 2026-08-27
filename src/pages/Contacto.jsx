@@ -3,7 +3,7 @@ import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow } from '../components/Bits.jsx'
 import { supabase } from '../lib/supabaseClient.js'
 import Seo from '../components/Seo.jsx'
-import { Mail, Phone, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
+import { Mail, Phone, MapPin, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 
 const initialForm = { name: '', email: '', company: '', phone: '', sector: '', message: '' }
 
@@ -92,6 +92,25 @@ export default function Contacto() {
             <a href="tel:+34900000000" className="flex items-center gap-3 text-as-black/75 hover:text-as-moss transition">
               <Phone size={18} /> +34 900 000 000
             </a>
+
+            <div className="mt-10 border-t border-as-stone pt-8">
+              <h3 className="text-xs font-bold tracking-[0.2em] text-as-moss uppercase mb-3">
+                {pick('Oficina', 'Office')}
+              </h3>
+              <a
+                href="https://maps.google.com/?q=Calle+Los+Prados+166,+Edificio+Impulsa,+Gijón,+España"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-start gap-3 text-as-black/75 hover:text-as-moss transition"
+              >
+                <MapPin size={18} className="mt-0.5 shrink-0" />
+                <span>
+                  Altair Sense HQ<br />
+                  Calle Los Prados 166, Edificio Impulsa<br />
+                  Gijón, España
+                </span>
+              </a>
+            </div>
 
           </div>
 

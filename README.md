@@ -204,11 +204,17 @@ pequeño, no hay que reconstruir nada de lo ya hecho.
 
 - Teléfono de contacto real (ahora mismo placeholder: `+34 900 000 000`).
 - Logos reales de los 7 partners (ZK Digimax, Visiotech, Hisense, Unilumin,
-  Hikvision, Milesight, Flame Analytics) — ver `supabase/seed_partners.sql`.
-- Fotos para Supermercados, Clínicas, Hospitales y Automoción (sin imagen
-  propia por ahora).
-- Contenido inicial de Noticias/Knowledge Base/Descargables (la web
-  funciona vacía hasta que insertes las primeras filas en Supabase).
+  Hikvision, Milesight, Flame Analytics) — de momento se muestran como
+  wordmark tipográfico en `/partners`. En cuanto tengas cada logo oficial,
+  súbelo al bucket `partners` de Supabase, actualiza
+  `supabase/seed_partners.sql` con la URL real y márcalo `is_published =
+  true` — en ese momento sustituye automáticamente al wordmark.
+- Fotos para Clínicas, Hospitales y Comunicación Corporativa (sin imagen
+  propia por ahora; Fashion Retail, Sports & Apparel, Supermercados,
+  Farmacias, Hoteles y Automoción ya tienen foto).
+- Contenido inicial de Noticias/Knowledge Base (incluidos los Casos de
+  éxito, categoría `caso-exito` en `kb_articles`) y Descargables — la web
+  funciona vacía hasta que insertes las primeras filas en Supabase.
 - Confirmar la URL del portal de Lumen usada en la página de "Próximamente"
   (`src/pages/ComingSoon.jsx`, constante `LUMEN_URL`).
 - Cuándo despublicar `/hide` y pasar la web completa a la raíz definitiva.

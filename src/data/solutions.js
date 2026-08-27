@@ -9,13 +9,14 @@ export function solutionSections(pick) {
       icon: Monitor,
       title: pick('Digital Signage', 'Digital Signage'),
       body: pick(
-        'Cartelería digital y pantallas profesionales para escaparate, punto de venta e interior de tienda, gestionadas de forma centralizada.',
-        'Digital signage and professional screens for shopfront, point of sale and in-store, managed centrally.'
+        'Gestión de proyecto end to end: partimos de entender tus necesidades y puntos de dolor, analizamos qué soluciones se ajustan mejor a resolverlos, y desplegamos cartelería digital y pantallas profesionales para escaparate, punto de venta e interior de tienda, gestionadas de forma centralizada. Somos especialistas en implantación de soluciones LED: configuración, gestión y control de las pantallas, con una implementación inteligente pensada para maximizar su impacto y su durabilidad.',
+        "End-to-end project management: we start by understanding your needs and pain points, analyze which solutions best address them, and deploy digital signage and professional screens for shopfront, point of sale and in-store, managed centrally. We specialize in LED solution implementation: configuration, management and control of the screens, with an intelligent setup designed to maximize both impact and durability."
       ),
       points: [
-        pick('Pantallas de escaparate e interior', 'Shopfront and interior screens'),
-        pick('Contenido dinámico y programado', 'Dynamic, scheduled content'),
-        pick('Alta luminosidad para exterior', 'High brightness for outdoor use')
+        pick('Análisis de necesidades y diseño de solución', 'Needs analysis and solution design'),
+        pick('Especialistas en implantación LED', 'LED implementation specialists'),
+        pick('Configuración, gestión y control de pantallas', 'Screen configuration, management and control'),
+        pick('Implementación inteligente para más impacto y durabilidad', 'Intelligent setup for more impact and durability')
       ]
     },
     {
@@ -69,13 +70,14 @@ export function solutionSections(pick) {
       icon: HardHat,
       title: pick('Servicios de instalación', 'Installation services'),
       body: pick(
-        'Despliegue llave en mano de pantallas y equipos en tienda, con estándares homogéneos en cada apertura, ciudad o país.',
-        'Turnkey deployment of screens and equipment in-store, with consistent standards across every opening, city or country.'
+        'Despliegue llave en mano de pantallas y equipos en tienda, con estándares homogéneos en cada apertura, ciudad o país. A nivel nacional contamos con más de 8 puntos de servicio y más de 100 técnicos especializados; a nivel internacional, 15 puntos de atención con más de 250 técnicos, para dar cobertura y seguimiento a implantaciones en otros países.',
+        'Turnkey deployment of screens and equipment in-store, with consistent standards across every opening, city or country. Nationally we have more than 8 service points and over 100 specialized technicians; internationally, 15 service points with more than 250 technicians, providing coverage and follow-up for deployments abroad.'
       ),
       points: [
+        pick('+8 puntos de servicio y +100 técnicos (nacional)', '8+ service points and 100+ technicians (national)'),
+        pick('15 puntos de atención y +250 técnicos (internacional)', '15 service points and 250+ technicians (international)'),
         pick('Roll-out multi-tienda coordinado', 'Coordinated multi-store roll-out'),
-        pick('Estándares homogéneos por cadena', 'Consistent standards chain-wide'),
-        pick('Cobertura nacional e internacional', 'National and international coverage')
+        pick('Estándares homogéneos por cadena', 'Consistent standards chain-wide')
       ]
     },
     {
@@ -84,13 +86,14 @@ export function solutionSections(pick) {
       icon: Wrench,
       title: pick('Mantenimiento correctivo, predictivo y preventivo', 'Corrective, predictive and preventive maintenance'),
       body: pick(
-        'Órdenes de trabajo de campo y detección temprana de incidencias de hardware, para que una pantalla apagada nunca sea el motivo de una venta perdida.',
-        'Field work orders and early detection of hardware issues, so a screen going dark is never the reason a sale is lost.'
+        'Órdenes de trabajo de campo y detección temprana de incidencias de hardware, para que una pantalla apagada nunca sea el motivo de una venta perdida. Nuestra solución propia, Lumen, basada en IA, reduce las incidencias, se anticipa a ellas y genera modelos de resolución más eficientes con cada caso que gestiona. Además, ofrecemos servicio NBD (Next Business Day) adaptado a las necesidades del cliente y a la criticidad de cada elemento instalado.',
+        'Field work orders and early detection of hardware issues, so a screen going dark is never the reason a sale is lost. Our own AI-based platform, Lumen, reduces incidents, anticipates them, and builds more efficient resolution models with every case it handles. We also offer NBD (Next Business Day) service, adapted to the client\'s needs and the criticality of each installed element.'
       ),
       points: [
         pick('Ticketing automático por incidencia', 'Automatic incident ticketing'),
-        pick('Mantenimiento preventivo programado', 'Scheduled preventive maintenance'),
-        pick('Detección predictiva de fallos', 'Predictive fault detection')
+        pick('Lumen (IA): anticipación y modelos de resolución', 'Lumen (AI): anticipation and resolution models'),
+        pick('Servicio NBD adaptado a la criticidad', 'NBD service adapted to criticality'),
+        pick('Mantenimiento preventivo programado', 'Scheduled preventive maintenance')
       ]
     },
     {

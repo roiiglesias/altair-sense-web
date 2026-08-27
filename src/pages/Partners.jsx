@@ -2,12 +2,20 @@ import { useEffect, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow } from '../components/Bits.jsx'
 import { supabase } from '../lib/supabaseClient.js'
-import { Handshake, Loader2 } from 'lucide-react'
-import { EmptyState } from './Noticias.jsx'
 import Seo from '../components/Seo.jsx'
 
+// Partners confirmados. Sin logo oficial subido todavía: se muestran como
+// wordmark tipográfico (fiable, sin arriesgar a usar un logo equivocado o de
+// baja resolución sacado de una búsqueda). En cuanto subas cada logo real al
+// bucket "partners" de Supabase y actualices supabase/seed_partners.sql,
+// cambia is_published a true en esa fila y desaparece de esta lista fija
+// para aparecer con su logo real desde la sección dinámica de abajo.
+const CORE_PARTNERS = [
+  'ZK Digimax', 'Visiotech', 'Hisense', 'Unilumin', 'Hikvision', 'Milesight', 'Flame Analytics'
+]
+
 export default function Partners() {
-  const { pick, t, lang } = useLang()
+  const { pick, t } = useLang()
   const [partners, setPartners] = useState(null)
 
   useEffect(() => {
@@ -44,8 +52,8 @@ export default function Partners() {
           </h1>
           <p className="mt-6 text-lg text-as-cream/65 max-w-2xl leading-relaxed">
             {pick(
-              'Trabajamos con un ecosistema de partners tecnológicos para llevar digital signage, retail analytics y retail tech a cada sector.',
-              'We work with a technology partner ecosystem to bring digital signage, retail analytics and retail tech to every sector.'
+              'Trabajamos con un ecosistema de partners tecnológicos de primer nivel para llevar digital signage, retail media y retail tech a cada sector.',
+              'We work with a first-tier technology partner ecosystem to bring digital signage, retail media and retail tech to every sector.'
             )}
           </p>
         </div>
@@ -53,18 +61,19 @@ export default function Partners() {
 
       <section className="bg-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
-          {partners === null && (
-            <div className="flex items-center gap-2 text-as-black/50 mb-6">
-              <Loader2 size={18} className="animate-spin" /> {t.loading}
-            </div>
-          )}
-
-          {partners?.length === 0 && (
-            <EmptyState icon={Handshake} text={t.empty_partners} />
-          )}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-6">
+            {CORE_PARTNERS.map((name) => (
+              <div
+                key={name}
+                className="bg-white border border-as-stone rounded-2xl h-28 flex items-center justify-center px-4 hover:border-as-moss transition-colors"
+              >
+                <span className="font-display font-extrabold text-lg text-as-black/80 text-center">{name}</span>
+              </div>
+            ))}
+          </div>
 
           {partners && partners.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 pt-6 border-t border-as-stone">
               {partners.map((p) => (
                 <a
                   key={p.id}
