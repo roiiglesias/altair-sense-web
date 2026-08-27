@@ -39,8 +39,8 @@ export default function Footer() {
             <h4 className="text-xs font-bold tracking-[0.2em] text-as-lime uppercase mb-4">
               {t.nav.contact}
             </h4>
-            <a href="mailto:hola@altairsense.com" className="flex items-center gap-2 text-sm text-as-cream/75 hover:text-as-lime transition mb-3">
-              <Mail size={16} /> hola@altairsense.com
+            <a href="mailto:info@altairsense.com" className="flex items-center gap-2 text-sm text-as-cream/75 hover:text-as-lime transition mb-3">
+              <Mail size={16} /> info@altairsense.com
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-as-cream/75 hover:text-as-lime transition">
               <Linkedin size={16} /> LinkedIn

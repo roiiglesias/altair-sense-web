@@ -12,10 +12,25 @@ export function RouterProvider({ children }) {
   }, [])
 
   const navigate = useCallback((to) => {
-    if (to !== window.location.pathname) {
+    const [toPath, toHash] = to.split('#')
+    const samePath = toPath === window.location.pathname
+
+    if (!samePath) {
       window.history.pushState({}, '', to)
-      setPath(to)
-      window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' })
+      setPath(toPath)
+      if (!toHash) {
+        window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' })
+      }
+    } else if (toHash) {
+      window.history.pushState({}, '', to)
+    }
+
+    if (toHash) {
+      // deja que la página monte antes de intentar el scroll a la ancla
+      setTimeout(() => {
+        const el = document.getElementById(toHash)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, samePath ? 0 : 120)
     }
   }, [])
 

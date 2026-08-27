@@ -1,71 +1,28 @@
-import { Shirt, Dumbbell, ShoppingCart, HeartPulse, Plane, Trophy } from 'lucide-react'
+import { Shirt, ShoppingCart, Dumbbell, Pill, Stethoscope, Cross, BedDouble, Car } from 'lucide-react'
 
-// pick(es, en) is the same helper exposed by useLang() — se pasa desde cada página
-// para no duplicar el contexto de idioma dentro de este fichero de datos.
+// pick(es, en) se pasa desde useLang() de cada página que use estos datos.
 export function getSectors(pick) {
   return [
     {
-      slug: 'moda',
+      slug: 'fashion-retail',
       icon: Shirt,
       heroImage: '/sectores/moda.jpg',
-      title: pick('Moda', 'Fashion'),
-      tagline: pick('Prepara hoy tu escaparate. Vende más mañana.', 'Prep your shopfront today. Sell more tomorrow.'),
+      title: pick('Fashion Retail', 'Fashion Retail'),
+      tagline: pick('Pantallas que comunican mejor cada colección', 'Screens that communicate every collection better'),
       hero: pick(
-        'Convierte cada mirada en una oportunidad. Lo digital se une a lo físico para que tu tienda destaque y venda más.',
-        'Turn every glance into an opportunity. Digital meets physical so your store stands out and sells more.'
+        'Escaparates con pantallas que adaptan el contenido al contexto, pantallas LED para presentar colecciones con más impacto, y retail media para campañas de temporada.',
+        'Shopfronts with screens that adapt content to context, LED screens to present collections with more impact, and retail media for seasonal campaigns.'
       ),
-      campaigns: [
-        pick('Vuelta al cole', 'Back to school'),
-        pick('Nueva colección otoño-invierno', 'New autumn-winter collection'),
-        pick('Black Friday', 'Black Friday'),
-        pick('Navidad', 'Christmas'),
-        pick('Rebajas de enero', 'January sales')
+      useCases: [
+        pick('Escaparates que adaptan el contenido al contexto', 'Shopfronts that adapt content to context'),
+        pick('Pantallas LED para presentar colecciones', 'LED screens to present collections'),
+        pick('Retail media para campañas de temporada', 'Retail media for seasonal campaigns'),
+        pick('CMS centralizado multi-tienda', 'Centralized multi-store CMS')
       ],
       benefits: [
-        {
-          title: pick('Atrae todas las miradas', 'Attract every glance'),
-          body: pick('Un escaparate dinámico capta la atención y te diferencia del resto.', 'A dynamic shopfront captures attention and sets you apart.')
-        },
-        {
-          title: pick('Más visitas, más ventas', 'More visits, more sales'),
-          body: pick('Comunica mejor tus colecciones, promociones y novedades 24/7.', 'Communicate your collections, promotions and news 24/7.')
-        },
-        {
-          title: pick('Cuenta tu historia', 'Tell your story'),
-          body: pick('Refleja la esencia de tu marca y conecta con tu comunidad.', "Reflect your brand's essence and connect with your community.")
-        }
-      ]
-    },
-    {
-      slug: 'deportes',
-      icon: Dumbbell,
-      heroImage: '/sectores/deportivas.jpg',
-      title: pick('Deportes', 'Sports'),
-      tagline: pick('Tu escaparate, tu mejor entrenador de ventas.', 'Your shopfront, your best sales coach.'),
-      hero: pick(
-        'Muestra tu producto en acción, inspira a tu comunidad y convierte miradas en clientes cada día.',
-        'Show your product in action, inspire your community, and turn glances into customers every day.'
-      ),
-      campaigns: [
-        pick('Rebajas', 'Sales'),
-        pick('Nueva colección primavera-verano', 'New spring-summer collection'),
-        pick('Black Friday', 'Black Friday'),
-        pick('Navidad', 'Christmas'),
-        pick('Eventos y carreras locales', 'Local races and events')
-      ],
-      benefits: [
-        {
-          title: pick('Producto en acción', 'Product in action'),
-          body: pick('Vídeos y fotos reales de deportistas usando lo que vendes.', 'Real photos and videos of athletes using what you sell.')
-        },
-        {
-          title: pick('Transmite estilo de vida', 'Convey a lifestyle'),
-          body: pick('Inspira a tu comunidad con contenido que conecta con sus pasiones.', "Inspire your community with content that connects with their passions.")
-        },
-        {
-          title: pick('Más visitas, más ventas', 'More visits, more sales'),
-          body: pick('Convierte miradas en clientes y oportunidades de venta cada día.', 'Turn glances into customers and sales opportunities every day.')
-        }
+        { title: pick('Atrae todas las miradas', 'Attract every glance'), body: pick('Un escaparate dinámico capta la atención y te diferencia del resto.', 'A dynamic shopfront captures attention and sets you apart.') },
+        { title: pick('Más visitas, más ventas', 'More visits, more sales'), body: pick('Comunica mejor tus colecciones, promociones y novedades 24/7.', 'Communicate your collections, promotions and news 24/7.') },
+        { title: pick('Consistencia de marca', 'Brand consistency'), body: pick('El mismo estándar visual en cada tienda, gestionado desde un único panel.', 'The same visual standard in every store, managed from a single dashboard.') }
       ]
     },
     {
@@ -73,127 +30,153 @@ export function getSectors(pick) {
       icon: ShoppingCart,
       heroImage: null,
       title: pick('Supermercados', 'Supermarkets'),
-      tagline: pick('Cada pasillo, un punto de venta activo.', 'Every aisle, an active point of sale.'),
+      tagline: pick('Cada pasillo, un punto de comunicación activo', 'Every aisle, an active communication point'),
       hero: pick(
-        'Comunica ofertas, productos de temporada y disponibilidad en tiempo real, en el lineal y en el escaparate.',
-        'Communicate offers, seasonal products and real-time availability, on the shelf and at the storefront.'
+        'Sistemas de fila única para reducir la percepción de espera, cartelería digital de precios y ofertas, y retail media en el propio punto de venta.',
+        'Single-queue systems to reduce perceived wait time, digital pricing and offers signage, and retail media right at the point of sale.'
       ),
-      campaigns: [
-        pick('Producto de temporada', 'Seasonal product'),
-        pick('Ofertas semanales', 'Weekly deals'),
-        pick('Black Friday', 'Black Friday'),
-        pick('Navidad', 'Christmas'),
-        pick('Vuelta al cole', 'Back to school')
+      useCases: [
+        pick('Sistemas de fila única para reducir la espera', 'Single-queue systems to reduce wait time'),
+        pick('Cartelería digital de precios y ofertas', 'Digital pricing and offers signage'),
+        pick('Retail media en punto de venta', 'Point-of-sale retail media'),
+        pick('Gestión de turnos combinada con contenidos', 'Turn management combined with content')
       ],
       benefits: [
-        {
-          title: pick('Contenido siempre actual', 'Always current content'),
-          body: pick('Precios y disponibilidad actualizados sin necesidad de imprimir nada.', 'Prices and availability updated without printing anything.')
-        },
-        {
-          title: pick('Más ticket medio', 'Higher average ticket'),
-          body: pick('Promociona combos y productos de temporada de forma eficaz.', 'Promote combos and seasonal products effectively.')
-        },
-        {
-          title: pick('Reduce costes', 'Reduce costs'),
-          body: pick('Menos impresión, más rapidez para cambiar precios y mensajes.', 'Less printing, faster to change prices and messaging.')
-        }
+        { title: pick('Contenido siempre actual', 'Always current content'), body: pick('Precios y disponibilidad actualizados sin necesidad de imprimir nada.', 'Prices and availability updated without printing anything.') },
+        { title: pick('Menos percepción de espera', 'Less perceived waiting'), body: pick('La fila única combinada con contenido relevante mejora la experiencia en caja.', 'Single-queue combined with relevant content improves the checkout experience.') },
+        { title: pick('Más ticket medio', 'Higher average ticket'), body: pick('Promociona combos y productos de temporada de forma eficaz.', 'Promote combos and seasonal products effectively.') }
       ]
     },
     {
-      slug: 'health',
-      icon: HeartPulse,
+      slug: 'sports-apparel',
+      icon: Dumbbell,
+      heroImage: '/sectores/deportivas.jpg',
+      title: pick('Sports & Apparel', 'Sports & Apparel'),
+      tagline: pick('Tu escaparate, tu mejor entrenador de ventas', 'Your shopfront, your best sales coach'),
+      hero: pick(
+        'Muestra tu producto en acción, inspira a tu comunidad y convierte miradas en clientes con escaparates contextuales y retail media.',
+        'Show your product in action, inspire your community, and turn glances into customers with contextual shopfronts and retail media.'
+      ),
+      useCases: [
+        pick('Escaparates que adaptan el contenido al contexto', 'Shopfronts that adapt content to context'),
+        pick('Pantallas LED para lanzamientos de producto', 'LED screens for product launches'),
+        pick('Retail media para campañas y eventos', 'Retail media for campaigns and events'),
+        pick('CMS centralizado multi-tienda', 'Centralized multi-store CMS')
+      ],
+      benefits: [
+        { title: pick('Producto en acción', 'Product in action'), body: pick('Vídeos y fotos reales de deportistas usando lo que vendes.', 'Real photos and videos of athletes using what you sell.') },
+        { title: pick('Transmite estilo de vida', 'Convey a lifestyle'), body: pick('Inspira a tu comunidad con contenido que conecta con sus pasiones.', 'Inspire your community with content that connects with their passions.') },
+        { title: pick('Más visitas, más ventas', 'More visits, more sales'), body: pick('Convierte miradas en clientes y oportunidades de venta cada día.', 'Turn glances into customers and sales opportunities every day.') }
+      ]
+    },
+    {
+      slug: 'farmacias',
+      icon: Pill,
       heroImage: '/sectores/farmacias.jpg',
-      title: pick('Health', 'Health'),
-      tagline: pick('La salud nunca había sido tan relevante como ahora.', 'Health has never mattered more.'),
+      title: pick('Farmacias', 'Pharmacies'),
+      tagline: pick('La salud nunca había sido tan relevante como ahora', 'Health has never mattered more'),
       hero: pick(
-        'Para farmacias, parafarmacias, clínicas y hospitales: comunica, informa y conecta con tus pacientes cada día.',
-        'For pharmacies, parapharmacies, clinics and hospitals: communicate, inform and connect with your patients every day.'
+        'Sistemas de fila única y gestión de turnos combinados con contenido informativo, y cartelería digital de salud y bienestar.',
+        'Single-queue and turn management systems combined with informational content, and digital health and wellness signage.'
       ),
-      campaigns: [
-        pick('Vuelta al cole', 'Back to school'),
-        pick('Protección solar y verano', 'Sun protection & summer'),
-        pick('Black Friday', 'Black Friday'),
-        pick('Navidad', 'Christmas'),
-        pick('Rebajas y eventos', 'Sales & events')
+      useCases: [
+        pick('Gestión de turnos combinada con contenidos', 'Turn management combined with content'),
+        pick('Cartelería digital de salud y bienestar', 'Digital health and wellness signage'),
+        pick('Retail media para parafarmacia', 'Retail media for over-the-counter products'),
+        pick('CMS centralizado multi-tienda', 'Centralized multi-store CMS')
       ],
       benefits: [
-        {
-          title: pick('Asesora e informa', 'Advise and inform'),
-          body: pick('Educa a tus pacientes con contenido de valor sobre salud y bienestar.', 'Educate your patients with valuable health and wellness content.')
-        },
-        {
-          title: pick('Refuerza tu valor profesional', 'Reinforce your professional value'),
-          body: pick('Demuestra tu compromiso con la salud y el bienestar de tu comunidad.', "Show your commitment to your community's health and wellbeing.")
-        },
-        {
-          title: pick('Genera confianza', 'Build trust'),
-          body: pick('Comunica, informa y conecta con quien más lo necesita, cada día.', 'Communicate, inform and connect with those who need it most, every day.')
-        }
+        { title: pick('Asesora e informa', 'Advise and inform'), body: pick('Educa a tus pacientes con contenido de valor sobre salud y bienestar.', 'Educate your patients with valuable health and wellness content.') },
+        { title: pick('Menos percepción de espera', 'Less perceived waiting'), body: pick('Gestión de turnos con contenido relevante mientras se espera.', 'Turn management with relevant content while waiting.') },
+        { title: pick('Refuerza tu valor profesional', 'Reinforce your professional value'), body: pick('Demuestra tu compromiso con la salud de tu comunidad.', "Show your commitment to your community's health.") }
       ]
     },
     {
-      slug: 'viajes',
-      icon: Plane,
-      heroImage: '/sectores/viajes.jpg',
-      title: pick('Viajes', 'Travel'),
-      tagline: pick('Tu próxima aventura empieza aquí.', 'Your next adventure starts here.'),
+      slug: 'clinicas',
+      icon: Stethoscope,
+      heroImage: null,
+      title: pick('Clínicas', 'Clinics'),
+      tagline: pick('Comunicación clara en cada sala de espera', 'Clear communication in every waiting room'),
       hero: pick(
-        'Inspira, informa y convierte miradas en viajes reservados desde el propio escaparate de la agencia.',
-        'Inspire, inform, and turn glances into booked trips right from the agency shopfront.'
+        'Gestión de turnos con llamada a consulta en pantalla y contenido informativo que hace más llevadera la espera del paciente.',
+        'Turn management with on-screen consultation calling and informational content that makes the patient wait more bearable.'
       ),
-      campaigns: [
-        pick('Rebajas', 'Sales'),
-        pick('Verano', 'Summer'),
-        pick('Black Friday', 'Black Friday'),
-        pick('Navidad', 'Christmas'),
-        pick('Eventos especiales', 'Special events')
+      useCases: [
+        pick('Gestión de turnos y llamada a consulta', 'Turn management and consultation calling'),
+        pick('Contenido informativo en sala de espera', 'Informational content in the waiting room'),
+        pick('Cartelería digital de servicios y especialidades', 'Digital signage for services and specialties'),
+        pick('CMS centralizado multi-centro', 'Centralized multi-center CMS')
       ],
       benefits: [
-        {
-          title: pick('Destinos en imágenes y vídeo', 'Destinations in image and video'),
-          body: pick('Contenido visual que inspira deseos y despierta emociones.', 'Visual content that sparks desire and emotion.')
-        },
-        {
-          title: pick('Asesoramiento profesional', 'Professional advice'),
-          body: pick('Tus expertos ayudan a elegir el viaje perfecto, en el propio escaparate.', 'Your experts help travelers choose the perfect trip, right at the shopfront.')
-        },
-        {
-          title: pick('Más visibilidad, más reservas', 'More visibility, more bookings'),
-          body: pick('Convierte miradas en clientes y clientes en viajeros.', 'Turn glances into customers and customers into travelers.')
-        }
+        { title: pick('Reduce la percepción de espera', 'Reduces perceived waiting'), body: pick('Contenido relevante mientras el paciente aguarda su turno.', 'Relevant content while the patient waits for their turn.') },
+        { title: pick('Comunicación clara', 'Clear communication'), body: pick('Información de servicios y especialidades siempre visible y actualizada.', 'Service and specialty information always visible and up to date.') },
+        { title: pick('Menos carga para recepción', 'Less front-desk workload'), body: pick('La pantalla resuelve preguntas frecuentes sin intervención del personal.', 'The screen answers common questions without staff intervention.') }
       ]
     },
     {
-      slug: 'centros-deportivos',
-      icon: Trophy,
-      heroImage: '/sectores/surf.jpg',
-      title: pick('Centros deportivos', 'Sports centers'),
-      tagline: pick('Cada pantalla, un motivo más para entrenar hoy.', 'Every screen, one more reason to train today.'),
+      slug: 'hospitales',
+      icon: Cross,
+      heroImage: null,
+      title: pick('Hospitales', 'Hospitals'),
+      tagline: pick('Orientación y comunicación en cada planta', 'Wayfinding and communication on every floor'),
       hero: pick(
-        'Comunica clases, horarios, retos y resultados de tu comunidad en las pantallas del propio centro.',
-        "Communicate classes, schedules, challenges and your community's results on the center's own screens."
+        'Señalización digital para orientación de pacientes y visitantes, gestión de turnos en admisión, y comunicación institucional centralizada.',
+        'Digital signage for patient and visitor wayfinding, admissions turn management, and centralized institutional communication.'
       ),
-      campaigns: [
-        pick('Altas de enero', 'January sign-ups'),
-        pick('Operación verano', 'Summer fitness push'),
-        pick('Retos y clases especiales', 'Challenges & special classes'),
-        pick('Eventos y torneos', 'Events & tournaments'),
-        pick('Black Friday', 'Black Friday')
+      useCases: [
+        pick('Señalización digital de orientación', 'Digital wayfinding signage'),
+        pick('Gestión de turnos en admisión', 'Admissions turn management'),
+        pick('Comunicación institucional centralizada', 'Centralized institutional communication'),
+        pick('CMS multi-edificio y multi-planta', 'Multi-building, multi-floor CMS')
       ],
       benefits: [
-        {
-          title: pick('Comunicación en tiempo real', 'Real-time communication'),
-          body: pick('Cambios de horario, aforo o clases especiales, al instante.', 'Schedule changes, capacity or special classes, instantly.')
-        },
-        {
-          title: pick('Motiva a tu comunidad', 'Motivate your community'),
-          body: pick('Resultados, retos y logros que refuerzan la pertenencia al centro.', "Results, challenges and achievements that reinforce belonging.")
-        },
-        {
-          title: pick('Más altas, más retención', 'More sign-ups, more retention'),
-          body: pick('Un centro que comunica bien se percibe como un centro que cuida mejor.', 'A center that communicates well is perceived as one that cares more.')
-        }
+        { title: pick('Mejor orientación', 'Better wayfinding'), body: pick('Pacientes y visitantes encuentran su destino sin depender del personal.', 'Patients and visitors find their destination without relying on staff.') },
+        { title: pick('Comunicación institucional coherente', 'Consistent institutional communication'), body: pick('Un único panel para actualizar mensajes en todo el hospital.', 'A single dashboard to update messaging across the whole hospital.') },
+        { title: pick('Menos carga operativa', 'Less operational load'), body: pick('Automatiza avisos y turnos que hoy dependen de personal administrativo.', 'Automate notices and queues that today depend on administrative staff.') }
+      ]
+    },
+    {
+      slug: 'hoteles',
+      icon: BedDouble,
+      heroImage: '/sectores/hoteles.jpg',
+      title: pick('Hoteles', 'Hotels'),
+      tagline: pick('Comunica. Inspira. Mejora cada estancia.', 'Communicate. Inspire. Improve every stay.'),
+      hero: pick(
+        'Pantalla LED en recepción para dar la bienvenida desde el primer momento, y tótem interactivo en áreas comunes para inspirar y generar más ingresos.',
+        'LED screen at reception to welcome guests from the first moment, and an interactive kiosk in common areas to inspire and generate more revenue.'
+      ),
+      useCases: [
+        pick('Pantalla LED en recepción', 'LED screen at reception'),
+        pick('Tótem interactivo en áreas comunes', 'Interactive kiosk in common areas'),
+        pick('Promoción de servicios y upsells', 'Service and upsell promotion'),
+        pick('CMS centralizado multi-hotel', 'Centralized multi-hotel CMS')
+      ],
+      benefits: [
+        { title: pick('Mejora la experiencia del huésped', 'Improves guest experience'), body: pick('Información útil y atractiva en el momento adecuado.', 'Useful, attractive information at the right moment.') },
+        { title: pick('Aumenta ingresos adicionales', 'Increases ancillary revenue'), body: pick('Promociona servicios, upsells y experiencias del hotel.', 'Promote hotel services, upsells and experiences.') },
+        { title: pick('Refuerza tu marca', 'Reinforces your brand'), body: pick('Proyecta una imagen innovadora y de calidad desde el check-in.', 'Projects an innovative, quality image from check-in.') }
+      ]
+    },
+    {
+      slug: 'automocion',
+      icon: Car,
+      heroImage: null,
+      title: pick('Automoción', 'Automotive'),
+      tagline: pick('Concesionarios que comunican mejor cada modelo', 'Dealerships that communicate every model better'),
+      hero: pick(
+        'Pantallas que muestran stock y configuraciones de vehículo en tiempo real, y retail media para campañas de modelo y financiación.',
+        'Screens showing real-time vehicle stock and configurations, and retail media for model and financing campaigns.'
+      ),
+      useCases: [
+        pick('Pantallas de stock y configuración en tiempo real', 'Real-time stock and configuration screens'),
+        pick('Retail media para campañas de modelo y financiación', 'Retail media for model and financing campaigns'),
+        pick('CMS multi-concesionario', 'Multi-dealership CMS'),
+        pick('Cartelería digital en sala de exposición', 'Digital signage in the showroom')
+      ],
+      benefits: [
+        { title: pick('Showroom siempre actualizado', 'Always up-to-date showroom'), body: pick('Precios, stock y promociones al instante, sin imprimir nada.', 'Prices, stock and promotions instantly, without printing anything.') },
+        { title: pick('Más consultas cualificadas', 'More qualified inquiries'), body: pick('Contenido que ayuda al cliente a decidir antes de hablar con ventas.', 'Content that helps the customer decide before talking to sales.') },
+        { title: pick('Consistencia entre concesionarios', 'Consistency across dealerships'), body: pick('El mismo estándar de comunicación en toda la red.', 'The same communication standard across the whole network.') }
       ]
     }
   ]

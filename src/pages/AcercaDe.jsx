@@ -85,6 +85,50 @@ export default function AcercaDe() {
           ))}
         </div>
       </section>
+
+      <section className="bg-as-black text-as-cream py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-14 items-start">
+          <div>
+            <Eyebrow>{pick('Trayectoria', 'Track record')}</Eyebrow>
+            <Divider className="my-5" />
+            <h2 className="font-display font-extrabold text-3xl md:text-4xl leading-tight">
+              {pick('Más de 20 años en AV Pro y digital signage', 'Over 20 years in AV Pro and digital signage')}
+            </h2>
+            <p className="mt-6 text-as-cream/65 leading-relaxed text-lg">
+              {pick(
+                'Nuestro equipo lleva más de dos décadas dedicado a la industria audiovisual profesional y al digital signage, siendo pioneros en el diseño y despliegue de proyectos nacionales e internacionales para grandes marcas del retail, la banca, el seguro y la automoción.',
+                'Our team has spent more than two decades in the professional AV and digital signage industry, pioneering the design and roll-out of national and international projects for major brands across retail, banking, insurance and automotive.'
+              )}
+            </p>
+            <p className="mt-4 text-as-cream/65 leading-relaxed text-lg">
+              {pick(
+                'Esa experiencia incluye proyectos para marcas del grupo Inditex (Pull&Bear, Lefties, Stradivarius, Zara Home), Carrefour, Desigual, Mercedes-Benz y Mapfre, entre otras.',
+                'That experience includes projects for Inditex-group brands (Pull&Bear, Lefties, Stradivarius, Zara Home), Carrefour, Desigual, Mercedes-Benz and Mapfre, among others.'
+              )}
+            </p>
+          </div>
+
+          <div className="border border-white/10 rounded-2xl p-8 md:p-10 bg-white/[0.03]">
+            <h3 className="font-display font-extrabold text-xl mb-4">
+              {pick('Voz activa en la industria', 'An active voice in the industry')}
+            </h3>
+            <p className="text-as-cream/65 leading-relaxed">
+              {pick(
+                'Nuestro fundador, Roi Iglesias, forma parte del Comité de Expertos de la Asociación Española del Retail (AER) y coordina la alianza estratégica entre la AER y el Retail Innovation Council (RIC) del Reino Unido, facilitando el intercambio de tendencias, benchmarking internacional y buenas prácticas entre el retail español y europeo.',
+                'Our founder, Roi Iglesias, is a member of the Expert Committee at the Spanish Retail Association (AER) and coordinates the strategic alliance between AER and the UK\'s Retail Innovation Council (RIC), facilitating the exchange of trends, international benchmarking and best practices between Spanish and European retail.'
+              )}
+            </p>
+            <a
+              href="https://www.linkedin.com/in/roiiglesiasvidal/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 mt-6 text-sm font-bold text-as-lime hover:text-white transition"
+            >
+              {pick('Ver perfil de LinkedIn', 'View LinkedIn profile')} ↗
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

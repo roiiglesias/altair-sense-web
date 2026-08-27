@@ -63,6 +63,15 @@ export default function Home() {
       />
       {/* HERO */}
       <section className="relative bg-as-black text-as-cream overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="/brand/home-hero.jpg"
+            alt=""
+            className="w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-as-black via-as-black/90 to-as-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-as-black via-transparent to-as-black/40" />
+        </div>
         <div className="absolute -right-24 top-1/4 w-[420px] h-[420px] rounded-full bg-as-lime/10 blur-3xl" />
         <div className="max-w-7xl mx-auto px-5 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32 relative">
           <div className="flex items-center gap-3 mb-6">

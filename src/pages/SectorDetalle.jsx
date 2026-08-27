@@ -68,10 +68,10 @@ export default function SectorDetalle({ slug }) {
       <section className="bg-as-cream py-16 md:py-20 pt-12 md:pt-16">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <h2 className="text-xs font-bold tracking-[0.22em] uppercase text-as-moss mb-6">
-            {pick('Campañas que impulsan tu negocio', 'Campaigns that drive your business')}
+            {pick('Aplicaciones prácticas', 'Practical applications')}
           </h2>
           <div className="flex flex-wrap gap-3">
-            {sector.campaigns.map((c, i) => (
+            {sector.useCases.map((c, i) => (
               <span key={i} className="bg-white border border-as-stone rounded-full px-4 py-2 text-sm text-as-black/75 font-medium">
                 {c}
               </span>

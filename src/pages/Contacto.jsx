@@ -86,8 +86,8 @@ export default function Contacto() {
             <h2 className="font-display font-extrabold text-2xl text-as-black mb-6">
               {pick('Contacto directo', 'Direct contact')}
             </h2>
-            <a href="mailto:hola@altairsense.com" className="flex items-center gap-3 text-as-black/75 hover:text-as-moss transition mb-4">
-              <Mail size={18} /> hola@altairsense.com
+            <a href="mailto:info@altairsense.com" className="flex items-center gap-3 text-as-black/75 hover:text-as-moss transition mb-4">
+              <Mail size={18} /> info@altairsense.com
             </a>
             <a href="tel:+34900000000" className="flex items-center gap-3 text-as-black/75 hover:text-as-moss transition">
               <Phone size={18} /> +34 900 000 000
