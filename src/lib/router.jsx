@@ -2,31 +2,46 @@ import { createContext, useContext, useEffect, useState, useCallback } from 'rea
 
 const RouterCtx = createContext(null)
 
+// Toda la web "completa" vive bajo este prefijo mientras está en construcción.
+// Las páginas siguen escribiendo enlaces "lógicos" normales (to="/soluciones",
+// to="/", etc.) sin saber nada de este prefijo — se traduce aquí solo.
+export const BASE = '/hide'
+
+function toLogical(realPath) {
+  if (realPath === BASE || realPath === `${BASE}/`) return '/'
+  if (realPath.startsWith(`${BASE}/`)) return realPath.slice(BASE.length)
+  return realPath
+}
+
+function toReal(logicalPath) {
+  return logicalPath === '/' ? BASE : `${BASE}${logicalPath}`
+}
+
 export function RouterProvider({ children }) {
-  const [path, setPath] = useState(window.location.pathname)
+  const [path, setPath] = useState(toLogical(window.location.pathname))
 
   useEffect(() => {
-    const onPop = () => setPath(window.location.pathname)
+    const onPop = () => setPath(toLogical(window.location.pathname))
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)
   }, [])
 
   const navigate = useCallback((to) => {
     const [toPath, toHash] = to.split('#')
-    const samePath = toPath === window.location.pathname
+    const realTarget = toReal(toPath)
+    const samePath = realTarget === window.location.pathname
 
     if (!samePath) {
-      window.history.pushState({}, '', to)
+      window.history.pushState({}, '', realTarget + (toHash ? `#${toHash}` : ''))
       setPath(toPath)
       if (!toHash) {
         window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' })
       }
     } else if (toHash) {
-      window.history.pushState({}, '', to)
+      window.history.pushState({}, '', realTarget + `#${toHash}`)
     }
 
     if (toHash) {
-      // deja que la página monte antes de intentar el scroll a la ancla
       setTimeout(() => {
         const el = document.getElementById(toHash)
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -47,9 +62,10 @@ export function useRouter() {
 
 export function Link({ to, className, children, onClick }) {
   const { navigate } = useRouter()
+  const [toPath] = to.split('#')
   return (
     <a
-      href={to}
+      href={toReal(toPath)}
       className={className}
       onClick={(e) => {
         e.preventDefault()

@@ -1,7 +1,9 @@
-import { RouterProvider, useRouter } from './lib/router.jsx'
+import { useState, useEffect } from 'react'
+import { RouterProvider, useRouter, BASE } from './lib/router.jsx'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
+import ComingSoon from './pages/ComingSoon.jsx'
 
 import Home from './pages/Home.jsx'
 import Soluciones from './pages/Soluciones.jsx'
@@ -56,11 +58,25 @@ function Shell() {
 }
 
 export default function App() {
+  const [realPath, setRealPath] = useState(window.location.pathname)
+
+  useEffect(() => {
+    const onPop = () => setRealPath(window.location.pathname)
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
+
+  const inHiddenSite = realPath === BASE || realPath.startsWith(`${BASE}/`)
+
   return (
     <LanguageProvider>
-      <RouterProvider>
-        <Shell />
-      </RouterProvider>
+      {inHiddenSite ? (
+        <RouterProvider>
+          <Shell />
+        </RouterProvider>
+      ) : (
+        <ComingSoon />
+      )}
     </LanguageProvider>
   )
 }

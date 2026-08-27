@@ -176,9 +176,39 @@ de routing más grande — decimos si lo abordamos cuando el resto esté estable
 
 ---
 
-## Pendiente de tu confirmación- Email/teléfono de contacto reales (ahora mismo son placeholder:
-  `hola@altairsense.com` / `+34 900 000 000`).
-- Enlace real de LinkedIn.
+## 8. Web oculta durante la construcción
+
+Mientras la web no esté lista para publicarse, `altairsense.com/` (la raíz)
+muestra solo una página mínima: el claim, el email de contacto y un enlace al
+portal de Lumen (`src/pages/ComingSoon.jsx`). **La web completa que hemos
+construido sigue viva y navegable en `altairsense.com/hide`** — mismo menú,
+mismas páginas, mismo Supabase, todo funcional, solo que no enlazada desde
+ningún sitio público.
+
+- `robots.txt` bloquea explícitamente `/hide` para que no se indexe mientras
+  está en construcción.
+- El sitemap dinámico (`/sitemap.xml`) solo expone la raíz por ahora.
+- Los enlaces internos de todas las páginas (menú, footer, botones) siguen
+  escritos con rutas normales (`to="/soluciones"`, etc.) — es el router
+  (`src/lib/router.jsx`) el que añade el prefijo `/hide` por debajo, así que
+  no ha hecho falta tocar página por página.
+
+**Cuando quieras publicar la web de verdad**, dímelo y hago dos cambios
+mínimos: quitar el `Disallow: /hide` de `robots.txt` y decidir juntos si
+`/hide` pasa a ser la raíz definitiva o si prefieres otra URL — es un cambio
+pequeño, no hay que reconstruir nada de lo ya hecho.
+
+---
+
+## Pendiente de tu confirmación
+
+- Teléfono de contacto real (ahora mismo placeholder: `+34 900 000 000`).
+- Logos reales de los 7 partners (ZK Digimax, Visiotech, Hisense, Unilumin,
+  Hikvision, Milesight, Flame Analytics) — ver `supabase/seed_partners.sql`.
+- Fotos para Supermercados, Clínicas, Hospitales y Automoción (sin imagen
+  propia por ahora).
 - Contenido inicial de Noticias/Knowledge Base/Descargables (la web
   funciona vacía hasta que insertes las primeras filas en Supabase).
-- Nombre de dominio definitivo.
+- Confirmar la URL del portal de Lumen usada en la página de "Próximamente"
+  (`src/pages/ComingSoon.jsx`, constante `LUMEN_URL`).
+- Cuándo despublicar `/hide` y pasar la web completa a la raíz definitiva.

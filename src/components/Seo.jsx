@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { BASE } from '../lib/router.jsx'
 
 const SITE_NAME = 'Altair Sense'
 const SITE_URL = 'https://www.altairsense.com'
@@ -43,6 +44,7 @@ export default function Seo({
 }) {
   useEffect(() => {
     const fullTitle = title ? `${title} · ${SITE_NAME}` : `${SITE_NAME} — Digital Signage y Retail Tech`
+    const realPath = path === '/' ? BASE : `${BASE}${path}`
     document.title = fullTitle
 
     setMeta('name', 'description', description)
@@ -51,7 +53,7 @@ export default function Seo({
     setMeta('property', 'og:title', fullTitle)
     setMeta('property', 'og:description', description)
     setMeta('property', 'og:type', type)
-    setMeta('property', 'og:url', `${SITE_URL}${path}`)
+    setMeta('property', 'og:url', `${SITE_URL}${realPath}`)
     setMeta('property', 'og:image', image)
     setMeta('property', 'og:site_name', SITE_NAME)
 
@@ -60,7 +62,7 @@ export default function Seo({
     setMeta('name', 'twitter:description', description)
     setMeta('name', 'twitter:image', image)
 
-    setLink('canonical', `${SITE_URL}${path}`)
+    setLink('canonical', `${SITE_URL}${realPath}`)
 
     // Limpia JSON-LD anterior de esta página antes de escribir el nuevo
     document.querySelectorAll('script[data-seo-jsonld]').forEach((s) => s.remove())
