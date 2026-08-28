@@ -1,4 +1,4 @@
-import { Monitor, LayoutGrid, Cpu, LineChart, Wrench, HardHat, FileEdit } from 'lucide-react'
+import { Monitor, LayoutGrid, Cpu, Radar, LineChart, Wrench, HardHat, FileEdit } from 'lucide-react'
 
 // pick(es, en) llega desde useLang() de cada página/componente que lo use.
 export function solutionSections(pick) {
@@ -16,7 +16,8 @@ export function solutionSections(pick) {
         pick('Análisis de necesidades y diseño de solución', 'Needs analysis and solution design'),
         pick('Especialistas en implantación LED', 'LED implementation specialists'),
         pick('Configuración, gestión y control de pantallas', 'Screen configuration, management and control'),
-        pick('Implementación inteligente para más impacto y durabilidad', 'Intelligent setup for more impact and durability')
+        pick('Implementación inteligente para más impacto y durabilidad', 'Intelligent setup for more impact and durability'),
+        pick('Homologamos funcionalidades, UX/UI, IA, RGPD y seguridad', 'We vet functionality, UX/UI, AI, GDPR and security')
       ]
     },
     {
@@ -31,7 +32,8 @@ export function solutionSections(pick) {
       points: [
         pick('Gestión desde el móvil o el escritorio', 'Manage from mobile or desktop'),
         pick('Plantillas y programación por reglas', 'Templates and rule-based scheduling'),
-        pick('Publicación multi-tienda en segundos', 'Multi-store publishing in seconds')
+        pick('Publicación multi-tienda en segundos', 'Multi-store publishing in seconds'),
+        pick('Homologamos funcionalidades, UX/UI, IA, RGPD y seguridad', 'We vet functionality, UX/UI, AI, GDPR and security')
       ]
     },
     {
@@ -45,8 +47,25 @@ export function solutionSections(pick) {
       ),
       points: [
         pick('Sistemas de fila única y gestión de turnos', 'Single-queue and turn management systems'),
-        pick('Escaparates que adaptan el contenido al contexto', 'Shopfronts that adapt content to context'),
+        pick('Contenido que se adapta al contexto de cada tienda', "Content that adapts to each store's context"),
         pick('Integración con sistemas de tienda existentes', 'Integration with existing store systems')
+      ]
+    },
+    {
+      id: 'retail-media',
+      navLabel: pick('Retail Media', 'Retail Media'),
+      icon: Radar,
+      title: pick('Retail Media', 'Retail Media'),
+      body: pick(
+        'Nuestro CMS y nuestra estrategia de retail media permiten construir una comunicación sólida en tienda, dentro y fuera de ella: útil para supermercados, bricolaje, deporte, petcare, perfumería y cosmética, y cualquier retailer que distribuya varias marcas.',
+        'Our CMS and retail media strategy help build solid in-store and out-of-store communication: useful for supermarkets, DIY, sports, pet care, perfumery and cosmetics, and any retailer distributing multiple brands.'
+      ),
+      image: '/brand/retail-media-diagram.jpg',
+      points: [
+        pick('Estrategia de contenidos por punto de contacto', 'Content strategy per touchpoint'),
+        pick('Supermercados, bricolaje, deporte, petcare, perfumería', 'Supermarkets, DIY, sports, pet care, perfumery'),
+        pick('Retailers multi-marca', 'Multi-brand retailers'),
+        pick('Medición de impacto por campaña', 'Per-campaign impact measurement')
       ]
     },
     {

@@ -4,14 +4,17 @@ import { Eyebrow } from '../components/Bits.jsx'
 import { supabase } from '../lib/supabaseClient.js'
 import Seo from '../components/Seo.jsx'
 
-// Partners confirmados. Sin logo oficial subido todavía: se muestran como
-// wordmark tipográfico (fiable, sin arriesgar a usar un logo equivocado o de
-// baja resolución sacado de una búsqueda). En cuanto subas cada logo real al
-// bucket "partners" de Supabase y actualices supabase/seed_partners.sql,
-// cambia is_published a true en esa fila y desaparece de esta lista fija
-// para aparecer con su logo real desde la sección dinámica de abajo.
+// Logos oficiales, procesados a silueta blanca para integrarse sobre fondo
+// oscuro (public/partners/*.png). Cuando haya más, añádelos aquí y a la
+// carpeta public/partners/.
 const CORE_PARTNERS = [
-  'ZK Digimax', 'Visiotech', 'Hisense', 'Unilumin', 'Hikvision', 'Milesight', 'Flame Analytics'
+  { name: 'ZK Digimax', logo: '/partners/zk-digimax.png' },
+  { name: 'Visiotech', logo: '/partners/visiotech.png' },
+  { name: 'Hisense', logo: '/partners/hisense.png' },
+  { name: 'Unilumin', logo: '/partners/unilumin.png' },
+  { name: 'Hikvision', logo: '/partners/hikvision.png' },
+  { name: 'Milesight', logo: '/partners/milesight.png' },
+  { name: 'Flame Analytics', logo: '/partners/flame-analytics.png' }
 ]
 
 export default function Partners() {
@@ -57,36 +60,27 @@ export default function Partners() {
             )}
           </p>
         </div>
-      </section>
 
-      <section className="bg-as-cream py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-5 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-6">
-            {CORE_PARTNERS.map((name) => (
-              <div
-                key={name}
-                className="bg-white border border-as-stone rounded-2xl h-28 flex items-center justify-center px-4 hover:border-as-moss transition-colors"
-              >
-                <span className="font-display font-extrabold text-lg text-as-black/80 text-center">{name}</span>
+        <div className="max-w-7xl mx-auto px-5 md:px-8 mt-16 pt-14 border-t border-white/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-14 items-center">
+            {CORE_PARTNERS.map((p) => (
+              <div key={p.name} className="flex items-center justify-center h-14 opacity-70 hover:opacity-100 transition-opacity">
+                <img src={p.logo} alt={p.name} className="max-h-10 md:max-h-12 max-w-full object-contain" />
               </div>
             ))}
           </div>
 
           {partners && partners.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 pt-6 border-t border-as-stone">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-14 items-center mt-14 pt-14 border-t border-white/10">
               {partners.map((p) => (
                 <a
                   key={p.id}
                   href={p.url || undefined}
                   target={p.url ? '_blank' : undefined}
                   rel={p.url ? 'noreferrer' : undefined}
-                  className="bg-white border border-as-stone rounded-2xl p-8 flex items-center justify-center h-28 hover:border-as-moss transition-colors"
+                  className="flex items-center justify-center h-14 opacity-70 hover:opacity-100 transition-opacity"
                 >
-                  <img
-                    src={p.logo_url}
-                    alt={p.name}
-                    className="max-h-12 max-w-full object-contain grayscale hover:grayscale-0 transition"
-                  />
+                  <img src={p.logo_url} alt={p.name} className="max-h-10 md:max-h-12 max-w-full object-contain" />
                 </a>
               ))}
             </div>

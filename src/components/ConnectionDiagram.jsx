@@ -27,7 +27,7 @@ export default function ConnectionDiagram({ pick }) {
       {techs.map((t, i) => (
         <path
           key={`tc-${i}`}
-          d={`M ${t.x} 70 C ${t.x} 150, ${hub.x} 130, ${hub.x} ${hub.y - 55}`}
+          d={`M ${t.x} 70 C ${t.x} 150, ${hub.x} 130, ${hub.x} ${hub.y - 62}`}
           fill="none"
           stroke="#4C7A3E"
           strokeWidth="1.5"
@@ -39,7 +39,7 @@ export default function ConnectionDiagram({ pick }) {
       {outcomes.map((o, i) => (
         <path
           key={`oc-${i}`}
-          d={`M ${hub.x} ${hub.y + 55} C ${hub.x} ${hub.y + 130}, ${o.x} ${330}, ${o.x} 390`}
+          d={`M ${hub.x} ${hub.y + 62} C ${hub.x} ${hub.y + 130}, ${o.x} ${330}, ${o.x} 390`}
           fill="none"
           stroke="#B4E33D"
           strokeWidth="2"
@@ -60,11 +60,8 @@ export default function ConnectionDiagram({ pick }) {
       ))}
 
       {/* Hub central */}
-      <circle cx={hub.x} cy={hub.y} r="55" fill="#B4E33D" />
-      <text x={hub.x} y={hub.y - 4} textAnchor="middle" fontSize="15" fontWeight="800" fill="#10150F">
-        {pick('Plataforma', 'Platform')}
-      </text>
-      <text x={hub.x} y={hub.y + 16} textAnchor="middle" fontSize="12" fontWeight="600" fill="#10150F">
+      <circle cx={hub.x} cy={hub.y} r="62" fill="#B4E33D" />
+      <text x={hub.x} y={hub.y + 5} textAnchor="middle" fontSize="14" fontWeight="800" fill="#10150F">
         Altair Sense
       </text>
 

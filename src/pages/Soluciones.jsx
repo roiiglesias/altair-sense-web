@@ -111,8 +111,8 @@ export default function Soluciones() {
           </h1>
           <p className="mt-6 text-lg text-as-cream/65 max-w-2xl leading-relaxed">
             {pick(
-              'No trabajamos solo el escaparate: optimizamos toda la operación en tienda —contenidos, inventario, mantenimiento— para que se traduzca en más ventas y mejor experiencia de cliente, en cualquier país en el que operes.',
-              "We don't just work the shopfront: we optimize the whole in-store operation —content, inventory, maintenance— so it translates into more sales and better customer experience, in any country you operate in."
+              'No es solo cartelería: empleamos digital signage, data, IA y retail tech para construir experiencias relevantes que convierten, con impacto en contenidos, inventario y mantenimiento en cualquier país en el que operes.',
+              "It's not just signage: we use digital signage, data, AI and retail tech to build relevant experiences that convert, with impact on content, inventory and maintenance in any country you operate in."
             )}
           </p>
         </div>
@@ -139,6 +139,13 @@ export default function Soluciones() {
                     </li>
                   ))}
                 </ul>
+                {it.image && (
+                  <img
+                    src={it.image}
+                    alt={it.title}
+                    className="mt-6 w-full max-w-2xl rounded-xl border border-as-stone"
+                  />
+                )}
               </div>
             </div>
           ))}

@@ -3,6 +3,10 @@ import { Eyebrow, Divider } from '../components/Bits.jsx'
 import Seo from '../components/Seo.jsx'
 import { Target, Eye, Handshake } from 'lucide-react'
 
+const CLIENT_PROJECTS = [
+  'Pull&Bear', 'Lefties', 'Stradivarius', 'Zara Home', 'Carrefour', 'Desigual', 'Mercedes-Benz', 'Mapfre'
+]
+
 export default function AcercaDe() {
   const { pick, t } = useLang()
 
@@ -11,8 +15,8 @@ export default function AcercaDe() {
       icon: Target,
       title: pick('Orientados a resultado', 'Outcome-driven'),
       body: pick(
-        'No vendemos sensores, vendemos la decisión que tomas con sus datos.',
-        "We don't sell sensors, we sell the decision you make with their data."
+        'No vendemos pantallas, vendemos la decisión que tomas con sus datos.',
+        "We don't sell screens, we sell the decision you make with their data."
       )
     },
     {
@@ -38,8 +42,8 @@ export default function AcercaDe() {
       <Seo
         title={t.nav.about}
         description={pick(
-          'Altair Sense: empresa de retail tech comprometida con el resultado de venta y la experiencia de cliente, en digital signage, retail media, inventario y mantenimiento.',
-          'Altair Sense: a retail tech company committed to sales results and customer experience, across digital signage, retail media, inventory and maintenance.'
+          'Altair Sense: equipo de profesionales con más de 20 años de experiencia en AV Pro, digital signage, retail media y DOOH.',
+          'Altair Sense: a team of professionals with over 20 years of experience in AV Pro, digital signage, retail media and DOOH.'
         )}
         path="/nosotros"
       />
@@ -47,12 +51,12 @@ export default function AcercaDe() {
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <Eyebrow>{t.nav.about}</Eyebrow>
           <h1 className="font-display font-extrabold text-4xl md:text-6xl mt-4 max-w-3xl">
-            {pick('Una empresa de soluciones de retail', 'A retail solutions company')}
+            {pick('Un equipo con más de 20 años en AV Pro y Digital Signage', 'A team with over 20 years in AV Pro and Digital Signage')}
           </h1>
           <p className="mt-6 text-lg text-as-cream/65 max-w-2xl leading-relaxed">
             {pick(
-              'Altair Sense nace para cerrar la distancia entre lo que pasa en el escaparate y lo que pasa en la caja registradora.',
-              'Altair Sense exists to close the gap between what happens at the shopfront and what happens at the register.'
+              'Somos un equipo de profesionales con más de dos décadas de experiencia en AV Pro, Digital Signage, Retail Media y DOOH. Empleamos digital signage, data, IA y retail tech para construir experiencias relevantes que convierten.',
+              'We are a team of professionals with over two decades of experience in AV Pro, Digital Signage, Retail Media and DOOH. We use digital signage, data, AI and retail tech to build relevant experiences that convert.'
             )}
           </p>
         </div>
@@ -87,42 +91,58 @@ export default function AcercaDe() {
       </section>
 
       <section className="bg-as-black text-as-cream py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-14 items-start">
-          <div>
-            <Eyebrow>{pick('Trayectoria', 'Track record')}</Eyebrow>
-            <Divider className="my-5" />
-            <h2 className="font-display font-extrabold text-3xl md:text-4xl leading-tight">
-              {pick('Más de 20 años en AV Pro y digital signage', 'Over 20 years in AV Pro and digital signage')}
-            </h2>
-            <p className="mt-6 text-as-cream/65 leading-relaxed text-lg">
-              {pick(
-                'Nuestro equipo lleva más de dos décadas dedicado a la industria audiovisual profesional y al digital signage, siendo pioneros en el diseño y despliegue de proyectos nacionales e internacionales para grandes marcas del retail, la banca, el seguro y la automoción.',
-                'Our team has spent more than two decades in the professional AV and digital signage industry, pioneering the design and roll-out of national and international projects for major brands across retail, banking, insurance and automotive.'
-              )}
-            </p>
-            <p className="mt-4 text-as-cream/65 leading-relaxed text-lg">
-              {pick(
-                'Esa experiencia incluye proyectos para marcas del grupo Inditex (Pull&Bear, Lefties, Stradivarius, Zara Home), Carrefour, Desigual, Mercedes-Benz y Mapfre, entre otras.',
-                'That experience includes projects for Inditex-group brands (Pull&Bear, Lefties, Stradivarius, Zara Home), Carrefour, Desigual, Mercedes-Benz and Mapfre, among others.'
-              )}
-            </p>
-          </div>
+        <div className="max-w-7xl mx-auto px-5 md:px-8">
+          <Eyebrow>{pick('Trayectoria', 'Track record')}</Eyebrow>
+          <Divider className="my-5" />
+          <h2 className="font-display font-extrabold text-3xl md:text-4xl leading-tight max-w-2xl">
+            {pick('Pioneros en proyectos nacionales e internacionales', 'Pioneers in national and international projects')}
+          </h2>
+          <p className="mt-6 text-as-cream/65 leading-relaxed text-lg max-w-3xl">
+            {pick(
+              'Nuestro equipo lleva más de dos décadas dedicado a la industria audiovisual profesional, el digital signage y el retail media, siendo pioneros en el diseño y despliegue de proyectos nacionales e internacionales para grandes marcas.',
+              'Our team has spent more than two decades in the professional AV, digital signage and retail media industry, pioneering the design and roll-out of national and international projects for major brands.'
+            )}
+          </p>
 
-          <div className="border border-white/10 rounded-2xl p-8 md:p-10 bg-white/[0.03]">
-            <h3 className="font-display font-extrabold text-xl mb-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-8 mt-14 pt-10 border-t border-white/10">
+            {CLIENT_PROJECTS.map((name) => (
+              <div key={name} className="flex items-center justify-center h-12">
+                <span className="font-display font-extrabold text-lg md:text-xl text-as-cream/50">{name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-as-cream py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-5 md:px-8">
+          <Eyebrow tone="moss">{pick('Equipo fundador', 'Founding team')}</Eyebrow>
+          <Divider className="my-5 bg-as-moss" />
+          <h2 className="font-display font-extrabold text-3xl md:text-4xl text-as-black leading-tight max-w-2xl">
+            {pick('Un equipo de socios con presencia en más de 30 países', 'A team of partners with a presence in over 30 countries')}
+          </h2>
+          <p className="mt-6 text-as-black/65 leading-relaxed text-lg max-w-3xl">
+            {pick(
+              'Roi Iglesias forma parte del equipo fundador y aporta la visión, la estrategia, las líneas de producto y las alianzas que nos permiten abordar mejor el mercado, junto a un equipo de socios con experiencia contrastada ofreciendo soluciones y servicios en más de 30 países, tanto en Europa como en América (Norteamérica y LatAm), y con un sólido background en creación y crecimiento de negocios y en ingeniería.',
+              'Roi Iglesias is part of the founding team and contributes the vision, strategy, product lines and partnerships that let us approach the market better, alongside a team of partners with proven experience delivering solutions and services in over 30 countries across Europe and the Americas (North America and LatAm), with a solid background in business building and growth, and in engineering.'
+            )}
+          </p>
+
+          <div className="mt-10 border border-as-stone rounded-2xl p-8 md:p-10 bg-white max-w-2xl">
+            <h3 className="font-display font-extrabold text-lg text-as-black mb-3">
               {pick('Voz activa en la industria', 'An active voice in the industry')}
             </h3>
-            <p className="text-as-cream/65 leading-relaxed">
+            <p className="text-as-black/65 leading-relaxed">
               {pick(
-                'Nuestro fundador, Roi Iglesias, forma parte del Comité de Expertos de la Asociación Española del Retail (AER) y coordina la alianza estratégica entre la AER y el Retail Innovation Council (RIC) del Reino Unido, facilitando el intercambio de tendencias, benchmarking internacional y buenas prácticas entre el retail español y europeo.',
-                'Our founder, Roi Iglesias, is a member of the Expert Committee at the Spanish Retail Association (AER) and coordinates the strategic alliance between AER and the UK\'s Retail Innovation Council (RIC), facilitating the exchange of trends, international benchmarking and best practices between Spanish and European retail.'
+                'Roi forma parte del Comité de Expertos de la Asociación Española del Retail (AER) y coordina la alianza estratégica entre la AER y el Retail Innovation Council (RIC) del Reino Unido, facilitando el intercambio de tendencias, benchmarking internacional y buenas prácticas entre el retail español y europeo.',
+                "Roi is a member of the Expert Committee at the Spanish Retail Association (AER) and coordinates the strategic alliance between AER and the UK's Retail Innovation Council (RIC), facilitating the exchange of trends, international benchmarking and best practices between Spanish and European retail."
               )}
             </p>
             <a
               href="https://www.linkedin.com/in/roiiglesiasvidal/"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 mt-6 text-sm font-bold text-as-lime hover:text-white transition"
+              className="inline-flex items-center gap-2 mt-6 text-sm font-bold text-as-moss hover:text-as-black transition"
             >
               {pick('Ver perfil de LinkedIn', 'View LinkedIn profile')} ↗
             </a>

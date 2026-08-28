@@ -43,8 +43,8 @@ export default function Home() {
           </h1>
           <p className="mt-7 text-lg md:text-xl text-as-cream/70 max-w-2xl leading-relaxed">
             {pick(
-              'Digital signage, retail media y retail tech en una sola plataforma: contenidos, inventario y mantenimiento conectados para que cada tienda venda más y comunique mejor, en cualquier país.',
-              'Digital signage, retail media and retail tech in one platform: content, inventory and maintenance connected so every store sells more and communicates better, in any country.'
+              'Empleamos digital signage, data, IA y retail tech para construir experiencias relevantes que convierten, en cualquier país en el que operes.',
+              'We use digital signage, data, AI and retail tech to build relevant experiences that convert, in any country you operate in.'
             )}
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -109,8 +109,8 @@ export default function Home() {
             </h2>
             <p className="mt-6 text-as-cream/65 leading-relaxed">
               {pick(
-                'Moda, óptica, alimentación, concept stores… si tienes escaparate, tienes datos que hoy se pierden.',
-                'Fashion, optics, food, concept stores… if you have a shopfront, you have data that is being lost today.'
+                'Moda, óptica, alimentación, concept stores… si tienes tienda física, tienes datos que hoy se pierden.',
+                'Fashion, optics, food, concept stores… if you have a physical store, you have data that is being lost today.'
               )}
             </p>
             <Link
