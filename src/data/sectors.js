@@ -1,4 +1,4 @@
-import { Shirt, ShoppingCart, Dumbbell, Pill, Stethoscope, Cross, BedDouble, Car, Building2 } from 'lucide-react'
+import { Shirt, ShoppingCart, Dumbbell, Pill, Stethoscope, Cross, BedDouble, Car, Building2, Plane, UtensilsCrossed, Building } from 'lucide-react'
 
 // pick(es, en) se pasa desde useLang() de cada página que use estos datos.
 export function getSectors(pick) {
@@ -6,7 +6,7 @@ export function getSectors(pick) {
     {
       slug: 'fashion-retail',
       icon: Shirt,
-      heroImage: '/sectores/fashion-retail.jpg',
+      heroImage: '/sectores/fashion-retail-3.jpg',
       title: pick('Fashion Retail', 'Fashion Retail'),
       tagline: pick('Pantallas que comunican mejor cada colección', 'Screens that communicate every collection better'),
       hero: pick(
@@ -48,7 +48,7 @@ export function getSectors(pick) {
     {
       slug: 'sports-apparel',
       icon: Dumbbell,
-      heroImage: '/sectores/deportivas.jpg',
+      heroImage: '/sectores/sports-2.jpg',
       title: pick('Sports & Apparel', 'Sports & Apparel'),
       tagline: pick('Tu escaparate, tu mejor entrenador de ventas', 'Your shopfront, your best sales coach'),
       hero: pick(
@@ -70,7 +70,7 @@ export function getSectors(pick) {
     {
       slug: 'farmacias',
       icon: Pill,
-      heroImage: '/sectores/farmacias.jpg',
+      heroImage: '/sectores/farmacias-2.jpg',
       title: pick('Farmacias', 'Pharmacies'),
       tagline: pick('La salud nunca había sido tan relevante como ahora', 'Health has never mattered more'),
       hero: pick(
@@ -136,7 +136,7 @@ export function getSectors(pick) {
     {
       slug: 'hoteles',
       icon: BedDouble,
-      heroImage: '/sectores/hoteles.jpg',
+      heroImage: '/sectores/hoteles-2.jpg',
       title: pick('Hoteles', 'Hotels'),
       tagline: pick('Comunica. Inspira. Mejora cada estancia.', 'Communicate. Inspire. Improve every stay.'),
       hero: pick(
@@ -197,6 +197,72 @@ export function getSectors(pick) {
         { title: pick('Llega a todo el equipo', 'Reaches the whole team'), body: pick('Mensajes visibles incluso para empleados sin acceso a email o intranet.', 'Messages visible even for employees without email or intranet access.') },
         { title: pick('Comunicación coherente', 'Consistent communication'), body: pick('El mismo mensaje, actualizado a la vez, en todas las sedes o plantas.', 'The same message, updated at once, across every site or plant.') },
         { title: pick('Refuerza cultura y seguridad', 'Reinforces culture and safety'), body: pick('Espacio permanente para valores de empresa, reconocimientos y avisos críticos.', 'A permanent space for company values, recognition and critical notices.') }
+      ]
+    },
+    {
+      slug: 'viajes',
+      icon: Plane,
+      heroImage: '/sectores/viajes-nuevo.jpg',
+      title: pick('Agencias de Viajes', 'Travel Agencies'),
+      tagline: pick('Tu próxima aventura empieza aquí', 'Your next adventure starts here'),
+      hero: pick(
+        'Inspira, informa y convierte miradas en viajes reservados desde el propio escaparate de la agencia, con destinos en imagen y vídeo y precios siempre actualizados.',
+        'Inspire, inform, and turn glances into booked trips right from the agency shopfront, with destinations in image and video and always up-to-date prices.'
+      ),
+      useCases: [
+        pick('Destinos en imagen y vídeo', 'Destinations in image and video'),
+        pick('Información clara y actualizada de ofertas y precios', 'Clear, up-to-date offer and price information'),
+        pick('Pantallas 9:16 de alta luminosidad', 'High-brightness 9:16 screens'),
+        pick('Actualización instantánea con IA', 'Instant AI-powered updates')
+      ],
+      benefits: [
+        { title: pick('Destinos en imagen y vídeo', 'Destinations in image and video'), body: pick('Contenido visual que inspira deseos y despierta emociones.', 'Visual content that sparks desire and emotion.') },
+        { title: pick('Asesoramiento profesional', 'Professional advice'), body: pick('Tus expertos ayudan a elegir el viaje perfecto, en el propio escaparate.', 'Your experts help travelers choose the perfect trip, right at the shopfront.') },
+        { title: pick('Más visibilidad, más reservas', 'More visibility, more bookings'), body: pick('Convierte miradas en clientes y clientes en viajeros.', 'Turn glances into customers and customers into travelers.') }
+      ]
+    },
+    {
+      slug: 'restauracion',
+      icon: UtensilsCrossed,
+      heroImage: '/sectores/restauracion.jpg',
+      title: pick('Restauración', 'Food & Beverage'),
+      tagline: pick('Menú board que entra por los ojos', 'A menu board that catches the eye'),
+      hero: pick(
+        'Comunica de forma apetecible, contextual y dinámica. Aumenta el ticket medio y convierte más visitas en ventas, con contenido que se adapta a la temporada, el clima y el momento del día.',
+        'Communicate in an appetizing, contextual and dynamic way. Increase average ticket and turn more visits into sales, with content that adapts to season, weather and time of day.'
+      ),
+      useCases: [
+        pick('Menú board contextual: temporada, clima, momento del día', 'Contextual menu board: season, weather, time of day'),
+        pick('Promociones y combos dinámicos', 'Dynamic promotions and combos'),
+        pick('Contenido alineado con el estilo de vida de la marca', "Content aligned with the brand's lifestyle"),
+        pick('Actualización instantánea con IA', 'Instant AI-powered updates')
+      ],
+      benefits: [
+        { title: pick('Mejor experiencia de cliente', 'Better customer experience'), body: pick('Menús más claros, visuales y apetecibles que facilitan la elección.', 'Clearer, more visual, more appetizing menus that make choosing easier.') },
+        { title: pick('Más ventas, más rentabilidad', 'More sales, more profitability'), body: pick('Sube el ticket medio promocionando productos y combos de forma eficaz.', 'Raise the average ticket by promoting products and combos effectively.') },
+        { title: pick('Actual y relevante siempre', 'Always current and relevant'), body: pick('Contenido al día, sin imprimir nada, con menos coste operativo.', 'Up-to-date content, nothing to print, lower operating cost.') }
+      ]
+    },
+    {
+      slug: 'inmobiliarias',
+      icon: Building,
+      heroImage: '/sectores/inmobiliarias.jpg',
+      title: pick('Inmobiliarias', 'Real Estate'),
+      tagline: pick('Comunicación que capta todas las miradas', 'Communication that catches every glance'),
+      hero: pick(
+        'Vende y alquila tus inmuebles con pantallas profesionales y escaparates digitales gestionados de principio a fin, para que tu oficina reciba más visitas cada día.',
+        'Sell and rent your properties with professional screens and digital shopfronts managed end to end, so your office gets more visits every day.'
+      ),
+      useCases: [
+        pick('Escaparates digitales de propiedades', 'Digital property shopfronts'),
+        pick('Gestión remota de precios y fichas', 'Remote management of prices and listings'),
+        pick('Promoción de inmuebles 24/7', '24/7 property promotion'),
+        pick('Programación de contenido con IA', 'AI-powered content scheduling')
+      ],
+      benefits: [
+        { title: pick('Atrae más clientes', 'Attracts more clients'), body: pick('Capta la atención de quien pasa y genera más visitas a la oficina.', 'Captures the attention of passers-by and generates more office visits.') },
+        { title: pick('Promociona 24/7', 'Promotes 24/7'), body: pick('Tus mejores propiedades visibles día y noche, sin depender de personal.', 'Your best properties visible day and night, without depending on staff.') },
+        { title: pick('Gestión centralizada', 'Centralized management'), body: pick('Actualiza precios y fichas de todas las oficinas desde un solo lugar.', 'Update prices and listings across every office from one place.') }
       ]
     }
   ]
