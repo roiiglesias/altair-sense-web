@@ -26,6 +26,8 @@ export function getSectors(pick) {
       ]
     },
     {
+      slug: 'supermercados',
+      icon: ShoppingCart,
       heroImage: '/sectores/supermercados.jpg',
       title: pick('Supermercados', 'Supermarkets'),
       tagline: pick('Cada pasillo, un punto de comunicación activo', 'Every aisle, an active communication point'),
