@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { BASE } from '../lib/router.jsx'
 
 const SITE_NAME = 'Altair Sense'
 const SITE_URL = 'https://www.altairsense.com'
@@ -44,7 +43,7 @@ export default function Seo({
 }) {
   useEffect(() => {
     const fullTitle = title ? `${title} · ${SITE_NAME}` : `${SITE_NAME} — Digital Signage y Retail Tech`
-    const realPath = path === '/' ? BASE : `${BASE}${path}`
+    const realPath = path === '/' ? '/' : path
     document.title = fullTitle
 
     setMeta('name', 'description', description)

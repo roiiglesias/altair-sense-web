@@ -2,23 +2,27 @@ import { createContext, useContext, useEffect, useState, useCallback } from 'rea
 
 const RouterCtx = createContext(null)
 
-// Toda la web "completa" vive bajo este prefijo mientras está en construcción.
-// Las páginas siguen escribiendo enlaces "lógicos" normales (to="/soluciones",
-// to="/", etc.) sin saber nada de este prefijo — se traduce aquí solo.
-export const BASE = '/hide'
+// La web se sirve en la raíz. BASE se mantiene exportado (vacío) por compatibilidad.
+export const BASE = ''
 
-function toLogical(realPath) {
-  if (realPath === BASE || realPath === `${BASE}/`) return '/'
-  if (realPath.startsWith(`${BASE}/`)) return realPath.slice(BASE.length)
-  return realPath
+// Las URLs antiguas /hide/... redirigen a la raíz.
+const LEGACY = '/hide'
+function normalize(pathname) {
+  if (pathname === LEGACY || pathname === `${LEGACY}/`) return '/'
+  if (pathname.startsWith(`${LEGACY}/`)) return pathname.slice(LEGACY.length)
+  return pathname
 }
-
-function toReal(logicalPath) {
-  return logicalPath === '/' ? BASE : `${BASE}${logicalPath}`
-}
+const toLogical = normalize
+const toReal = (p) => p
 
 export function RouterProvider({ children }) {
-  const [path, setPath] = useState(toLogical(window.location.pathname))
+  const [path, setPath] = useState(() => {
+    const logical = toLogical(window.location.pathname)
+    if (logical !== window.location.pathname) {
+      window.history.replaceState({}, '', logical + window.location.search + window.location.hash)
+    }
+    return logical
+  })
 
   useEffect(() => {
     const onPop = () => setPath(toLogical(window.location.pathname))

@@ -139,6 +139,11 @@ export default function Soluciones() {
                     </li>
                   ))}
                 </ul>
+                {it.id === 'mantenimiento' && (
+                  <Link to="/servicios" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-as-moss hover:text-as-black transition">
+                    {pick('Ver líneas y niveles de servicio técnico', 'See technical service lines and levels')} <ArrowRight size={15} />
+                  </Link>
+                )}
                 {it.image && (
                   <img
                     src={it.image}

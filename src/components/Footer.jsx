@@ -1,7 +1,8 @@
 import { Link } from '../lib/router.jsx'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import Logo from './Logo.jsx'
-import { Linkedin, Mail, MapPin } from 'lucide-react'
+import { Linkedin, Mail, MapPin, ExternalLink } from 'lucide-react'
+import { LUMEN_URL, openQuickContact } from '../lib/links.js'
 
 export default function Footer() {
   const { t, pick } = useLang()
@@ -24,7 +25,8 @@ export default function Footer() {
           <FooterCol title={t.nav.solutions} items={[
             { to: '/soluciones', label: pick('Digital Signage', 'Digital Signage') },
             { to: '/soluciones', label: pick('Retail Analytics', 'Retail Analytics') },
-            { to: '/soluciones', label: pick('Retail Tech', 'Retail Tech') }
+            { to: '/soluciones', label: pick('Retail Tech', 'Retail Tech') },
+            { to: '/servicios', label: pick('Servicios técnicos', 'Technical services') }
           ]} />
 
           <FooterCol title={pick('Compañía', 'Company')} items={[
@@ -49,12 +51,22 @@ export default function Footer() {
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-as-cream/75 hover:text-as-lime transition">
               <Linkedin size={16} /> LinkedIn
             </a>
-            <Link
-              to="/contacto"
-              className="inline-block mt-5 bg-as-lime text-as-black text-sm font-bold px-5 py-2.5 rounded-full hover:brightness-95 transition"
-            >
-              {t.cta_contact}
-            </Link>
+            <div className="flex flex-wrap gap-3 mt-5">
+              <button
+                onClick={openQuickContact}
+                className="bg-as-lime text-as-black text-sm font-bold px-5 py-2.5 rounded-full hover:brightness-95 transition"
+              >
+                {t.cta_contact}
+              </button>
+              <a
+                href={LUMEN_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 border border-as-lime/60 text-as-lime text-sm font-bold px-4 py-2.5 rounded-full hover:bg-as-lime hover:text-as-black transition"
+              >
+                {pick('Acceso Lumen', 'Lumen access')} <ExternalLink size={13} />
+              </a>
+            </div>
           </div>
         </div>
 

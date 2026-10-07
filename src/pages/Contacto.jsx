@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow } from '../components/Bits.jsx'
-import { supabase } from '../lib/supabaseClient.js'
+import { submitLead } from '../lib/submitLead.js'
 import Seo from '../components/Seo.jsx'
 import { Mail, Phone, MapPin, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 
@@ -19,40 +19,10 @@ export default function Contacto() {
     if (!form.name || !form.email || !form.message) return
     setStatus('sending')
 
-    if (!supabase) {
-      // Sin Supabase configurado (desarrollo local sin .env): simula envío para no romper la UX.
-      await new Promise((r) => setTimeout(r, 600))
-      setStatus('sent')
-      return
-    }
-
-    const { error } = await supabase.from('contact_messages').insert({
-      name: form.name,
-      email: form.email,
-      company: form.company || null,
-      phone: form.phone || null,
-      sector: form.sector || null,
-      message: form.message,
-      locale: lang,
-      source: 'web'
-    })
-
-    if (error) {
-      console.error(error)
-      setStatus('error')
-      return
-    }
-
+    const { ok } = await submitLead(form, { lang, source: 'web-contacto' })
+    if (!ok) { setStatus('error'); return }
     setStatus('sent')
     setForm(initialForm)
-
-    // Aviso por email al equipo — si falla, no afecta a la experiencia del
-    // usuario: el lead ya está guardado en Supabase de todas formas.
-    fetch('/api/notify-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...form, locale: lang })
-    }).catch((err) => console.error('notify-lead failed', err))
   }
 
   return (

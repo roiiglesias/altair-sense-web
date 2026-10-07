@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /hide
 
 Sitemap: https://www.altairsense.com/sitemap.xml

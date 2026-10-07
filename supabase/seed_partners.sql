@@ -5,7 +5,7 @@
 -- el UPDATE de ejemplo al final). Mientras tanto no aparecen en la web.
 
 insert into partners (name, logo_url, url, is_published, sort_order) values
-  ('ZK Digimax',        'PENDIENTE_URL_LOGO', null, false, 1),
+  ('Navori Labs',        'PENDIENTE_URL_LOGO', null, false, 1),
   ('Visiotech',         'PENDIENTE_URL_LOGO', null, false, 2),
   ('Hisense',           'PENDIENTE_URL_LOGO', null, false, 3),
   ('Unilumin',          'PENDIENTE_URL_LOGO', null, false, 4),

@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, Globe, ChevronDown } from 'lucide-react'
+import { Menu, X, Globe, ChevronDown, ExternalLink, Wrench } from 'lucide-react'
 import { Link, useRouter } from '../lib/router.jsx'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { getSectors } from '../data/sectors.js'
 import { solutionSections } from '../data/solutions.js'
 import Logo from './Logo.jsx'
+import { LUMEN_URL, openQuickContact } from '../lib/links.js'
 
 const simpleLinks = [
   { to: '/noticias', key: 'news' },
@@ -50,6 +51,7 @@ export default function Header() {
             {solutions.map((s) => (
               <DropdownItem key={s.id} to={`/soluciones#${s.id}`} icon={s.icon} title={s.navLabel} />
             ))}
+            <DropdownItem to="/servicios" icon={Wrench} title={pick('Líneas y niveles de servicio', 'Service lines and levels')} />
           </NavDropdown>
 
           <NavDropdown label={t.nav.sectors} active={sectorsActive} viewAllTo="/sectores" viewAllLabel={pick('Ver todos los sectores', 'View all sectors')}>
@@ -80,21 +82,39 @@ export default function Header() {
             <Globe size={14} />
             {lang === 'es' ? 'EN' : 'ES'}
           </button>
-          <Link
-            to="/contacto"
+          <a
+            href={LUMEN_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1.5 border border-as-lime/60 text-as-lime text-sm font-bold px-4 py-2 rounded-full hover:bg-as-lime hover:text-as-black transition"
+          >
+            {pick('Acceso Lumen', 'Lumen access')} <ExternalLink size={13} />
+          </a>
+          <button
+            onClick={openQuickContact}
             className="bg-as-lime text-as-black text-sm font-bold px-5 py-2.5 rounded-full hover:brightness-95 transition"
           >
             {t.cta_contact}
-          </Link>
+          </button>
         </div>
 
+        <div className="lg:hidden flex items-center gap-3">
+          <a
+            href={LUMEN_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1 border border-as-lime/60 text-as-lime text-xs font-bold px-3 py-1.5 rounded-full"
+          >
+            Lumen <ExternalLink size={12} />
+          </a>
         <button
-          className="lg:hidden text-as-cream"
+          className="text-as-cream"
           onClick={() => setOpen((o) => !o)}
           aria-label="Menú"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
+        </div>
       </div>
 
       {open && (
@@ -112,6 +132,7 @@ export default function Header() {
                   {s.navLabel}
                 </Link>
               ))}
+              <Link to="/servicios" className="block py-2 text-sm text-as-cream/75">{pick('Líneas y niveles de servicio', 'Service lines and levels')}</Link>
             </MobileAccordion>
 
             <MobileAccordion
@@ -148,12 +169,12 @@ export default function Header() {
               <Globe size={16} />
               {lang === 'es' ? 'English' : 'Español'}
             </button>
-            <Link
-              to="/contacto"
+            <button
+              onClick={() => { setOpen(false); openQuickContact() }}
               className="bg-as-lime text-as-black text-sm font-bold px-5 py-2.5 rounded-full"
             >
               {t.cta_contact}
-            </Link>
+            </button>
           </div>
         </div>
       )}

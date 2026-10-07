@@ -4,7 +4,17 @@ import Seo from '../components/Seo.jsx'
 import { Target, Eye, Handshake } from 'lucide-react'
 
 const CLIENT_PROJECTS = [
-  'Pull&Bear', 'Lefties', 'Stradivarius', 'Zara Home', 'Carrefour', 'Desigual', 'Mercedes-Benz', 'Mapfre'
+  'Pull&Bear', 'Lefties', 'Stradivarius', 'Zara Home', 'Carrefour', 'Desigual', 'Mercedes-Benz', 'Mapfre',
+  'Ecoalf', 'Sprinter', 'Masymas', 'Ibercaja', 'DKV Seguros'
+]
+
+const ALLIANCES = (pick) => [
+  [pick('Experiencia de marca', 'Brand experience'), 'G365 · Virtual Atelier', pick('AI fashion retail y diseño de experiencia', 'AI fashion retail and experience design')],
+  [pick('Consultoría de negocio', 'Business consulting'), 'Singular Solving', pick('CPS + AI aplicados al plan comercial', 'CPS + AI applied to the commercial plan')],
+  [pick('Voz del sector', 'Voice of the sector'), 'AER', pick('Asociación Española de Retail', 'Spanish Retail Association')],
+  [pick('Innovación en retail', 'Retail innovation'), 'Retail Innovation Council', pick('Reino Unido', 'United Kingdom')],
+  [pick('Formación aplicada', 'Applied training'), pick('Universidad San Jorge · Universidad de Navarra', 'Universidad San Jorge · University of Navarra'), pick('Formación y talento en retail e IA', 'Training and talent in retail and AI')],
+  [pick('Investigación y talento', 'Research and talent'), 'invidis consulting', pick('Analistas del sector', 'Industry analysts')]
 ]
 
 export default function AcercaDe() {
@@ -104,10 +114,34 @@ export default function AcercaDe() {
             )}
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-8 mt-14 pt-10 border-t border-white/10">
+          <p className="mt-14 text-xs font-bold tracking-[0.22em] uppercase text-as-lime">{pick('Algunos proyectos desarrollados', 'Some projects delivered')}</p>
+          <div className="flex flex-wrap justify-center md:justify-start gap-x-12 gap-y-6 mt-6 pt-8 border-t border-white/10">
             {CLIENT_PROJECTS.map((name) => (
-              <div key={name} className="flex items-center justify-center h-12">
+              <div key={name} className="flex items-center h-10">
                 <span className="font-display font-extrabold text-lg md:text-xl text-as-cream/50">{name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-as-black text-as-cream py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-5 md:px-8">
+          <Eyebrow>{pick('Alianzas estratégicas', 'Strategic alliances')}</Eyebrow>
+          <Divider className="my-5" />
+          <h2 className="font-display font-extrabold text-3xl md:text-4xl leading-tight max-w-3xl">
+            {pick('Gestionamos la digitalización de tus tiendas ', 'We manage the digitalisation of your stores ')}
+            <span className="text-as-lime">{pick('entendiendo el negocio', 'by understanding the business')}</span>.
+          </h2>
+          <p className="mt-5 text-as-cream/65 text-lg max-w-2xl">
+            {pick('Nos rodeamos de quien conoce el retail por dentro: marca, consultoría, sector, innovación internacional y universidad.', 'We surround ourselves with people who know retail from the inside: brand, consulting, industry, international innovation and academia.')}
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8 mt-12">
+            {ALLIANCES(pick).map(([tag, name, desc]) => (
+              <div key={tag} className="border-t border-white/15 pt-4">
+                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-as-lime">{tag}</p>
+                <h3 className="font-display font-extrabold text-xl mt-2">{name}</h3>
+                <p className="text-sm text-as-cream/60 mt-1">{desc}</p>
               </div>
             ))}
           </div>

@@ -4,6 +4,7 @@ import { Eyebrow, PulseDot, Divider } from '../components/Bits.jsx'
 import Seo from '../components/Seo.jsx'
 import HeroSlideshow from '../components/HeroSlideshow.jsx'
 import ConnectionDiagram from '../components/ConnectionDiagram.jsx'
+import { HomeStoryIntro, HomeStoryMethod } from '../components/HomeStory.jsx'
 import { ArrowRight } from 'lucide-react'
 
 export default function Home() {
@@ -74,6 +75,8 @@ export default function Home() {
         </div>
       </section>
 
+      <HomeStoryIntro />
+
       {/* SOLUCIONES PREVIEW — infografía de conexión */}
       <section className="bg-as-black py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
@@ -97,6 +100,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HomeStoryMethod />
 
       {/* SECTORES TEASER */}
       <section className="bg-as-black text-as-cream py-20 md:py-28">

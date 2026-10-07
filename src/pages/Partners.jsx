@@ -8,7 +8,7 @@ import Seo from '../components/Seo.jsx'
 // oscuro (public/partners/*.png). Cuando haya más, añádelos aquí y a la
 // carpeta public/partners/.
 const CORE_PARTNERS = [
-  { name: 'ZK Digimax', logo: '/partners/zk-digimax.png' },
+  { name: 'Navori Labs', logo: '/partners/navori-labs.png' },
   { name: 'Visiotech', logo: '/partners/visiotech.png' },
   { name: 'Hisense', logo: '/partners/hisense.png' },
   { name: 'Unilumin', logo: '/partners/unilumin.png' },
@@ -61,7 +61,20 @@ export default function Partners() {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-5 md:px-8 mt-16 pt-14 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 mt-14 grid md:grid-cols-[1.2fr_1fr] gap-8 items-end">
+          <div>
+            <h2 className="font-display font-extrabold text-3xl md:text-4xl leading-tight">
+              <span className="text-as-lime">Lumen</span> {pick('es nuestra capa. Ayuda a orquestar las mejores soluciones.', 'is our layer. It helps orchestrate the best solutions.')}
+            </h2>
+            <p className="mt-4 text-as-cream/65 leading-relaxed max-w-xl">
+              {pick('Sobre Lumen se apoya todo el ecosistema: hardware, CMS y modelos de IA. Elegimos por proyecto, no por catálogo.', 'The whole ecosystem rests on Lumen: hardware, CMS and AI models. We choose by project, not by catalogue.')}
+            </p>
+          </div>
+          <p className="md:text-right text-sm font-bold tracking-[0.2em] uppercase text-as-lime">AI-ready · AI-agnostic</p>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-5 md:px-8 mt-14 pt-14 border-t border-white/10">
+          <p className="text-xs font-bold tracking-[0.22em] uppercase text-as-lime mb-10">{pick('Ecosistema de partners certificados', 'Certified partner ecosystem')}</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-14 items-center">
             {CORE_PARTNERS.map((p) => (
               <div key={p.name} className="flex items-center justify-center h-14 opacity-70 hover:opacity-100 transition-opacity">

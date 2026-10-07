@@ -176,34 +176,25 @@ de routing más grande — decimos si lo abordamos cuando el resto esté estable
 
 ---
 
-## 8. Web oculta durante la construcción
+## 8. Web publicada en la raíz
 
-Mientras la web no esté lista para publicarse, `altairsense.com/` (la raíz)
-muestra solo una página mínima: el claim, el email de contacto y un enlace al
-portal de Lumen (`src/pages/ComingSoon.jsx`). **La web completa que hemos
-construido sigue viva y navegable en `altairsense.com/hide`** — mismo menú,
-mismas páginas, mismo Supabase, todo funcional, solo que no enlazada desde
-ningún sitio público.
+La web completa se sirve en `altairsense.com/`. Las URLs antiguas `/hide/...`
+redirigen automáticamente a la raíz. `robots.txt` permite indexar todo y el
+sitemap (`/sitemap.xml`) incluye páginas, sectores, noticias y KB publicados.
 
-- `robots.txt` bloquea explícitamente `/hide` para que no se indexe mientras
-  está en construcción.
-- El sitemap dinámico (`/sitemap.xml`) solo expone la raíz por ahora.
-- Los enlaces internos de todas las páginas (menú, footer, botones) siguen
-  escritos con rutas normales (`to="/soluciones"`, etc.) — es el router
-  (`src/lib/router.jsx`) el que añade el prefijo `/hide` por debajo, así que
-  no ha hecho falta tocar página por página.
-
-**Cuando quieras publicar la web de verdad**, dímelo y hago dos cambios
-mínimos: quitar el `Disallow: /hide` de `robots.txt` y decidir juntos si
-`/hide` pasa a ser la raíz definitiva o si prefieres otra URL — es un cambio
-pequeño, no hay que reconstruir nada de lo ya hecho.
+- **Acceso a Lumen**: botón siempre visible en la cabecera (escritorio y móvil)
+  y en el pie. La URL está en `src/lib/links.js` (`LUMEN_URL`).
+- **Contacto fácil**: botón flotante "Hablemos" en todas las páginas, formulario
+  rápido (nombre, email, mensaje), banda de contacto antes del pie y botón en
+  cabecera/pie. Guarda en Supabase (`source` indica la página de origen) y avisa
+  por email.
 
 ---
 
 ## Pendiente de tu confirmación
 
 - Teléfono de contacto real (ahora mismo placeholder: `+34 900 000 000`).
-- Logos reales de los 7 partners (ZK Digimax, Visiotech, Hisense, Unilumin,
+- Logos reales de los 7 partners (Navori Labs, Visiotech, Hisense, Unilumin,
   Hikvision, Milesight, Flame Analytics) — de momento se muestran como
   wordmark tipográfico en `/partners`. En cuanto tengas cada logo oficial,
   súbelo al bucket `partners` de Supabase, actualiza
@@ -215,6 +206,4 @@ pequeño, no hay que reconstruir nada de lo ya hecho.
 - Contenido inicial de Noticias/Knowledge Base (incluidos los Casos de
   éxito, categoría `caso-exito` en `kb_articles`) y Descargables — la web
   funciona vacía hasta que insertes las primeras filas en Supabase.
-- Confirmar la URL del portal de Lumen usada en la página de "Próximamente"
-  (`src/pages/ComingSoon.jsx`, constante `LUMEN_URL`).
-- Cuándo despublicar `/hide` y pasar la web completa a la raíz definitiva.
+- Confirmar la URL del portal de Lumen (`src/lib/links.js`, constante `LUMEN_URL`).

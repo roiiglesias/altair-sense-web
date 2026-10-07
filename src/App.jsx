@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
-import { RouterProvider, useRouter, BASE } from './lib/router.jsx'
+import { RouterProvider, useRouter } from './lib/router.jsx'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
-import ComingSoon from './pages/ComingSoon.jsx'
+import CtaStrip from './components/CtaStrip.jsx'
+import QuickContact from './components/QuickContact.jsx'
 
 import Home from './pages/Home.jsx'
 import Soluciones from './pages/Soluciones.jsx'
@@ -15,6 +15,7 @@ import Noticias from './pages/Noticias.jsx'
 import NoticiaDetalle from './pages/NoticiaDetalle.jsx'
 import KnowledgeBase from './pages/KnowledgeBase.jsx'
 import KBArticulo from './pages/KBArticulo.jsx'
+import Servicios from './pages/Servicios.jsx'
 import Partners from './pages/Partners.jsx'
 import NotFound from './pages/NotFound.jsx'
 
@@ -24,6 +25,7 @@ function resolve(path) {
   if (clean === '/') return { Page: Home }
   if (clean === '/soluciones') return { Page: Soluciones }
   if (clean === '/sectores') return { Page: Sectores }
+  if (clean === '/servicios') return { Page: Servicios }
   if (clean === '/nosotros') return { Page: AcercaDe }
   if (clean === '/contacto') return { Page: Contacto }
   if (clean === '/noticias') return { Page: Noticias }
@@ -52,31 +54,19 @@ function Shell() {
       <main className="flex-1">
         <Page {...(props || {})} />
       </main>
+      <CtaStrip />
       <Footer />
+      <QuickContact />
     </div>
   )
 }
 
 export default function App() {
-  const [realPath, setRealPath] = useState(window.location.pathname)
-
-  useEffect(() => {
-    const onPop = () => setRealPath(window.location.pathname)
-    window.addEventListener('popstate', onPop)
-    return () => window.removeEventListener('popstate', onPop)
-  }, [])
-
-  const inHiddenSite = realPath === BASE || realPath.startsWith(`${BASE}/`)
-
   return (
     <LanguageProvider>
-      {inHiddenSite ? (
-        <RouterProvider>
-          <Shell />
-        </RouterProvider>
-      ) : (
-        <ComingSoon />
-      )}
+      <RouterProvider>
+        <Shell />
+      </RouterProvider>
     </LanguageProvider>
   )
 }
