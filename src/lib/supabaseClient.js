@@ -10,4 +10,4 @@ if (!url || !anonKey) {
   )
 }
 
-export const supabase = url && anonKey ? createClient(url, anonKey) : null
+export const supabase = url && anonKey ? createClient(url, anonKey, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } }) : null

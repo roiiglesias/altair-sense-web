@@ -2,7 +2,7 @@
 // con alternates hreflang. Incluye noticias y artículos de Knowledge Base publicados.
 
 const BASE = 'https://www.altairsense.com'
-const EN_SLUGS = { soluciones: 'solutions', sectores: 'sectors', servicios: 'services', nosotros: 'about', contacto: 'contact', noticias: 'news' }
+const EN_SLUGS = { soluciones: 'solutions', sectores: 'sectors', servicios: 'services', nosotros: 'about', contacto: 'contact', noticias: 'news', 'aviso-legal': 'legal-notice', privacidad: 'privacy' }
 
 const enPath = (p) => {
   if (p === '/') return '/en'
@@ -13,7 +13,8 @@ const enPath = (p) => {
 
 const STATIC = [
   ['/', '1.0'], ['/soluciones', '0.9'], ['/sectores', '0.9'], ['/servicios', '0.9'], ['/lumen', '0.9'],
-  ['/noticias', '0.7'], ['/knowledge-base', '0.7'], ['/partners', '0.7'], ['/nosotros', '0.7'], ['/contacto', '0.7']
+  ['/noticias', '0.7'], ['/knowledge-base', '0.7'], ['/partners', '0.7'], ['/nosotros', '0.7'], ['/contacto', '0.7'],
+  ['/aviso-legal', '0.2'], ['/privacidad', '0.2'], ['/cookies', '0.2']
 ]
 
 const SECTOR_SLUGS = [

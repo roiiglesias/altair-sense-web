@@ -7,10 +7,11 @@ import { join } from 'node:path'
 import { getSectors } from '../src/data/sectors.js'
 import { solutionSections } from '../src/data/solutions.js'
 import { serviceLevels, serviceLines } from '../src/data/servicios.js'
+import { legalPage } from '../src/data/legal.js'
 
 const SITE = 'https://www.altairsense.com'
 const DIST = 'dist'
-const EN_SLUGS = { soluciones: 'solutions', sectores: 'sectors', servicios: 'services', nosotros: 'about', contacto: 'contact', noticias: 'news' }
+const EN_SLUGS = { soluciones: 'solutions', sectores: 'sectors', servicios: 'services', nosotros: 'about', contacto: 'contact', noticias: 'news', 'aviso-legal': 'legal-notice', privacidad: 'privacy' }
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 function urlPath(logical, lang) {
@@ -100,6 +101,17 @@ function buildPages(lang) {
   add('/contacto', L('Contacto', 'Contact'),
     L('Habla con Altair Sense sobre digital signage, retail media, control de inventario o mantenimiento para tu retail.', 'Talk to Altair Sense about digital signage, retail media, inventory control or maintenance for your retail business.'),
     L('Hablemos', "Let's talk"), [['p', 'info@altairsense.com · Calle Los Prados 166, Edificio Impulsa, Gijón, España']])
+
+  // Páginas legales (texto completo en el HTML)
+  ;['aviso-legal', 'privacidad', 'cookies'].forEach((k) => {
+    const lp = legalPage(k, L)
+    const blocks = lp.sections.flatMap((sec) => [
+      ['h2', sec.h], ...(sec.p || []).map((t) => ['p', t]), ...(sec.ul ? [['ul', sec.ul]] : []),
+      ...(sec.table ? [['ul', sec.table.rows.map((r) => r.join(' — '))]] : []),
+      ...(sec.p2 || []).map((t) => ['p', t]), ...(sec.note ? [['p', sec.note]] : [])
+    ])
+    add(`/${k}`, lp.title, lp.description, lp.title, blocks)
+  })
 
   const T = (r, k) => (lang === 'en' ? r[`${k}_en`] || r[`${k}_es`] : r[`${k}_es`])
   add('/noticias', L('Noticias', 'News'), L('Noticias de Altair Sense sobre digital signage, retail media y retail tech.', 'Altair Sense news on digital signage, retail media and retail tech.'), L('Noticias', 'News'), [['ul', news.map((n) => T(n, 'title'))]])

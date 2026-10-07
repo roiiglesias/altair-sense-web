@@ -1,10 +1,14 @@
 import { supabase } from './supabaseClient.js'
 import { attributionString } from './attribution.js'
+import { CONSENT_VERSION } from '../data/legal.js'
 
 // Guarda el mensaje en Supabase y avisa por email (el aviso es "best effort").
 // Devuelve { ok: boolean }.
-export async function submitLead(form, { lang, source = 'web' }) {
-  source = (source + attributionString()).slice(0, 300)
+export async function submitLead(form, { lang, source = 'web', consent = false }) {
+  // Sin consentimiento explícito no se envía nada. La versión del texto aceptado se
+  // guarda al inicio de `source` como prueba del consentimiento (la fecha es created_at).
+  if (!consent) return { ok: false }
+  source = `consent=${CONSENT_VERSION} | ${source}${attributionString()}`.slice(0, 300)
   if (!supabase) {
     await new Promise((r) => setTimeout(r, 600))
     return { ok: true }

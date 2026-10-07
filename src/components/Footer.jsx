@@ -3,6 +3,7 @@ import { useLang } from '../i18n/LanguageContext.jsx'
 import Logo from './Logo.jsx'
 import { Linkedin, Mail, MapPin, ExternalLink } from 'lucide-react'
 import { LUMEN_URL, openQuickContact } from '../lib/links.js'
+import { COMPANY } from '../data/legal.js'
 
 export default function Footer() {
   const { t, pick } = useLang()
@@ -71,8 +72,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 flex items-center justify-center text-xs text-as-cream/45">
-          <p>© {year} Altair Sense · {t.footer_rights}</p>
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-as-cream/45">
+          <p>© {year} {COMPANY.name} · CIF {COMPANY.cif} · {t.footer_rights}</p>
+          <nav className="flex flex-wrap justify-center gap-x-5 gap-y-1" aria-label={pick('Información legal', 'Legal information')}>
+            <Link to="/aviso-legal" className="hover:text-as-lime transition">{pick('Aviso legal', 'Legal notice')}</Link>
+            <Link to="/privacidad" className="hover:text-as-lime transition">{pick('Privacidad', 'Privacy')}</Link>
+            <Link to="/cookies" className="hover:text-as-lime transition">Cookies</Link>
+          </nav>
         </div>
       </div>
     </footer>

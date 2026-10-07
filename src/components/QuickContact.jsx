@@ -3,6 +3,7 @@ import { MessageCircle, X, Mail, CheckCircle2, AlertCircle, Loader2 } from 'luci
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { useRouter } from '../lib/router.jsx'
 import { submitLead } from '../lib/submitLead.js'
+import Consent from './Consent.jsx'
 
 const empty = { name: '', email: '', message: '' }
 
@@ -15,6 +16,7 @@ export default function QuickContact() {
   const [open, setOpen] = useState(false)
   const [form, setForm] = useState(empty)
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [consent, setConsent] = useState(false)
   const firstField = useRef(null)
 
   useEffect(() => {
@@ -38,10 +40,11 @@ export default function QuickContact() {
   const onSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    const { ok } = await submitLead(form, { lang, source: `web-rapido:${path}` })
+    const { ok } = await submitLead(form, { lang, source: `web-rapido:${path}`, consent })
     if (!ok) { setStatus('error'); return }
     setStatus('sent')
     setForm(empty)
+    setConsent(false)
   }
 
   const close = () => { setOpen(false); if (status === 'sent') setStatus('idle') }
@@ -87,6 +90,8 @@ export default function QuickContact() {
                   placeholder="Email*" className={inputCls} />
                 <textarea name="message" required rows={4} value={form.message} onChange={onChange}
                   placeholder={pick('¿En qué podemos ayudarte?*', 'How can we help?*')} className={`${inputCls} resize-none`} />
+
+                <Consent checked={consent} onChange={setConsent} dark />
 
                 {status === 'error' && (
                   <div className="flex items-center gap-2 text-sm text-red-300 bg-red-500/10 border border-red-400/30 rounded-lg px-3 py-2">

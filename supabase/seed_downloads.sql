@@ -1,5 +1,5 @@
 -- One-pagers por sector — YA vienen con la marca Altair Sense correcta
--- (no Altair Tech), listos para publicar sin revisión adicional.
+-- listos para publicar sin revisión adicional.
 -- Los PDFs están servidos como parte de la propia web, en /downloads/*.pdf
 -- (carpeta public/downloads/ del proyecto) — no hace falta subirlos a
 -- Supabase Storage, solo insertar la fila para que aparezcan en

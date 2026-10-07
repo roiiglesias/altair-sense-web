@@ -18,6 +18,7 @@ import KBArticulo from './pages/KBArticulo.jsx'
 import Servicios from './pages/Servicios.jsx'
 import Lumen from './pages/Lumen.jsx'
 import Partners from './pages/Partners.jsx'
+import Legal from './pages/Legal.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function resolve(path) {
@@ -33,6 +34,9 @@ function resolve(path) {
   if (clean === '/noticias') return { Page: Noticias }
   if (clean === '/knowledge-base') return { Page: KnowledgeBase }
   if (clean === '/partners') return { Page: Partners }
+  if (clean === '/aviso-legal') return { Page: Legal, props: { kind: 'aviso-legal' } }
+  if (clean === '/privacidad') return { Page: Legal, props: { kind: 'privacidad' } }
+  if (clean === '/cookies') return { Page: Legal, props: { kind: 'cookies' } }
 
   const newsMatch = clean.match(/^\/noticias\/([^/]+)$/)
   if (newsMatch) return { Page: NoticiaDetalle, props: { slug: newsMatch[1] } }

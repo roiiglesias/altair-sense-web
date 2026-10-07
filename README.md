@@ -223,3 +223,9 @@ sitemap (`/sitemap.xml`) incluye páginas, sectores, noticias y KB publicados.
   éxito, categoría `caso-exito` en `kb_articles`) y Descargables — la web
   funciona vacía hasta que insertes las primeras filas en Supabase.
 - Confirmar la URL del portal de Lumen (`src/lib/links.js`, constante `LUMEN_URL`).
+
+## 10. Textos legales y consentimiento (RGPD / LSSI)
+- Páginas: `/aviso-legal`, `/privacidad`, `/cookies` (EN: `/en/legal-notice`, `/en/privacy`, `/en/cookies`). Todo el texto y los datos de la empresa están en `src/data/legal.js` (un solo sitio para editar).
+- **Registro Mercantil**: rellenar `COMPANY.registro` en `src/data/legal.js` cuando se tenga (la línea aparece sola en el Aviso legal).
+- Formularios (Contacto y "Hablemos"): casilla de consentimiento obligatoria y sin marcar + información básica en primera capa. La versión aceptada se guarda al inicio del campo `source` (`consent=priv-v1-2026-10`); la fecha es `created_at`. Si se cambia el texto de consentimiento, cambiar `CONSENT_VERSION`.
+- Sin cookies ni almacenamiento del navegador: las tipografías se sirven desde el propio dominio (@fontsource) y la atribución (UTM, referrer) vive solo en memoria. Si algún día se añade analítica con cookies, hay que añadir banner de consentimiento y actualizar `/cookies`.

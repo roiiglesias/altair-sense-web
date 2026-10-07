@@ -16,7 +16,9 @@ export const EN_SLUGS = {
   servicios: 'services',
   nosotros: 'about',
   contacto: 'contact',
-  noticias: 'news'
+  noticias: 'news',
+  'aviso-legal': 'legal-notice',
+  privacidad: 'privacy'
 }
 const ES_FROM_EN = Object.fromEntries(Object.entries(EN_SLUGS).map(([es, en]) => [en, es]))
 

@@ -3,7 +3,8 @@ import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow } from '../components/Bits.jsx'
 import { submitLead } from '../lib/submitLead.js'
 import Seo from '../components/Seo.jsx'
-import { Mail, Phone, MapPin, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
+import Consent from '../components/Consent.jsx'
+import { Mail, MapPin, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 
 const initialForm = { name: '', email: '', company: '', phone: '', sector: '', size: '', timing: '', message: '' }
 
@@ -11,6 +12,7 @@ export default function Contacto() {
   const { pick, t, lang } = useLang()
   const [form, setForm] = useState(initialForm)
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [consent, setConsent] = useState(false)
 
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
@@ -22,10 +24,11 @@ export default function Contacto() {
     // Datos de cualificación: se añaden al inicio del mensaje (sin tocar el esquema de Supabase)
     const tags = [form.size && `Ubicaciones: ${form.size}`, form.timing && `Plazo: ${form.timing}`].filter(Boolean)
     const payload = { ...form, message: (tags.length ? `[${tags.join(' | ')}]\n` : '') + form.message }
-    const { ok } = await submitLead(payload, { lang, source: 'web-contacto' })
+    const { ok } = await submitLead(payload, { lang, source: 'web-contacto', consent })
     if (!ok) { setStatus('error'); return }
     setStatus('sent')
     setForm(initialForm)
+    setConsent(false)
   }
 
   return (
@@ -61,9 +64,6 @@ export default function Contacto() {
             </h2>
             <a href="mailto:info@altairsense.com" className="flex items-center gap-3 text-as-black/75 hover:text-as-moss transition mb-4">
               <Mail size={18} /> info@altairsense.com
-            </a>
-            <a href="tel:+34900000000" className="flex items-center gap-3 text-as-black/75 hover:text-as-moss transition">
-              <Phone size={18} /> +34 900 000 000
             </a>
 
             <div className="mt-10 border-t border-as-stone pt-8">
@@ -127,6 +127,10 @@ export default function Contacto() {
                     onChange={onChange}
                     className="w-full rounded-lg border border-as-stone px-4 py-3 text-as-black focus:border-as-moss focus:ring-1 focus:ring-as-moss outline-none transition resize-none"
                   />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <Consent checked={consent} onChange={setConsent} />
                 </div>
 
                 {status === 'error' && (

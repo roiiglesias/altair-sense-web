@@ -1,13 +1,15 @@
-// Captura de origen del visitante (UTM, referrer, página de entrada) para
-// saber de qué canal viene cada lead. Se guarda en sessionStorage y se añade
-// al campo "source" del mensaje de contacto. No requiere cambios en Supabase.
-const KEY = 'as_attr'
+// Captura de origen del visitante (UTM, referrer, página de entrada) para saber
+// de qué canal viene cada lead. SE GUARDA SOLO EN MEMORIA (no cookies, no
+// localStorage ni sessionStorage): así la web no instala nada en el dispositivo
+// del visitante y no requiere banner de cookies. Se envía únicamente si la
+// persona envía un formulario (ver Política de Privacidad).
+let data = null
 
 export function captureAttribution() {
+  if (data) return
   try {
-    if (sessionStorage.getItem(KEY)) return
     const q = new URLSearchParams(window.location.search)
-    const data = {}
+    data = {}
     ;['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'].forEach((k) => {
       if (q.get(k)) data[k] = q.get(k).slice(0, 60)
     })
@@ -15,14 +17,10 @@ export function captureAttribution() {
       try { data.ref = new URL(document.referrer).hostname } catch { /* ignore */ }
     }
     data.landing = window.location.pathname
-    sessionStorage.setItem(KEY, JSON.stringify(data))
-  } catch { /* sin storage: no pasa nada */ }
+  } catch { data = {} }
 }
 
 export function attributionString() {
-  try {
-    const d = JSON.parse(sessionStorage.getItem(KEY) || '{}')
-    const parts = Object.entries(d).map(([k, v]) => `${k}=${v}`)
-    return parts.length ? ' | ' + parts.join(' ') : ''
-  } catch { return '' }
+  const parts = Object.entries(data || {}).map(([k, v]) => `${k}=${v}`)
+  return parts.length ? ' | ' + parts.join(' ') : ''
 }
