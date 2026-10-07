@@ -150,11 +150,22 @@ export default function AcercaDe() {
 
       <section className="bg-as-cream py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
+          <div className="grid lg:grid-cols-[minmax(0,380px)_1fr] gap-10 lg:gap-16 items-start">
+            <figure className="relative rounded-2xl overflow-hidden border border-as-stone bg-as-black max-w-sm lg:max-w-none">
+              <img src="/brand/roi-iglesias.jpg" alt="Roi Iglesias" className="w-full h-auto block" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-as-black/80 via-transparent to-as-moss/20 pointer-events-none" />
+              <figcaption className="absolute bottom-0 left-0 right-0 p-5 text-as-cream">
+                <p className="font-display font-extrabold text-xl">Roi Iglesias</p>
+                <p className="text-xs tracking-[0.18em] uppercase text-as-lime mt-1">{pick('Creador de Connected Retail Strategy', 'Creator of Connected Retail Strategy')}</p>
+              </figcaption>
+            </figure>
+            <div>
           <Eyebrow tone="moss">{pick('Equipo fundador', 'Founding team')}</Eyebrow>
           <Divider className="my-5 bg-as-moss" />
           <h2 className="font-display font-extrabold text-3xl md:text-4xl text-as-black leading-tight max-w-2xl">
             {pick('Un equipo de socios con presencia en más de 30 países', 'A team of partners with a presence in over 30 countries')}
           </h2>
+
           <p className="mt-6 text-as-black/65 leading-relaxed text-lg max-w-3xl">
             {pick(
               'Roi Iglesias forma parte del equipo fundador y aporta la visión, la estrategia, las líneas de producto y las alianzas que nos permiten abordar mejor el mercado, junto a un equipo de socios con experiencia contrastada ofreciendo soluciones y servicios en más de 30 países, tanto en Europa como en América (Norteamérica y LatAm), y con un sólido background en creación y crecimiento de negocios y en ingeniería.',
@@ -162,7 +173,17 @@ export default function AcercaDe() {
             )}
           </p>
 
-          <div className="mt-10 border border-as-stone rounded-2xl p-8 md:p-10 bg-white max-w-2xl">
+
+              <div className="mt-8 border-l-2 border-as-moss pl-6">
+                <p className="text-xs font-bold tracking-[0.22em] uppercase text-as-moss mb-2">Connected Retail Strategy (CRS)</p>
+                <p className="text-as-black/70 leading-relaxed">
+                  {pick(
+                    'Roi Iglesias es creador de la metodología Connected Retail Strategy (CRS), desarrollada en marzo de 2025 ante el volumen de soluciones que gestiona el sector retail y que hoy pueden aunarse a través de una infraestructura de inteligencia artificial gestionada con criterio. De CRS nació Altair Sense, que articula la metodología, con Lumen como plataforma y cerebro matriz al servicio del retail y otros entornos físicos.',
+                    'Roi Iglesias is the creator of the Connected Retail Strategy (CRS) methodology, developed in March 2025 in response to the volume of solutions the retail sector manages, which can today be brought together through an AI infrastructure run with judgement. Altair Sense was born from CRS and articulates the methodology, with Lumen as the platform and core brain serving retail and other physical environments.'
+                  )}
+                </p>
+              </div>
+          <div className="mt-8 border border-as-stone rounded-2xl p-8 md:p-10 bg-white max-w-2xl">
             <h3 className="font-display font-extrabold text-lg text-as-black mb-3">
               {pick('Voz activa en la industria', 'An active voice in the industry')}
             </h3>
@@ -180,6 +201,8 @@ export default function AcercaDe() {
             >
               {pick('Ver perfil de LinkedIn', 'View LinkedIn profile')} ↗
             </a>
+          </div>
+            </div>
           </div>
         </div>
       </section>
