@@ -1,5 +1,5 @@
 import { useLang } from '../i18n/LanguageContext.jsx'
-import { Link } from '../lib/router.jsx'
+import { Link, buildUrl } from '../lib/router.jsx'
 import { getSectors } from '../data/sectors.js'
 import Seo, { SITE_URL } from '../components/Seo.jsx'
 import { ArrowLeft, ArrowRight, Check, Monitor, Smartphone, RefreshCw } from 'lucide-react'
@@ -12,7 +12,7 @@ const commonFeatures = (pick) => [
 ]
 
 export default function SectorDetalle({ slug }) {
-  const { pick, t } = useLang()
+  const { pick, t, lang } = useLang()
   const sectors = getSectors(pick)
   const sector = sectors.find((s) => s.slug === slug)
   const features = commonFeatures(pick)
@@ -23,8 +23,8 @@ export default function SectorDetalle({ slug }) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: t.nav.sectors, item: `${SITE_URL}/sectores` },
-      { '@type': 'ListItem', position: 2, name: sector.title, item: `${SITE_URL}/sectores/${sector.slug}` }
+      { '@type': 'ListItem', position: 1, name: t.nav.sectors, item: `${SITE_URL}${buildUrl('/sectores', lang)}` },
+      { '@type': 'ListItem', position: 2, name: sector.title, item: `${SITE_URL}${buildUrl(`/sectores/${sector.slug}`, lang)}` }
     ]
   }
 

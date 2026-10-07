@@ -40,6 +40,8 @@
         "Customer experience",
         "Retail analytics"
       ],
+      "address": { "@type": "PostalAddress", "streetAddress": "Calle Los Prados 166, Edificio Impulsa", "addressLocality": "Gijón", "addressRegion": "Asturias", "addressCountry": "ES" },
+      "contactPoint": { "@type": "ContactPoint", "email": "info@altairsense.com", "contactType": "sales", "availableLanguage": ["es", "en"] },
       "sameAs": []
     }
     </script>
@@ -48,37 +50,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;800&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'as-black': '#10150F',   // verde negro
-              'as-lime': '#B4E33D',    // lima
-              'as-moss': '#4C7A3E',    // musgo
-              'as-cream': '#F2F1E8',   // cal
-              'as-moss-2': '#55604C',
-              'as-sage': '#8E8F7C',
-              'as-stone': '#D7D6C8'
-            },
-            fontFamily: {
-              display: ['"Nunito Sans"', 'sans-serif'],
-              body: ['Inter', 'sans-serif']
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      html { scroll-behavior: smooth; }
-      body { font-family: 'Inter', sans-serif; background-color: #F2F1E8; }
-      ::selection { background: #B4E33D; color: #10150F; }
-      @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-      }
-      :focus-visible { outline: 2px solid #B4E33D; outline-offset: 2px; }
-    </style>
   </head>
   <body>
     <div id="root"></div>

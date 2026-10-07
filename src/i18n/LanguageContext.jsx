@@ -1,8 +1,9 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useEffect } from 'react'
+import { useRouter } from '../lib/router.jsx'
 
 const common = {
   es: {
-    nav: { home: 'Inicio', solutions: 'Soluciones', sectors: 'Sectores', news: 'Noticias', kb: 'Knowledge Base', partners: 'Partners', about: 'Nosotros', contact: 'Contacto' },
+    nav: { home: 'Inicio', solutions: 'Soluciones', sectors: 'Sectores', news: 'Noticias', kb: 'Knowledge Base', partners: 'Partners', about: 'Nosotros', lumen: 'Lumen', contact: 'Contacto' },
     cta_contact: 'Hablemos',
     cta_solutions: 'Ver soluciones',
     footer_rights: 'Todos los derechos reservados.',
@@ -18,7 +19,7 @@ const common = {
     lang_name: 'ES'
   },
   en: {
-    nav: { home: 'Home', solutions: 'Solutions', sectors: 'Sectors', news: 'News', kb: 'Knowledge Base', partners: 'Partners', about: 'About', contact: 'Contact' },
+    nav: { home: 'Home', solutions: 'Solutions', sectors: 'Sectors', news: 'News', kb: 'Knowledge Base', partners: 'Partners', about: 'About', lumen: 'Lumen', contact: 'Contact' },
     cta_contact: "Let's talk",
     cta_solutions: 'See solutions',
     footer_rights: 'All rights reserved.',
@@ -38,22 +39,12 @@ const common = {
 const LangCtx = createContext(null)
 
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState(() => {
-    try {
-      const saved = localStorage.getItem('as_lang')
-      if (saved === 'es' || saved === 'en') return saved
-      return navigator.language?.startsWith('en') ? 'en' : 'es'
-    } catch {
-      return 'es'
-    }
-  })
+  // El idioma lo decide la URL (/en/... = inglés). Así cada idioma tiene su propia dirección indexable.
+  const { lang, setLang } = useRouter()
 
-  useEffect(() => {
-    try { localStorage.setItem('as_lang', lang) } catch {}
-    document.documentElement.lang = lang
-  }, [lang])
+  useEffect(() => { document.documentElement.lang = lang }, [lang])
 
-  const toggleLang = () => setLang((l) => (l === 'es' ? 'en' : 'es'))
+  const toggleLang = () => setLang(lang === 'es' ? 'en' : 'es')
   const t = common[lang]
   const pick = (esVal, enVal) => (lang === 'es' ? esVal : enVal)
 

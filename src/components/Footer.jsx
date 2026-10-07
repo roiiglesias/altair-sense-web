@@ -33,6 +33,7 @@ export default function Footer() {
             { to: '/nosotros', label: t.nav.about },
             { to: '/sectores', label: t.nav.sectors },
             { to: '/partners', label: t.nav.partners },
+            { to: '/lumen', label: 'Lumen' },
             { to: '/noticias', label: t.nav.news },
             { to: '/knowledge-base', label: t.nav.kb }
           ]} />

@@ -191,6 +191,22 @@ sitemap (`/sitemap.xml`) incluye páginas, sectores, noticias y KB publicados.
 
 ---
 
+## 9. SEO, GEO y bilingüe (octubre 2026)
+
+- **Idiomas con URL propia**: español en la raíz (`/soluciones`), inglés bajo `/en/` (`/en/solutions`). El
+  botón ES/EN cambia de URL. Cada página declara `hreflang` es/en/x-default.
+- **Prerender** (`scripts/prerender.mjs`, se ejecuta solo en `npm run build`): genera un HTML por página e
+  idioma con título, descripción, canonical, hreflang, JSON-LD y el texto principal; y `llms.txt` (ES+EN).
+  Si añades páginas nuevas, añádelas también en ese script.
+- **Sitemap** dinámico bilingüe (`api/sitemap.js`); **robots.txt** permite los rastreadores de IA.
+- **Tailwind compilado** (`tailwind.config.js`, `src/index.css`): ya no se carga desde CDN.
+- **Origen de leads**: UTM, referrer y página de entrada se guardan en el campo `source` del mensaje; el
+  formulario pregunta nº de ubicaciones y plazo. Aparecen en el email de aviso.
+- **Contenido inicial**: `supabase/seed_contenido_inicial_1.sql` (4 guías ES/EN) → SQL Editor de Supabase.
+- **Estrategia completa y controles automáticos**: documento `estrategia-seo-geo-inbound.md` en el proyecto.
+
+---
+
 ## Pendiente de tu confirmación
 
 - Teléfono de contacto real (ahora mismo placeholder: `+34 900 000 000`).

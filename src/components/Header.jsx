@@ -11,6 +11,7 @@ const simpleLinks = [
   { to: '/noticias', key: 'news' },
   { to: '/knowledge-base', key: 'kb' },
   { to: '/partners', key: 'partners' },
+  { to: '/lumen', key: 'lumen' },
   { to: '/nosotros', key: 'about' }
 ]
 
@@ -46,7 +47,7 @@ export default function Header() {
           <Logo variant="onDark" size="sm" />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           <NavDropdown label={t.nav.solutions} active={solutionsActive} viewAllTo="/soluciones" viewAllLabel={pick('Ver todas las soluciones', 'View all solutions')}>
             {solutions.map((s) => (
               <DropdownItem key={s.id} to={`/soluciones#${s.id}`} icon={s.icon} title={s.navLabel} />

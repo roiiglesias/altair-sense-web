@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useRouter, buildUrl } from '../lib/router.jsx'
 
 const SITE_NAME = 'Altair Sense'
 const SITE_URL = 'https://www.altairsense.com'
@@ -41,9 +42,12 @@ export default function Seo({
   jsonLd = null,
   noindex = false
 }) {
+  const { lang } = useRouter()
   useEffect(() => {
-    const fullTitle = title ? `${title} · ${SITE_NAME}` : `${SITE_NAME} — Digital Signage y Retail Tech`
-    const realPath = path === '/' ? '/' : path
+    const fullTitle = title ? `${title} · ${SITE_NAME}` : `${SITE_NAME} — ${lang === 'en' ? 'Digital Signage, Retail Media and Retail Tech' : 'Digital Signage, Retail Media y Retail Tech'}`
+    const realPath = buildUrl(path, lang)
+    const esUrl = `${SITE_URL}${buildUrl(path, 'es')}`
+    const enUrl = `${SITE_URL}${buildUrl(path, 'en')}`
     document.title = fullTitle
 
     setMeta('name', 'description', description)
@@ -62,6 +66,10 @@ export default function Seo({
     setMeta('name', 'twitter:image', image)
 
     setLink('canonical', `${SITE_URL}${realPath}`)
+    setMeta('property', 'og:locale', lang === 'en' ? 'en_US' : 'es_ES')
+    setLink('alternate', esUrl, { hreflang: 'es' })
+    setLink('alternate', enUrl, { hreflang: 'en' })
+    setLink('alternate', esUrl, { hreflang: 'x-default' })
 
     // Limpia JSON-LD anterior de esta página antes de escribir el nuevo
     document.querySelectorAll('script[data-seo-jsonld]').forEach((s) => s.remove())
@@ -75,7 +83,7 @@ export default function Seo({
         document.head.appendChild(script)
       })
     }
-  }, [title, description, path, image, type, jsonLd, noindex])
+  }, [title, description, path, image, type, jsonLd, noindex, lang])
 
   return null
 }

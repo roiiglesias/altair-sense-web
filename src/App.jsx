@@ -16,6 +16,7 @@ import NoticiaDetalle from './pages/NoticiaDetalle.jsx'
 import KnowledgeBase from './pages/KnowledgeBase.jsx'
 import KBArticulo from './pages/KBArticulo.jsx'
 import Servicios from './pages/Servicios.jsx'
+import Lumen from './pages/Lumen.jsx'
 import Partners from './pages/Partners.jsx'
 import NotFound from './pages/NotFound.jsx'
 
@@ -26,6 +27,7 @@ function resolve(path) {
   if (clean === '/soluciones') return { Page: Soluciones }
   if (clean === '/sectores') return { Page: Sectores }
   if (clean === '/servicios') return { Page: Servicios }
+  if (clean === '/lumen') return { Page: Lumen }
   if (clean === '/nosotros') return { Page: AcercaDe }
   if (clean === '/contacto') return { Page: Contacto }
   if (clean === '/noticias') return { Page: Noticias }
@@ -63,10 +65,10 @@ function Shell() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <RouterProvider>
+    <RouterProvider>
+      <LanguageProvider>
         <Shell />
-      </RouterProvider>
-    </LanguageProvider>
+      </LanguageProvider>
+    </RouterProvider>
   )
 }

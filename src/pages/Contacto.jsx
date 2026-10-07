@@ -5,7 +5,7 @@ import { submitLead } from '../lib/submitLead.js'
 import Seo from '../components/Seo.jsx'
 import { Mail, Phone, MapPin, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 
-const initialForm = { name: '', email: '', company: '', phone: '', sector: '', message: '' }
+const initialForm = { name: '', email: '', company: '', phone: '', sector: '', size: '', timing: '', message: '' }
 
 export default function Contacto() {
   const { pick, t, lang } = useLang()
@@ -19,7 +19,10 @@ export default function Contacto() {
     if (!form.name || !form.email || !form.message) return
     setStatus('sending')
 
-    const { ok } = await submitLead(form, { lang, source: 'web-contacto' })
+    // Datos de cualificación: se añaden al inicio del mensaje (sin tocar el esquema de Supabase)
+    const tags = [form.size && `Ubicaciones: ${form.size}`, form.timing && `Plazo: ${form.timing}`].filter(Boolean)
+    const payload = { ...form, message: (tags.length ? `[${tags.join(' | ')}]\n` : '') + form.message }
+    const { ok } = await submitLead(payload, { lang, source: 'web-contacto' })
     if (!ok) { setStatus('error'); return }
     setStatus('sent')
     setForm(initialForm)
@@ -108,6 +111,10 @@ export default function Contacto() {
                   onChange={onChange}
                   className="sm:col-span-2"
                 />
+                <Select label={pick('Nº de ubicaciones', 'Number of locations')} name="size" value={form.size} onChange={onChange}
+                  options={['1-5', '6-25', '26-100', '100+']} placeholder={pick('Selecciona', 'Select')} />
+                <Select label={pick('¿Para cuándo?', 'Timeline')} name="timing" value={form.timing} onChange={onChange}
+                  options={[pick('Lo antes posible', 'As soon as possible'), pick('En 1-3 meses', 'In 1-3 months'), pick('Estoy explorando', 'Just exploring')]} placeholder={pick('Selecciona', 'Select')} />
                 <div className="sm:col-span-2">
                   <label className="block text-sm font-semibold text-as-black/70 mb-1.5">
                     {pick('Mensaje*', 'Message*')}
@@ -142,6 +149,21 @@ export default function Contacto() {
           </form>
         </div>
       </section>
+    </div>
+  )
+}
+
+function Select({ label, options, placeholder, className = '', ...props }) {
+  return (
+    <div className={className}>
+      <label className="block text-sm font-semibold text-as-black/70 mb-1.5">{label}</label>
+      <select
+        {...props}
+        className="w-full rounded-lg border border-as-stone px-4 py-3 text-as-black bg-white focus:border-as-moss focus:ring-1 focus:ring-as-moss outline-none transition"
+      >
+        <option value="">{placeholder}</option>
+        {options.map((o) => <option key={o} value={o}>{o}</option>)}
+      </select>
     </div>
   )
 }

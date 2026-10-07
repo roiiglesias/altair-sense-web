@@ -1,8 +1,10 @@
 import { supabase } from './supabaseClient.js'
+import { attributionString } from './attribution.js'
 
 // Guarda el mensaje en Supabase y avisa por email (el aviso es "best effort").
 // Devuelve { ok: boolean }.
 export async function submitLead(form, { lang, source = 'web' }) {
+  source = (source + attributionString()).slice(0, 300)
   if (!supabase) {
     await new Promise((r) => setTimeout(r, 600))
     return { ok: true }

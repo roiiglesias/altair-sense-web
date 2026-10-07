@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing record' })
   }
 
-  const { name, email, company, phone, sector, message, locale } = record
+  const { name, email, company, phone, sector, message, locale, source } = record
 
   try {
     const resendRes = await fetch('https://api.resend.com/emails', {
@@ -34,6 +34,7 @@ export default async function handler(req, res) {
           ${phone ? `<p><strong>Teléfono:</strong> ${esc(phone)}</p>` : ''}
           ${sector ? `<p><strong>Sector:</strong> ${esc(sector)}</p>` : ''}
           <p><strong>Idioma:</strong> ${esc(locale || '-')}</p>
+          <p><strong>Origen:</strong> ${esc(source || '-')}</p>
           <p><strong>Mensaje:</strong></p>
           <p>${esc(message).replace(/\n/g, '<br/>')}</p>
         `
