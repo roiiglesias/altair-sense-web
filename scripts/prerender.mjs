@@ -8,6 +8,7 @@ import { getSectors } from '../src/data/sectors.js'
 import { solutionSections } from '../src/data/solutions.js'
 import { serviceLevels, serviceLines } from '../src/data/servicios.js'
 import { legalPage } from '../src/data/legal.js'
+import { markdownToHtml } from '../src/lib/markdown.js'
 
 const SITE = 'https://www.altairsense.com'
 const DIST = 'dist'
@@ -35,7 +36,8 @@ async function fetchRows(table, fields) {
   } catch { return [] }
 }
 const news = await fetchRows('news_posts', 'slug,title_es,title_en,excerpt_es,excerpt_en,body_es,body_en,published_at')
-const kb = await fetchRows('kb_articles', 'slug,title_es,title_en,summary_es,summary_en,body_es,body_en,category')
+const kb = await fetchRows('kb_articles', 'slug,title_es,title_en,summary_es,summary_en,body_es,body_en,category,created_at,cover_image_url,cover_alt_es,cover_alt_en&order=created_at.desc')
+const absImg = (u) => (!u ? null : u.startsWith('http') ? u : SITE + (u.startsWith('/') ? '' : '/') + u)
 
 // Estructura común: cada página se define una vez con textos ES/EN
 function buildPages(lang) {
@@ -46,7 +48,7 @@ function buildPages(lang) {
   const levels = serviceLevels(pick)
   const lines = serviceLines(pick)
   const pages = []
-  const add = (path, title, description, h1, blocks = [], extraLd = []) => pages.push({ path, title, description, h1, blocks, extraLd })
+  const add = (path, title, description, h1, blocks = [], extraLd = [], opts = {}) => pages.push({ path, title, description, h1, blocks, extraLd, ...opts })
 
   add('/', null,
     L('Altair Sense: digital signage, retail media, retail analytics y retail tech para construir experiencias relevantes que convierten. Instalación, mantenimiento y gestión de contenidos.',
@@ -115,18 +117,28 @@ function buildPages(lang) {
 
   const T = (r, k) => (lang === 'en' ? r[`${k}_en`] || r[`${k}_es`] : r[`${k}_es`])
   add('/noticias', L('Noticias', 'News'), L('Noticias de Altair Sense sobre digital signage, retail media y retail tech.', 'Altair Sense news on digital signage, retail media and retail tech.'), L('Noticias', 'News'), [['ul', news.map((n) => T(n, 'title'))]])
-  add('/knowledge-base', 'Knowledge Base', L('Guías, casos de éxito y descargables de Altair Sense sobre digital signage, retail media y retail tech.', 'Altair Sense guides, case studies and downloads on digital signage, retail media and retail tech.'), 'Knowledge Base', [['ul', kb.map((a) => T(a, 'title'))]])
+  const kbHref = (a) => urlPath(`/knowledge-base/${a.slug}`, lang)
+  add('/knowledge-base', 'Knowledge Base', L('Guías, casos de éxito y descargables de Altair Sense sobre digital signage, retail media y retail tech.', 'Altair Sense guides, case studies and downloads on digital signage, retail media and retail tech.'), 'Knowledge Base',
+    [['html', kb.map((a) => `<article><h2><a href="${kbHref(a)}">${esc(T(a, 'title'))}</a></h2>${a.cover_image_url ? `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">` : ''}<p>${esc(T(a, 'summary') || '')}</p></article>`).join('\n')]],
+    [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: kb.map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + kbHref(a), name: T(a, 'title') })) }])
 
   news.forEach((n) => add(`/noticias/${n.slug}`, T(n, 'title'), T(n, 'excerpt') || T(n, 'title'), T(n, 'title'), [['p', T(n, 'body') || '']],
     [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: T(n, 'title'), inLanguage: lang, datePublished: n.published_at, publisher: { '@type': 'Organization', name: 'Altair Sense' } }]))
-  kb.forEach((a) => add(`/knowledge-base/${a.slug}`, T(a, 'title'), T(a, 'summary') || T(a, 'title'), T(a, 'title'), [['p', T(a, 'body') || '']],
-    [{ '@context': 'https://schema.org', '@type': 'TechArticle', headline: T(a, 'title'), inLanguage: lang, description: T(a, 'summary'), publisher: { '@type': 'Organization', name: 'Altair Sense' } }]))
+  kb.forEach((a) => add(`/knowledge-base/${a.slug}`, T(a, 'title'), T(a, 'summary') || T(a, 'title'), T(a, 'title'),
+    [...(a.cover_image_url ? [['html', `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">`]] : []),
+      ['html', markdownToHtml(T(a, 'body') || '')]],
+    [{ '@context': 'https://schema.org', '@type': 'TechArticle', headline: T(a, 'title'), inLanguage: lang, description: T(a, 'summary'), datePublished: a.created_at,
+      ...(a.cover_image_url ? { image: absImg(a.cover_image_url) } : {}),
+      author: { '@type': 'Organization', name: 'Altair Sense', url: SITE },
+      publisher: { '@type': 'Organization', name: 'Altair Sense', logo: { '@type': 'ImageObject', url: `${SITE}/brand/altair-sense-avatar.png` } } }],
+    { image: absImg(a.cover_image_url), type: 'article' }))
 
   return { pages, sectors, solutions }
 }
 
 function renderBlocks(blocks) {
   return blocks.map(([t, c]) => {
+    if (t === 'html') return c // ya generado y escapado (markdown.js / plantillas de arriba)
     if (t === 'ul') return `<ul>${c.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`
     return `<${t}>${esc(c).replace(/\n/g, '<br>')}</${t}>`
   }).join('\n')
@@ -162,6 +174,8 @@ for (const lang of ['es', 'en']) {
       .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${esc(fullTitle)}$2`)
       .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${esc(p.description)}$2`)
       .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`)
+      .replace(/(<meta property="og:image" content=")[^"]*(")/, (m, a, b) => (p.image ? `${a}${p.image}${b}` : m))
+      .replace(/(<meta property="og:type" content=")[^"]*(")/, (m, a, b) => (p.type ? `${a}${p.type}${b}` : m))
       .replace('</head>', `    <meta property="og:locale" content="${lang === 'en' ? 'en_US' : 'es_ES'}" />\n    ${alt}\n    ${ld}\n  </head>`)
       .replace('<div id="root"></div>',
         `<div id="root"><main data-prerender style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><h1>${esc(p.h1)}</h1>\n${renderBlocks(p.blocks)}\n<p>${nav.map(([h, l]) => `<a href="${h}">${l}</a>`).join(' · ')}</p></main></div>`)

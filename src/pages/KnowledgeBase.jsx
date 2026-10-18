@@ -5,7 +5,9 @@ import { Link } from '../lib/router.jsx'
 import { supabase } from '../lib/supabaseClient.js'
 import { EmptyState } from './Noticias.jsx'
 import Seo from '../components/Seo.jsx'
-import { ArrowRight, BookOpen, FileDown, Loader2, Trophy } from 'lucide-react'
+import Cover from '../components/Cover.jsx'
+import { readingMinutes } from '../lib/markdown.js'
+import { ArrowRight, BookOpen, Clock, FileDown, Loader2, Trophy } from 'lucide-react'
 
 const CASE_STUDY_CATEGORY = 'caso-exito'
 
@@ -78,28 +80,13 @@ export default function KnowledgeBase() {
             <>
               {plainArticles === null && <LoadingRow text={t.loading} />}
               {plainArticles?.length === 0 && <EmptyState icon={BookOpen} text={t.empty_kb} />}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {plainArticles?.map((a) => (
-                  <Link
-                    key={a.id}
-                    to={`/knowledge-base/${a.slug}`}
-                    className="bg-white border border-as-stone rounded-2xl p-6 hover:border-as-moss transition-colors flex flex-col"
-                  >
-                    {a.category && (
-                      <span className="text-[11px] font-bold uppercase tracking-wide text-as-moss mb-2">{a.category}</span>
-                    )}
-                    <h3 className="font-display font-extrabold text-lg text-as-black mb-2">
-                      {lang === 'es' ? a.title_es : a.title_en}
-                    </h3>
-                    <p className="text-sm text-as-black/60 leading-relaxed line-clamp-3 flex-1">
-                      {lang === 'es' ? a.summary_es : a.summary_en}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-as-moss font-bold text-sm">
-                      {t.read_more} <ArrowRight size={14} />
-                    </span>
-                  </Link>
-                ))}
-              </div>
+              {plainArticles?.length > 0 && (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {plainArticles.map((a, i) => (
+                    <ArticleCard key={a.id} a={a} featured={i === 0 && plainArticles.length !== 2} />
+                  ))}
+                </div>
+              )}
             </>
           )}
 
@@ -109,28 +96,11 @@ export default function KnowledgeBase() {
               {caseStudies?.length === 0 && (
                 <EmptyState icon={Trophy} text={pick('Todavía no hay casos de éxito publicados.', 'No case studies published yet.')} />
               )}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {caseStudies?.map((a) => (
-                  <Link
-                    key={a.id}
-                    to={`/knowledge-base/${a.slug}`}
-                    className="bg-white border border-as-stone rounded-2xl p-6 hover:border-as-moss transition-colors flex flex-col"
-                  >
-                    <span className="text-[11px] font-bold uppercase tracking-wide text-as-lime bg-as-black inline-block px-2 py-1 rounded mb-3 w-fit">
-                      {pick('Caso de éxito', 'Case study')}
-                    </span>
-                    <h3 className="font-display font-extrabold text-lg text-as-black mb-2">
-                      {lang === 'es' ? a.title_es : a.title_en}
-                    </h3>
-                    <p className="text-sm text-as-black/60 leading-relaxed line-clamp-3 flex-1">
-                      {lang === 'es' ? a.summary_es : a.summary_en}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-as-moss font-bold text-sm">
-                      {t.read_more} <ArrowRight size={14} />
-                    </span>
-                  </Link>
-                ))}
-              </div>
+              {caseStudies?.length > 0 && (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {caseStudies.map((a) => <ArticleCard key={a.id} a={a} caseStudy />)}
+                </div>
+              )}
             </>
           )}
 
@@ -172,6 +142,57 @@ export default function KnowledgeBase() {
         </div>
       </section>
     </div>
+  )
+}
+
+// Tarjeta de artículo: siempre con imagen (la portada o, si falta, un gráfico de marca)
+function ArticleCard({ a, featured = false, caseStudy = false }) {
+  const { pick, t, lang } = useLang()
+  const title = lang === 'es' ? a.title_es : a.title_en || a.title_es
+  const summary = lang === 'es' ? a.summary_es : a.summary_en || a.summary_es
+  const alt = (lang === 'es' ? a.cover_alt_es : a.cover_alt_en) || ''
+  const body = lang === 'es' ? a.body_es : a.body_en || a.body_es
+  const date = a.created_at
+    ? new Date(a.created_at).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+    : null
+
+  return (
+    <Link
+      to={`/knowledge-base/${a.slug}`}
+      className={`group bg-white border border-as-stone rounded-2xl overflow-hidden hover:border-as-moss hover:shadow-lg transition flex flex-col ${
+        featured ? 'md:col-span-2 lg:col-span-3 lg:flex-row' : ''
+      }`}
+    >
+      <div className={`relative aspect-[16/9] bg-as-black overflow-hidden shrink-0 ${featured ? 'lg:w-3/5' : ''}`}>
+        {a.cover_image_url ? (
+          <Cover src={a.cover_image_url} alt={alt} eager={featured}
+            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-[radial-gradient(circle_at_70%_40%,rgba(180,227,61,0.25),transparent_60%)]">
+            <BookOpen size={44} className="text-as-lime" />
+          </div>
+        )}
+        {caseStudy && (
+          <span className="absolute top-4 left-4 text-[11px] font-bold uppercase tracking-wide text-as-lime bg-as-black px-2 py-1 rounded">
+            {pick('Caso de éxito', 'Case study')}
+          </span>
+        )}
+      </div>
+      <div className={`p-6 flex flex-col flex-1 ${featured ? 'lg:p-10 lg:justify-center' : ''}`}>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-bold uppercase tracking-wide text-as-black/45 mb-3">
+          {a.category && !caseStudy && <span className="text-as-moss">{a.category}</span>}
+          {date && <span>{date}</span>}
+          {body && <span className="inline-flex items-center gap-1"><Clock size={12} /> {readingMinutes(body)} min</span>}
+        </div>
+        <h3 className={`font-display font-extrabold text-as-black mb-2 leading-snug ${featured ? 'text-2xl md:text-3xl' : 'text-lg'}`}>
+          {title}
+        </h3>
+        <p className={`text-as-black/60 leading-relaxed flex-1 ${featured ? 'text-base' : 'text-sm line-clamp-3'}`}>{summary}</p>
+        <span className="mt-5 inline-flex items-center gap-1.5 text-as-moss font-bold text-sm">
+          {t.read_more} <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+        </span>
+      </div>
+    </Link>
   )
 }
 

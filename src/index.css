@@ -9,3 +9,24 @@ body { font-family: 'Inter', sans-serif; background-color: #F2F1E8; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 }
 :focus-visible { outline: 2px solid #B4E33D; outline-offset: 2px; }
+
+/* Cuerpo de artículos (Knowledge Base y Noticias) renderizado desde Markdown */
+.md-body { color: rgba(16, 21, 15, 0.8); font-size: 1.0625rem; line-height: 1.75; }
+.md-body > * + * { margin-top: 1.1em; }
+.md-body h2 { font-family: 'Nunito Sans', sans-serif; font-weight: 800; font-size: 1.6rem; line-height: 1.25; color: #10150F; margin-top: 2.2em; scroll-margin-top: 6rem; }
+.md-body h3 { font-family: 'Nunito Sans', sans-serif; font-weight: 800; font-size: 1.25rem; color: #10150F; margin-top: 1.8em; scroll-margin-top: 6rem; }
+.md-body h2:first-child, .md-body h3:first-child { margin-top: 0; }
+.md-body p:first-child { font-size: 1.2rem; color: #10150F; }
+.md-body a { color: #4C7A3E; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.md-body a:hover { color: #10150F; }
+.md-body strong { color: #10150F; }
+.md-body ul, .md-body ol { padding-left: 1.4em; }
+.md-body ul { list-style: disc; }
+.md-body ol { list-style: decimal; }
+.md-body li + li { margin-top: 0.4em; }
+.md-body li::marker { color: #4C7A3E; }
+.md-table { overflow-x: auto; border: 1px solid #D7D6C8; border-radius: 1rem; background: #fff; margin-top: 1.6em; margin-bottom: 0.4em; }
+.md-table table { width: 100%; border-collapse: collapse; font-size: 0.95rem; line-height: 1.5; }
+.md-table th { text-align: left; background: #10150F; color: #F2F1E8; font-weight: 700; padding: 0.75rem 1rem; white-space: nowrap; }
+.md-table td { padding: 0.75rem 1rem; border-top: 1px solid #D7D6C8; vertical-align: top; }
+.md-table tr td:first-child { font-weight: 700; color: #10150F; }
