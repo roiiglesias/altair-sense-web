@@ -19,4 +19,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://www.altairsense.com/sitemap.xml
+Sitemap: https://galernai.com/sitemap.xml

@@ -1,7 +1,7 @@
 // Sitemap dinámico bilingüe: cada página en español (raíz) y en inglés (/en/...),
 // con alternates hreflang. Incluye noticias y artículos de Knowledge Base publicados.
 
-const BASE = 'https://www.altairsense.com'
+const BASE = 'https://galernai.com'
 const EN_SLUGS = { soluciones: 'solutions', sectores: 'sectors', servicios: 'services', nosotros: 'about', contacto: 'contact', noticias: 'news', 'aviso-legal': 'legal-notice', privacidad: 'privacy' }
 
 const enPath = (p) => {

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter, buildUrl } from '../lib/router.jsx'
 
 const SITE_NAME = 'Galernai'
-const SITE_URL = 'https://www.altairsense.com'
+const SITE_URL = 'https://galernai.com'
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`
 
 function setMeta(attr, key, content) {

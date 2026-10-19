@@ -8,7 +8,7 @@ export const COMPANY = {
   cif: 'B93967750',
   address: 'Calle Los Prados 166, Edificio Impulsa, 33203 Gijón, Asturias, España',
   email: 'info@altairsense.com',
-  site: 'www.altairsense.com',
+  site: 'galernai.com',
   // Datos del Registro Mercantil (art. 10 LSSI). Rellenar cuando se tengan; si queda
   // vacío, la línea no se muestra. Ejemplo: 'Inscrita en el Registro Mercantil de Asturias, Tomo X, Folio Y, Hoja AS-Z'
   registro: ''

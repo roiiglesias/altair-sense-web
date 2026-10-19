@@ -10,7 +10,7 @@ import { serviceLevels, serviceLines } from '../src/data/servicios.js'
 import { legalPage } from '../src/data/legal.js'
 import { markdownToHtml } from '../src/lib/markdown.js'
 
-const SITE = 'https://www.altairsense.com'
+const SITE = 'https://galernai.com'
 const DIST = 'dist'
 const EN_SLUGS = { soluciones: 'solutions', sectores: 'sectors', servicios: 'services', nosotros: 'about', contacto: 'contact', noticias: 'news', 'aviso-legal': 'legal-notice', privacidad: 'privacy' }
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
