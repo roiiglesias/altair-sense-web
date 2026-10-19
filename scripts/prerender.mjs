@@ -148,8 +148,8 @@ let count = 0
 for (const lang of ['es', 'en']) {
   const { pages } = buildPages(lang)
   const nav = lang === 'en'
-    ? [['/en', 'Galernai'], ['/en/solutions', 'Solutions'], ['/en/sectors', 'Sectors'], ['/en/services', 'Technical services'], ['/en/lumen', 'Lumen'], ['/en/contact', 'Contact']]
-    : [['/', 'Galernai'], ['/soluciones', 'Soluciones'], ['/sectores', 'Sectores'], ['/servicios', 'Servicios técnicos'], ['/lumen', 'Lumen'], ['/contacto', 'Contacto']]
+    ? [['/en', 'Galernai'], ['/en/solutions', 'Solutions'], ['/en/sectors', 'Sectors'], ['/en/services', 'Technical services'], ['/en/lumen', 'Lumen'], ['https://lumen.galernai.com', 'Lumen access'], ['/en/contact', 'Contact']]
+    : [['/', 'Galernai'], ['/soluciones', 'Soluciones'], ['/sectores', 'Sectores'], ['/servicios', 'Servicios técnicos'], ['/lumen', 'Lumen'], ['https://lumen.galernai.com', 'Acceso a Lumen'], ['/contacto', 'Contacto']]
   for (const p of pages) {
     const url = SITE + (urlPath(p.path, lang) === '/' ? '/' : urlPath(p.path, lang))
     const esUrl = SITE + (p.path === '/' ? '/' : p.path)
@@ -204,6 +204,7 @@ const llms = `# Galernai
 ${E.sol}
 - [Servicios técnicos y niveles de servicio](${SITE}/servicios): siete servicios técnicos, tres niveles (N1 remoto, N2 análisis, N3 fabricante) y SLA de 4 h, 8 h, NBD y 2NBD
 - [Lumen](${SITE}/lumen): plataforma de CRM, pedidos, facturación, inventario, ticketing y mantenimiento
+- [Acceso a Lumen](https://lumen.galernai.com): aplicación de Lumen para clientes y equipo
 
 ## Sectores
 ${E.sec}
@@ -222,6 +223,7 @@ ${news.map((n) => `- [${n.title_es}](${SITE}/noticias/${n.slug}): ${n.excerpt_es
 ${N.sol}
 - [Technical services and service levels](${SITE}/en/services): seven technical services, three levels (N1 remote, N2 analysis, N3 manufacturer) and SLAs of 4 h, 8 h, NBD and 2NBD
 - [Lumen](${SITE}/en/lumen): CRM, orders, invoicing, inventory, ticketing and maintenance platform
+- [Lumen access](https://lumen.galernai.com): the Lumen application for clients and team
 
 ### Sectors
 ${N.sec}
