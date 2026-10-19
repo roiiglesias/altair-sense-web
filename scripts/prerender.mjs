@@ -35,7 +35,7 @@ async function fetchRows(table, fields) {
     return r.ok ? JSON.parse((await r.text()).replace(/\/downloads\/altair-sense-/g, '/downloads/galernai-').replace(/Altair Sense(?!, S\.L\.)/g, 'Galernai')) : []
   } catch { return [] }
 }
-const news = await fetchRows('news_posts', 'slug,title_es,title_en,excerpt_es,excerpt_en,body_es,body_en,published_at')
+const news = await fetchRows('news_posts', 'slug,title_es,title_en,excerpt_es,excerpt_en,body_es,body_en,published_at,cover_image_url')
 const kb = await fetchRows('kb_articles', 'slug,title_es,title_en,summary_es,summary_en,body_es,body_en,category,created_at,cover_image_url,cover_alt_es,cover_alt_en&order=created_at.desc')
 const absImg = (u) => (!u ? null : u.startsWith('http') ? u : SITE + (u.startsWith('/') ? '' : '/') + u)
 
@@ -123,7 +123,8 @@ function buildPages(lang) {
     [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: kb.map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + kbHref(a), name: T(a, 'title') })) }])
 
   news.forEach((n) => add(`/noticias/${n.slug}`, T(n, 'title'), T(n, 'excerpt') || T(n, 'title'), T(n, 'title'), [['p', T(n, 'body') || '']],
-    [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: T(n, 'title'), inLanguage: lang, datePublished: n.published_at, publisher: { '@type': 'Organization', name: 'Galernai' } }]))
+    [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: T(n, 'title'), inLanguage: lang, datePublished: n.published_at, publisher: { '@type': 'Organization', name: 'Galernai' }, ...(n.cover_image_url ? { image: absImg(n.cover_image_url) } : {}) }],
+    n.cover_image_url ? { image: absImg(n.cover_image_url), type: 'article' } : undefined))
   kb.forEach((a) => add(`/knowledge-base/${a.slug}`, T(a, 'title'), T(a, 'summary') || T(a, 'title'), T(a, 'title'),
     [...(a.cover_image_url ? [['html', `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">`]] : []),
       ['html', markdownToHtml(T(a, 'body') || '')]],
