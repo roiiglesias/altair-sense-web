@@ -76,9 +76,19 @@ export default function NoticiaDetalle({ slug }) {
           <img src={post.cover_image_url} alt="" className="w-full rounded-2xl mb-10 border border-as-stone" />
         )}
         <div className="prose-content text-as-black/75 leading-relaxed whitespace-pre-line text-lg">
-          {lang === 'es' ? post.body_es : post.body_en}
+          {linkify(lang === 'es' ? post.body_es : post.body_en)}
         </div>
       </div>
     </article>
+  )
+}
+
+// Convierte las URL del texto en enlaces (el cuerpo de las noticias es texto plano).
+function linkify(text) {
+  if (!text) return null
+  return text.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+    /^https?:\/\//.test(part)
+      ? <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-as-moss underline break-all hover:text-as-black">{part}</a>
+      : part
   )
 }
