@@ -1,4 +1,4 @@
--- Partners iniciales de Altair Sense.
+-- Partners iniciales de Galernai.
 -- IMPORTANTE: is_published se deja en FALSE a propósito. Cuando subas el logo
 -- real de cada partner al bucket de Storage "partners" y pegues su URL en
 -- logo_url, cambia esa fila a is_published = true (o hazlo todo a la vez con

@@ -24,7 +24,7 @@ export default function Consent({ checked, onChange, dark = false }) {
         <span>
           {pick('He leído y acepto la ', 'I have read and accept the ')}
           <Link to="/privacidad" className={link}>{pick('Política de Privacidad', 'Privacy Policy')}</Link>
-          {pick(' y consiento que Altair Sense trate mis datos para atender mi solicitud.*', ' and consent to Altair Sense processing my data to handle my request.*')}
+          {pick(' y consiento que Galernai trate mis datos para atender mi solicitud.*', ' and consent to Galernai processing my data to handle my request.*')}
         </span>
       </label>
       <p className={`text-[11px] leading-snug ${sub}`}>

@@ -1,4 +1,4 @@
-# Altair Sense — Web corporativa
+# Galernai — Web corporativa
 
 React + Vite + Tailwind (CDN) + Supabase. Mismo stack que Lumen.
 

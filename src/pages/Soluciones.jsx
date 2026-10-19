@@ -47,7 +47,7 @@ export default function Soluciones() {
       )
     },
     {
-      q: pick('¿Cómo ayuda Altair Sense al staff de tienda?', 'How does Altair Sense help store staff?'),
+      q: pick('¿Cómo ayuda Galernai al staff de tienda?', 'How does Galernai help store staff?'),
       a: pick(
         'Automatizamos la actualización de contenidos y precios, el control de inventario y la apertura de incidencias de mantenimiento, para que el equipo dedique menos tiempo a tareas operativas y más a atender al cliente.',
         'We automate content and price updates, inventory control and maintenance ticketing, so teams spend less time on operational tasks and more time serving customers.'
@@ -79,11 +79,11 @@ export default function Soluciones() {
     '@context': 'https://schema.org',
     '@type': 'Service',
     serviceType: 'Digital Signage, Retail Media & Retail Tech',
-    provider: { '@type': 'Organization', name: 'Altair Sense', url: SITE_URL },
+    provider: { '@type': 'Organization', name: 'Galernai', url: SITE_URL },
     areaServed: { '@type': 'Place', name: pick('Internacional', 'International') },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: pick('Soluciones Altair Sense', 'Altair Sense solutions'),
+      name: pick('Soluciones Galernai', 'Galernai solutions'),
       itemListElement: items.map((it) => ({
         '@type': 'Offer',
         itemOffered: { '@type': 'Service', name: it.title, description: it.body }

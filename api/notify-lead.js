@@ -22,12 +22,12 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: process.env.NOTIFY_FROM || 'Altair Sense <onboarding@resend.dev>',
+        from: process.env.NOTIFY_FROM || 'Galernai <onboarding@resend.dev>',
         to: [process.env.NOTIFY_EMAIL],
         reply_to: email,
         subject: `Nuevo lead: ${name}${company ? ' — ' + company : ''}`,
         html: `
-          <h2>Nuevo mensaje de contacto en Altair Sense</h2>
+          <h2>Nuevo mensaje de contacto en Galernai</h2>
           <p><strong>Nombre:</strong> ${esc(name)}</p>
           <p><strong>Email:</strong> ${esc(email)}</p>
           ${company ? `<p><strong>Empresa:</strong> ${esc(company)}</p>` : ''}

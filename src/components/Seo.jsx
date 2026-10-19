@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useRouter, buildUrl } from '../lib/router.jsx'
 
-const SITE_NAME = 'Altair Sense'
+const SITE_NAME = 'Galernai'
 const SITE_URL = 'https://www.altairsense.com'
-const DEFAULT_IMAGE = `${SITE_URL}/brand/altair-sense-avatar.png`
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`
 
 function setMeta(attr, key, content) {
   if (!content) return

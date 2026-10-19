@@ -34,18 +34,18 @@ export default function Lumen() {
     name: 'Lumen',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
-    description: 'Lumen es la plataforma de Altair Sense para CRM, pedidos, facturación, inventario del parque instalado, ticketing de incidencias y mantenimiento de digital signage y retail tech.',
+    description: 'Lumen es la plataforma de Galernai para CRM, pedidos, facturación, inventario del parque instalado, ticketing de incidencias y mantenimiento de digital signage y retail tech.',
     url: `${SITE_URL}/lumen`,
-    publisher: { '@type': 'Organization', name: 'Altair Sense', url: SITE_URL }
+    publisher: { '@type': 'Organization', name: 'Galernai', url: SITE_URL }
   }
 
   return (
     <div>
       <Seo
-        title={pick('Lumen: la plataforma de Altair Sense para retail', 'Lumen: the Altair Sense platform for retail')}
+        title={pick('Lumen: la plataforma de Galernai para retail', 'Lumen: the Galernai platform for retail')}
         description={pick(
-          'Lumen es la plataforma y el cerebro matriz de Altair Sense: CRM, pedidos, facturación, inventario, ticketing de incidencias N1-N3, partes de trabajo, informes de SLA e IA para digital signage y retail tech.',
-          'Lumen is the Altair Sense platform and core brain: CRM, orders, invoicing, inventory, N1-N3 incident ticketing, work orders, SLA reports and AI for digital signage and retail tech.'
+          'Lumen es la plataforma y el cerebro matriz de Galernai: CRM, pedidos, facturación, inventario, ticketing de incidencias N1-N3, partes de trabajo, informes de SLA e IA para digital signage y retail tech.',
+          'Lumen is the Galernai platform and core brain: CRM, orders, invoicing, inventory, N1-N3 incident ticketing, work orders, SLA reports and AI for digital signage and retail tech.'
         )}
         path="/lumen"
         jsonLd={jsonLd}
@@ -61,8 +61,8 @@ export default function Lumen() {
           </h1>
           <p className="mt-6 text-lg text-as-cream/70 max-w-2xl leading-relaxed">
             {pick(
-              'Lumen es el cerebro matriz de Altair Sense: conecta clientes, pedidos, facturación, inventario, incidencias y mantenimiento en una sola capa, con IA gestionada con criterio y al servicio del retail y otros entornos físicos.',
-              'Lumen is the core brain of Altair Sense: it connects clients, orders, invoicing, inventory, incidents and maintenance in a single layer, with AI managed with judgement, serving retail and other physical environments.'
+              'Lumen es el cerebro matriz de Galernai: conecta clientes, pedidos, facturación, inventario, incidencias y mantenimiento en una sola capa, con IA gestionada con criterio y al servicio del retail y otros entornos físicos.',
+              'Lumen is the core brain of Galernai: it connects clients, orders, invoicing, inventory, incidents and maintenance in a single layer, with AI managed with judgement, serving retail and other physical environments.'
             )}
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
@@ -108,8 +108,8 @@ export default function Lumen() {
             </h2>
             <p className="mt-5 text-as-cream/65 leading-relaxed">
               {pick(
-                'Altair Sense articula la metodología Connected Retail Strategy (CRS) y Lumen es la plataforma sobre la que se apoya todo el ecosistema: hardware, CMS y modelos de IA. Abierta e integrable con las aplicaciones de cada cliente.',
-                'Altair Sense articulates the Connected Retail Strategy (CRS) methodology and Lumen is the platform the whole ecosystem rests on: hardware, CMS and AI models. Open and integrable with each client application.'
+                'Galernai articula la metodología Connected Retail Strategy (CRS) y Lumen es la plataforma sobre la que se apoya todo el ecosistema: hardware, CMS y modelos de IA. Abierta e integrable con las aplicaciones de cada cliente.',
+                'Galernai articulates the Connected Retail Strategy (CRS) methodology and Lumen is the platform the whole ecosystem rests on: hardware, CMS and AI models. Open and integrable with each client application.'
               )}
             </p>
             <Link to="/servicios" className="inline-flex items-center gap-2 mt-6 text-as-lime font-bold hover:text-white transition">
@@ -129,7 +129,7 @@ export default function Lumen() {
             <div className="border border-white/10 rounded-2xl p-6 bg-white/[0.03] flex gap-4">
               <ReceiptText size={22} className="text-as-lime shrink-0 mt-1" />
               <div>
-                <h3 className="font-display font-extrabold text-xl">{pick('Cliente de Altair Sense', 'Altair Sense client')}</h3>
+                <h3 className="font-display font-extrabold text-xl">{pick('Cliente de Galernai', 'Galernai client')}</h3>
                 <p className="text-sm text-as-cream/60 mt-1 leading-relaxed">
                   {pick('Si ya trabajas con nosotros, accede a tu portal para ver incidencias, parque instalado e informes.', 'If you already work with us, sign in to your portal to see incidents, installed base and reports.')}
                 </p>

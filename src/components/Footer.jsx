@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-as-cream/45">
-          <p>© {year} {COMPANY.name} · CIF {COMPANY.cif} · {t.footer_rights}</p>
+          <p>© {year} {COMPANY.brand} · {t.footer_rights}</p>
           <nav className="flex flex-wrap justify-center gap-x-5 gap-y-1" aria-label={pick('Información legal', 'Legal information')}>
             <Link to="/aviso-legal" className="hover:text-as-lime transition">{pick('Aviso legal', 'Legal notice')}</Link>
             <Link to="/privacidad" className="hover:text-as-lime transition">{pick('Privacidad', 'Privacy')}</Link>

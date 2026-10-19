@@ -1,33 +1,34 @@
-// Logo de Altair Sense — usa los PNG oficiales del manual gráfico,
-// no una reconstrucción. variant: 'onDark' | 'onLight'
+// Logo de Galernai — usa los SVG oficiales del kit de marca (texto trazado, sin fuente).
+// variant: 'onDark' (lima, sobre verde negro) | 'onLight' (musgo, sobre fondo claro).
+// Reglas: lima solo sobre oscuro; no recolorear ni estirar.
 
 const sources = {
-  onDark: '/brand/altair-sense-lima-transparente.png',
-  onLight: '/brand/altair-sense-musgo-transparente.png'
+  onDark: '/brand/galernai-logo-lima.svg',
+  onLight: '/brand/galernai-logo-musgo.svg'
 }
 
 const heights = {
-  sm: 'h-9',
-  md: 'h-12',
-  lg: 'h-16 md:h-20'
+  sm: 'h-10',
+  md: 'h-14',
+  lg: 'h-20 md:h-24'
 }
 
 export default function Logo({ variant = 'onDark', size = 'md', className = '' }) {
   return (
     <img
       src={sources[variant]}
-      alt="Altair Sense"
+      alt="Galernai"
       className={`${heights[size]} w-auto select-none ${className}`}
       draggable="false"
     />
   )
 }
 
-export function LogoIcon({ className = '' }) {
+export function LogoIcon({ className = '', variant = 'onDark' }) {
   return (
     <img
-      src="/brand/altair-sense-icono-transparente.png"
-      alt="Altair Sense"
+      src={variant === 'onLight' ? '/brand/galernai-isotipo-musgo.svg' : '/brand/galernai-isotipo-lima.svg'}
+      alt="Galernai"
       className={className}
       draggable="false"
     />

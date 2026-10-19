@@ -4,7 +4,7 @@
 
 export const COMPANY = {
   name: 'Altair Sense, S.L.',
-  brand: 'Altair Sense',
+  brand: 'Galernai',
   cif: 'B93967750',
   address: 'Calle Los Prados 166, Edificio Impulsa, 33203 Gijón, Asturias, España',
   email: 'info@altairsense.com',
@@ -38,6 +38,7 @@ export function legalPage(kind, pick) {
             'In compliance with Article 10 of Spanish Law 34/2002 on Information Society Services and Electronic Commerce (LSSI-CE), the owner of this website is:')],
           ul: [
             L(`Denominación social: ${C.name}`, `Company name: ${C.name}`),
+            L(`Nombre comercial: ${C.brand}`, `Trade name: ${C.brand}`),
             L(`CIF: ${C.cif}`, `Tax ID (CIF): ${C.cif}`),
             L(`Domicilio social: ${C.address}`, `Registered office: ${C.address}`),
             L(`Correo electrónico de contacto: ${C.email}`, `Contact email: ${C.email}`),
@@ -113,7 +114,7 @@ export function legalPage(kind, pick) {
         {
           h: L('1. Responsable del tratamiento', '1. Data controller'),
           ul: [
-            L(`Identidad: ${C.name} (CIF ${C.cif})`, `Identity: ${C.name} (Tax ID ${C.cif})`),
+            L(`Identidad: ${C.name} (CIF ${C.cif}), que opera bajo el nombre comercial ${C.brand}`, `Identity: ${C.name} (Tax ID ${C.cif}), operating under the trade name ${C.brand}`),
             L(`Domicilio: ${C.address}`, `Address: ${C.address}`),
             L(`Correo electrónico: ${C.email}`, `Email: ${C.email}`),
             L('No hemos designado un delegado de protección de datos por no estar obligados a ello; cualquier consulta sobre privacidad puede dirigirse al correo anterior.',
@@ -227,8 +228,8 @@ export function legalPage(kind, pick) {
   // cookies
   return {
     title: L('Política de cookies', 'Cookie policy'),
-    description: L('Política de cookies de Altair Sense: este sitio web no instala cookies ni tecnologías de almacenamiento en tu dispositivo con fines de analítica o publicidad.',
-      'Altair Sense cookie policy: this website does not install cookies or storage technologies on your device for analytics or advertising purposes.'),
+    description: L('Política de cookies de Galernai: este sitio web no instala cookies ni tecnologías de almacenamiento en tu dispositivo con fines de analítica o publicidad.',
+      'Galernai cookie policy: this website does not install cookies or storage technologies on your device for analytics or advertising purposes.'),
     sections: [
       {
         h: L('1. Qué son las cookies', '1. What cookies are'),

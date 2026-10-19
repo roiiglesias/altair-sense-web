@@ -36,8 +36,8 @@ export default function Contacto() {
       <Seo
         title={t.nav.contact}
         description={pick(
-          'Habla con Altair Sense sobre digital signage, retail media, control de inventario o mantenimiento predictivo, preventivo y correctivo para tu retail.',
-          'Talk to Altair Sense about digital signage, retail media, inventory control or predictive, preventive and corrective maintenance for your retail business.'
+          'Habla con Galernai sobre digital signage, retail media, control de inventario o mantenimiento predictivo, preventivo y correctivo para tu retail.',
+          'Talk to Galernai about digital signage, retail media, inventory control or predictive, preventive and corrective maintenance for your retail business.'
         )}
         path="/contacto"
       />
@@ -78,7 +78,7 @@ export default function Contacto() {
               >
                 <MapPin size={18} className="mt-0.5 shrink-0" />
                 <span>
-                  Altair Sense HQ<br />
+                  Galernai HQ<br />
                   Calle Los Prados 166, Edificio Impulsa<br />
                   Gijón, España
                 </span>

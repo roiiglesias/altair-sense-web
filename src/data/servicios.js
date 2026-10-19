@@ -93,7 +93,7 @@ export function serviceLines(pick) {
         pick('Campo de ticket relacionado para vincular la incidencia local con la escalada al fabricante, manteniendo la trazabilidad de principio a fin aunque intervengan varios actores.', 'Related-ticket field to link the local incident with the manufacturer escalation, keeping end-to-end traceability even when several parties are involved.'),
         pick('Registro del cambio realizado y del cierre formal una vez resuelto.', 'Record of the change made and of the formal closure once resolved.')
       ],
-      benefit: pick('Aunque el problema exija la intervención del fabricante, el cliente tiene un único interlocutor y un único hilo de seguimiento. No gestiona por su cuenta la coordinación entre Altair Sense y el fabricante.', 'Even when the problem requires the manufacturer, the client has a single point of contact and a single follow-up thread. They do not manage the coordination between Altair Sense and the manufacturer themselves.')
+      benefit: pick('Aunque el problema exija la intervención del fabricante, el cliente tiene un único interlocutor y un único hilo de seguimiento. No gestiona por su cuenta la coordinación entre Galernai y el fabricante.', 'Even when the problem requires the manufacturer, the client has a single point of contact and a single follow-up thread. They do not manage the coordination between Galernai and the manufacturer themselves.')
     },
     {
       icon: MonitorCheck, group: pick('Plataforma', 'Platform'),

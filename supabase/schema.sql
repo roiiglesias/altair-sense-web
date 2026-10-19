@@ -1,4 +1,4 @@
--- Altair Sense — esquema Supabase
+-- Galernai — esquema Supabase
 -- Ejecutar en el SQL Editor del proyecto Supabase (free tier vale).
 
 -- 1. Mensajes de contacto ---------------------------------------------------
