@@ -1,4 +1,4 @@
-# Galernai — Web corporativa
+# NUVsense — Web corporativa
 
 React + Vite + Tailwind (CDN) + Supabase. Mismo stack que Lumen.
 

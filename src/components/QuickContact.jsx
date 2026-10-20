@@ -56,7 +56,7 @@ export default function QuickContact() {
         <button
           onClick={() => setOpen(true)}
           className="fixed z-40 bottom-5 right-5 flex items-center gap-2 bg-as-lime text-as-black font-bold text-sm pl-4 pr-5 py-3.5 rounded-full shadow-xl hover:brightness-95 transition"
-          aria-label={pick('Contactar con Galernai', 'Contact Galernai')}
+          aria-label={pick('Contactar con NUVsense', 'Contact NUVsense')}
         >
           <MessageCircle size={18} />
           {pick('Hablemos', "Let's talk")}

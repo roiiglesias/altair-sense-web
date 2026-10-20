@@ -52,8 +52,8 @@ export default function AcercaDe() {
       <Seo
         title={t.nav.about}
         description={pick(
-          'Galernai: equipo de profesionales con más de 20 años de experiencia en AV Pro, digital signage, retail media y DOOH.',
-          'Galernai: a team of professionals with over 20 years of experience in AV Pro, digital signage, retail media and DOOH.'
+          'NUVsense: equipo de profesionales con más de 20 años de experiencia en AV Pro, digital signage, retail media y DOOH.',
+          'NUVsense: a team of professionals with over 20 years of experience in AV Pro, digital signage, retail media and DOOH.'
         )}
         path="/nosotros"
       />
@@ -178,8 +178,8 @@ export default function AcercaDe() {
                 <p className="text-xs font-bold tracking-[0.22em] uppercase text-as-moss mb-2">Connected Retail Strategy (CRS)</p>
                 <p className="text-as-black/70 leading-relaxed">
                   {pick(
-                    'Roi Iglesias es creador de la metodología Connected Retail Strategy (CRS), desarrollada en marzo de 2025 ante el volumen de soluciones que gestiona el sector retail y que hoy pueden aunarse a través de una infraestructura de inteligencia artificial gestionada con criterio. De CRS nació Galernai, que articula la metodología, con Lumen como plataforma y cerebro matriz al servicio del retail y otros entornos físicos.',
-                    'Roi Iglesias is the creator of the Connected Retail Strategy (CRS) methodology, developed in March 2025 in response to the volume of solutions the retail sector manages, which can today be brought together through an AI infrastructure run with judgement. Galernai was born from CRS and articulates the methodology, with Lumen as the platform and core brain serving retail and other physical environments.'
+                    'Roi Iglesias es creador de la metodología Connected Retail Strategy (CRS), desarrollada en marzo de 2025 ante el volumen de soluciones que gestiona el sector retail y que hoy pueden aunarse a través de una infraestructura de inteligencia artificial gestionada con criterio. De CRS nació NUVsense, que articula la metodología, con Lumen como plataforma y cerebro matriz al servicio del retail y otros entornos físicos.',
+                    'Roi Iglesias is the creator of the Connected Retail Strategy (CRS) methodology, developed in March 2025 in response to the volume of solutions the retail sector manages, which can today be brought together through an AI infrastructure run with judgement. NUVsense was born from CRS and articulates the methodology, with Lumen as the platform and core brain serving retail and other physical environments.'
                   )}
                 </p>
               </div>

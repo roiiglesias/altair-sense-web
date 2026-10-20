@@ -62,7 +62,7 @@ export default function ConnectionDiagram({ pick }) {
       {/* Hub central */}
       <circle cx={hub.x} cy={hub.y} r="62" fill="#B4E33D" />
       <text x={hub.x} y={hub.y + 5} textAnchor="middle" fontSize="14" fontWeight="800" fill="#10150F">
-        Galernai
+        NUVsense
       </text>
 
       {/* Nodos de resultado */}

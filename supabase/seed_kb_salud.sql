@@ -27,7 +27,7 @@ Lo que hace distinto a este entorno es que se conoce a quién se habla. Sabemos 
 
 Un dato de contexto, con su etiqueta de calidad. En noviembre de 2025 AdKaora, del grupo Mondadori, publicó en Italia un [white paper sobre retail media en farmacias](https://www.mondadorigroup.com/media-room/news-and-press-releases/2025/adkaora-publishes-its-first-white-paper-on-retail-media-in-pharmacies). Es un documento de un actor que vende ese servicio, con datos de su propia red, así que lo leo como un despliegue sin medición independiente: sirve para ver qué categorías proponen (medicamentos sin receta, cuidado personal, suplementos), no como prueba de que funcione igual en España. De ahí me llevo la idea, no las cifras.
 
-Lo que añadimos nosotros es lo que ese informe deja fuera: para vender publicidad hay que poder demostrar que la pantalla estaba encendida y que el anuncio salió. Un retail media sin mantenimiento ni informe de cumplimiento es una promesa. Esa parte es la de Galernai: pantallas que funcionan, contenido que se programa por ubicación y un informe que dice qué se emitió y cuándo.
+Lo que añadimos nosotros es lo que ese informe deja fuera: para vender publicidad hay que poder demostrar que la pantalla estaba encendida y que el anuncio salió. Un retail media sin mantenimiento ni informe de cumplimiento es una promesa. Esa parte es la de NUVsense: pantallas que funcionan, contenido que se programa por ubicación y un informe que dice qué se emitió y cuándo.
 
 ## ¿Qué normativa hay que mirar antes de programar contenido?
 
@@ -37,7 +37,7 @@ Esto afecta a cualquier pantalla de farmacia o parafarmacia que muestre un medic
 
 ## ¿Cómo se gestiona esto en varias ubicaciones?
 
-El problema deja de ser la pantalla y pasa a ser el mantenimiento. Una cadena de clínicas o de perfumerías tiene muchas ubicaciones con una o dos pantallas, sin personal técnico, y con un profesional que no tiene tiempo para una pantalla en negro. Por eso pesan más que en otros sectores un solo interlocutor, un portal público para abrir incidencias y la gestión remota. En Galernai trabajamos con más de 150 ubicaciones de salud y belleza, entre clínicas y perfumerías, y es ahí donde se ve si un proyecto aguanta el día a día.
+El problema deja de ser la pantalla y pasa a ser el mantenimiento. Una cadena de clínicas o de perfumerías tiene muchas ubicaciones con una o dos pantallas, sin personal técnico, y con un profesional que no tiene tiempo para una pantalla en negro. Por eso pesan más que en otros sectores un solo interlocutor, un portal público para abrir incidencias y la gestión remota. En NUVsense trabajamos con más de 150 ubicaciones de salud y belleza, entre clínicas y perfumerías, y es ahí donde se ve si un proyecto aguanta el día a día.
 
 ## ¿Por dónde empezar?
 
@@ -62,7 +62,7 @@ What makes this environment different is that you know who you are talking to. W
 
 One piece of context, with its quality label. In November 2025 AdKaora (Mondadori Group) published a [white paper on retail media in pharmacies](https://www.mondadorigroup.com/media-room/news-and-press-releases/2025/adkaora-publishes-its-first-white-paper-on-retail-media-in-pharmacies) in Italy. It comes from a vendor of that service and uses its own network data, so I read it as a deployment without independent measurement: useful to see which categories they pitch (over-the-counter medicines, personal care, supplements), not proof that it works the same elsewhere. I take the idea, not the figures.
 
-What we add is what that report leaves out: to sell advertising you must be able to show the screen was on and the ad ran. Retail media without maintenance or a proof-of-play report is a promise. That is the Galernai part: screens that work, content scheduled per location and a report of what played and when.
+What we add is what that report leaves out: to sell advertising you must be able to show the screen was on and the ad ran. Retail media without maintenance or a proof-of-play report is a promise. That is the NUVsense part: screens that work, content scheduled per location and a report of what played and when.
 
 ## What rules apply before you schedule content?
 
@@ -72,7 +72,7 @@ It affects any pharmacy or parapharmacy screen that shows a medicine, and any cl
 
 ## How does this work across many locations?
 
-The problem stops being the screen and becomes maintenance. A chain of clinics or perfumeries has many sites with one or two screens, no technicians, and a professional with no time for a black screen. That is why a single point of contact, a public portal to open incidents and remote management weigh more here than elsewhere. At Galernai we work with more than 150 health and beauty locations, across clinics and perfumeries, and that is where you see whether a project survives day-to-day operation.
+The problem stops being the screen and becomes maintenance. A chain of clinics or perfumeries has many sites with one or two screens, no technicians, and a professional with no time for a black screen. That is why a single point of contact, a public portal to open incidents and remote management weigh more here than elsewhere. At NUVsense we work with more than 150 health and beauty locations, across clinics and perfumeries, and that is where you see whether a project survives day-to-day operation.
 
 ## Where do you start?
 

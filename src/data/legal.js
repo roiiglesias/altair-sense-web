@@ -4,7 +4,7 @@
 
 export const COMPANY = {
   name: 'Altair Sense, S.L.',
-  brand: 'Galernai',
+  brand: 'NUVsense',
   cif: 'B93967750',
   address: 'Calle Los Prados 166, Edificio Impulsa, 33203 Gijón, Asturias, España',
   email: 'info@altairsense.com',
@@ -228,8 +228,8 @@ export function legalPage(kind, pick) {
   // cookies
   return {
     title: L('Política de cookies', 'Cookie policy'),
-    description: L('Política de cookies de Galernai: este sitio web no instala cookies ni tecnologías de almacenamiento en tu dispositivo con fines de analítica o publicidad.',
-      'Galernai cookie policy: this website does not install cookies or storage technologies on your device for analytics or advertising purposes.'),
+    description: L('Política de cookies de NUVsense: este sitio web no instala cookies ni tecnologías de almacenamiento en tu dispositivo con fines de analítica o publicidad.',
+      'NUVsense cookie policy: this website does not install cookies or storage technologies on your device for analytics or advertising purposes.'),
     sections: [
       {
         h: L('1. Qué son las cookies', '1. What cookies are'),

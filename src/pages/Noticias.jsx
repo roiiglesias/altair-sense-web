@@ -33,8 +33,8 @@ export default function Noticias() {
       <Seo
         title={t.nav.news}
         description={pick(
-          'Novedades de Galernai en digital signage, retail media, retail tech y retail analytics.',
-          'Galernai updates on digital signage, retail media, retail tech and retail analytics.'
+          'Novedades de NUVsense en digital signage, retail media, retail tech y retail analytics.',
+          'NUVsense updates on digital signage, retail media, retail tech and retail analytics.'
         )}
         path="/noticias"
       />
@@ -42,7 +42,7 @@ export default function Noticias() {
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <Eyebrow>{t.nav.news}</Eyebrow>
           <h1 className="font-display font-extrabold text-4xl md:text-6xl mt-4 max-w-3xl">
-            {pick('Novedades de Galernai', 'Galernai updates')}
+            {pick('Novedades de NUVsense', 'NUVsense updates')}
           </h1>
         </div>
       </section>

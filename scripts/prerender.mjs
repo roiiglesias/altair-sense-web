@@ -32,7 +32,7 @@ async function fetchRows(table, fields) {
   if (!url || !key) return []
   try {
     const r = await fetch(`${url}/rest/v1/${table}?select=${fields}&is_published=eq.true`, { headers: { apikey: key, Authorization: `Bearer ${key}` } })
-    return r.ok ? JSON.parse((await r.text()).replace(/\/downloads\/altair-sense-/g, '/downloads/galernai-').replace(/Altair Sense(?!, S\.L\.)/g, 'Galernai')) : []
+    return r.ok ? JSON.parse((await r.text()).replace(/\/downloads\/altair-sense-/g, '/downloads/galernai-').replace(/Altair Sense(?!, S\.L\.)/g, 'NUVsense').replace(/Galernai(?!\.com)/g, 'NUVsense')) : []
   } catch { return [] }
 }
 const news = await fetchRows('news_posts', 'slug,title_es,title_en,excerpt_es,excerpt_en,body_es,body_en,published_at,cover_image_url')
@@ -51,8 +51,8 @@ function buildPages(lang) {
   const add = (path, title, description, h1, blocks = [], extraLd = [], opts = {}) => pages.push({ path, title, description, h1, blocks, extraLd, ...opts })
 
   add('/', null,
-    L('Galernai: digital signage, retail media, retail analytics y retail tech para construir experiencias relevantes que convierten. Instalación, mantenimiento y gestión de contenidos.',
-      'Galernai: digital signage, retail media, retail analytics and retail tech to build relevant experiences that convert. Installation, maintenance and content management.'),
+    L('NUVsense: digital signage, retail media, retail analytics y retail tech para construir experiencias relevantes que convierten. Instalación, mantenimiento y gestión de contenidos.',
+      'NUVsense: digital signage, retail media, retail analytics and retail tech to build relevant experiences that convert. Installation, maintenance and content management.'),
     L('Nos comprometemos con tu resultado de venta', 'We are committed to your sales result'),
     [
       ['p', L('Empleamos digital signage, data, IA y retail tech para construir experiencias relevantes que convierten, en cualquier país en el que operes.', 'We use digital signage, data, AI and retail tech to build relevant experiences that convert, in any country you operate in.')],
@@ -82,26 +82,26 @@ function buildPages(lang) {
     [['h2', L('Cómo escala una incidencia', 'How an incident escalates')], ['ul', levels.map((l) => `${l.title}. ${l.body}`)],
       ...lines.flatMap((l) => [['h2', l.title], ['ul', l.points], ['p', l.benefit]])])
 
-  add('/lumen', L('Lumen: la plataforma de Galernai para retail', 'Lumen: the Galernai platform for retail'),
-    L('Lumen es la plataforma y el cerebro matriz de Galernai: CRM, pedidos, facturación, inventario, ticketing de incidencias N1-N3, partes de trabajo, informes de SLA e IA para digital signage y retail tech.',
-      'Lumen is the Galernai platform and core brain: CRM, orders, invoicing, inventory, N1-N3 incident ticketing, work orders, SLA reports and AI for digital signage and retail tech.'),
+  add('/lumen', L('Lumen: la plataforma de NUVsense para retail', 'Lumen: the NUVsense platform for retail'),
+    L('Lumen es la plataforma y el cerebro matriz de NUVsense: CRM, pedidos, facturación, inventario, ticketing de incidencias N1-N3, partes de trabajo, informes de SLA e IA para digital signage y retail tech.',
+      'Lumen is the NUVsense platform and core brain: CRM, orders, invoicing, inventory, N1-N3 incident ticketing, work orders, SLA reports and AI for digital signage and retail tech.'),
     L('La plataforma que orquesta tu retail', 'The platform that orchestrates your retail'),
     [['p', L('Lumen conecta clientes, pedidos, facturación, inventario, incidencias y mantenimiento en una sola capa, con IA gestionada con criterio. AI-ready, AI-agnostic.', 'Lumen connects clients, orders, invoicing, inventory, incidents and maintenance in a single layer, with AI managed with judgement. AI-ready, AI-agnostic.')]])
 
   add('/nosotros', L('Nosotros', 'About us'),
-    L('Galernai: equipo de profesionales con experiencia en AV Pro, digital signage, retail media y DOOH, creadores de la metodología Connected Retail Strategy (CRS).',
-      'Galernai: a team of professionals with experience in AV Pro, digital signage, retail media and DOOH, creators of the Connected Retail Strategy (CRS) methodology.'),
+    L('NUVsense: equipo de profesionales con experiencia en AV Pro, digital signage, retail media y DOOH, creadores de la metodología Connected Retail Strategy (CRS).',
+      'NUVsense: a team of professionals with experience in AV Pro, digital signage, retail media and DOOH, creators of the Connected Retail Strategy (CRS) methodology.'),
     L('Un equipo con experiencia en AV Pro y Digital Signage', 'A team with experience in AV Pro and Digital Signage'),
-    [['p', L('Roi Iglesias es creador de la metodología Connected Retail Strategy (CRS), desarrollada en marzo de 2025. De CRS nació Galernai, con Lumen como plataforma y cerebro matriz al servicio del retail y otros entornos físicos.',
-      'Roi Iglesias is the creator of the Connected Retail Strategy (CRS) methodology, developed in March 2025. Galernai was born from CRS, with Lumen as the platform and core brain serving retail and other physical environments.')]])
+    [['p', L('Roi Iglesias es creador de la metodología Connected Retail Strategy (CRS), desarrollada en marzo de 2025. De CRS nació NUVsense, con Lumen como plataforma y cerebro matriz al servicio del retail y otros entornos físicos.',
+      'Roi Iglesias is the creator of the Connected Retail Strategy (CRS) methodology, developed in March 2025. NUVsense was born from CRS, with Lumen as the platform and core brain serving retail and other physical environments.')]])
 
   add('/partners', L('Partners', 'Partners'),
-    L('Ecosistema de partners tecnológicos de Galernai en digital signage, retail media y retail tech.', "Galernai's technology partner ecosystem in digital signage, retail media and retail tech."),
+    L('Ecosistema de partners tecnológicos de NUVsense en digital signage, retail media y retail tech.', "NUVsense's technology partner ecosystem in digital signage, retail media and retail tech."),
     L('Tecnología en la que confiamos', 'Technology we trust'),
     [['ul', ['Navori Labs', 'Visiotech', 'Hisense', 'Unilumin', 'Hikvision', 'Milesight', 'Flame Analytics']]])
 
   add('/contacto', L('Contacto', 'Contact'),
-    L('Habla con Galernai sobre digital signage, retail media, control de inventario o mantenimiento para tu retail.', 'Talk to Galernai about digital signage, retail media, inventory control or maintenance for your retail business.'),
+    L('Habla con NUVsense sobre digital signage, retail media, control de inventario o mantenimiento para tu retail.', 'Talk to NUVsense about digital signage, retail media, inventory control or maintenance for your retail business.'),
     L('Hablemos', "Let's talk"), [['p', 'info@altairsense.com · Calle Los Prados 166, Edificio Impulsa, Gijón, España']])
 
   // Páginas legales (texto completo en el HTML)
@@ -116,22 +116,22 @@ function buildPages(lang) {
   })
 
   const T = (r, k) => (lang === 'en' ? r[`${k}_en`] || r[`${k}_es`] : r[`${k}_es`])
-  add('/noticias', L('Noticias', 'News'), L('Noticias de Galernai sobre digital signage, retail media y retail tech.', 'Galernai news on digital signage, retail media and retail tech.'), L('Noticias', 'News'), [['ul', news.map((n) => T(n, 'title'))]])
+  add('/noticias', L('Noticias', 'News'), L('Noticias de NUVsense sobre digital signage, retail media y retail tech.', 'NUVsense news on digital signage, retail media and retail tech.'), L('Noticias', 'News'), [['ul', news.map((n) => T(n, 'title'))]])
   const kbHref = (a) => urlPath(`/knowledge-base/${a.slug}`, lang)
-  add('/knowledge-base', 'Knowledge Base', L('Guías, casos de éxito y descargables de Galernai sobre digital signage, retail media y retail tech.', 'Galernai guides, case studies and downloads on digital signage, retail media and retail tech.'), 'Knowledge Base',
+  add('/knowledge-base', 'Knowledge Base', L('Guías, casos de éxito y descargables de NUVsense sobre digital signage, retail media y retail tech.', 'NUVsense guides, case studies and downloads on digital signage, retail media and retail tech.'), 'Knowledge Base',
     [['html', kb.map((a) => `<article><h2><a href="${kbHref(a)}">${esc(T(a, 'title'))}</a></h2>${a.cover_image_url ? `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">` : ''}<p>${esc(T(a, 'summary') || '')}</p></article>`).join('\n')]],
     [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: kb.map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + kbHref(a), name: T(a, 'title') })) }])
 
   news.forEach((n) => add(`/noticias/${n.slug}`, T(n, 'title'), T(n, 'excerpt') || T(n, 'title'), T(n, 'title'), [['p', T(n, 'body') || '']],
-    [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: T(n, 'title'), inLanguage: lang, datePublished: n.published_at, publisher: { '@type': 'Organization', name: 'Galernai' }, ...(n.cover_image_url ? { image: absImg(n.cover_image_url) } : {}) }],
+    [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: T(n, 'title'), inLanguage: lang, datePublished: n.published_at, publisher: { '@type': 'Organization', name: 'NUVsense' }, ...(n.cover_image_url ? { image: absImg(n.cover_image_url) } : {}) }],
     n.cover_image_url ? { image: absImg(n.cover_image_url), type: 'article' } : undefined))
   kb.forEach((a) => add(`/knowledge-base/${a.slug}`, T(a, 'title'), T(a, 'summary') || T(a, 'title'), T(a, 'title'),
     [...(a.cover_image_url ? [['html', `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">`]] : []),
       ['html', markdownToHtml(T(a, 'body') || '')]],
     [{ '@context': 'https://schema.org', '@type': 'TechArticle', headline: T(a, 'title'), inLanguage: lang, description: T(a, 'summary'), datePublished: a.created_at,
       ...(a.cover_image_url ? { image: absImg(a.cover_image_url) } : {}),
-      author: { '@type': 'Organization', name: 'Galernai', url: SITE },
-      publisher: { '@type': 'Organization', name: 'Galernai', logo: { '@type': 'ImageObject', url: `${SITE}/brand/galernai-avatar.png` } } }],
+      author: { '@type': 'Organization', name: 'NUVsense', url: SITE },
+      publisher: { '@type': 'Organization', name: 'NUVsense', logo: { '@type': 'ImageObject', url: `${SITE}/brand/nuvsense-avatar.png` } } }],
     { image: absImg(a.cover_image_url), type: 'article' }))
 
   return { pages, sectors, solutions }
@@ -149,18 +149,18 @@ let count = 0
 for (const lang of ['es', 'en']) {
   const { pages } = buildPages(lang)
   const nav = lang === 'en'
-    ? [['/en', 'Galernai'], ['/en/solutions', 'Solutions'], ['/en/sectors', 'Sectors'], ['/en/services', 'Technical services'], ['/en/lumen', 'Lumen'], ['https://lumen.galernai.com', 'Lumen access'], ['/en/contact', 'Contact']]
-    : [['/', 'Galernai'], ['/soluciones', 'Soluciones'], ['/sectores', 'Sectores'], ['/servicios', 'Servicios técnicos'], ['/lumen', 'Lumen'], ['https://lumen.galernai.com', 'Acceso a Lumen'], ['/contacto', 'Contacto']]
+    ? [['/en', 'NUVsense'], ['/en/solutions', 'Solutions'], ['/en/sectors', 'Sectors'], ['/en/services', 'Technical services'], ['/en/lumen', 'Lumen'], ['https://lumen.galernai.com', 'Lumen access'], ['/en/contact', 'Contact']]
+    : [['/', 'NUVsense'], ['/soluciones', 'Soluciones'], ['/sectores', 'Sectores'], ['/servicios', 'Servicios técnicos'], ['/lumen', 'Lumen'], ['https://lumen.galernai.com', 'Acceso a Lumen'], ['/contacto', 'Contacto']]
   for (const p of pages) {
     const url = SITE + (urlPath(p.path, lang) === '/' ? '/' : urlPath(p.path, lang))
     const esUrl = SITE + (p.path === '/' ? '/' : p.path)
     const enUrl = SITE + urlPath(p.path, 'en')
-    const defaultTitle = lang === 'en' ? 'Galernai — Digital Signage, Retail Media and Retail Tech' : 'Galernai — Digital Signage, Retail Media y Retail Tech'
-    const fullTitle = p.title ? `${p.title} · Galernai` : defaultTitle
+    const defaultTitle = lang === 'en' ? 'NUVsense — Digital Signage, Retail Media and Retail Tech' : 'NUVsense — Digital Signage, Retail Media y Retail Tech'
+    const fullTitle = p.title ? `${p.title} · NUVsense` : defaultTitle
     const crumbs = p.path === '/' ? [] : [{
       '@context': 'https://schema.org', '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Galernai', item: SITE + (lang === 'en' ? '/en' : '/') },
+        { '@type': 'ListItem', position: 1, name: 'NUVsense', item: SITE + (lang === 'en' ? '/en' : '/') },
         { '@type': 'ListItem', position: 2, name: p.h1, item: url }
       ]
     }]
@@ -196,10 +196,10 @@ const linksOf = (b, lang) => ({
   sec: b.sectors.map((s) => `- [${s.title}](${SITE}${urlPath('/sectores/' + s.slug, lang)}): ${s.tagline}`).join('\n')
 })
 const E = linksOf(es, 'es'); const N = linksOf(en, 'en')
-const llms = `# Galernai
+const llms = `# NUVsense
 
-> Galernai emplea digital signage, data, IA y retail tech para construir experiencias relevantes que convierten, en retail y otros entornos físicos. Articula la metodología Connected Retail Strategy (CRS) y opera sobre Lumen, su plataforma y cerebro matriz. Sede: Calle Los Prados 166, Edificio Impulsa, Gijón (España). Contacto: info@altairsense.com
-> English: Galernai uses digital signage, data, AI and retail tech to build relevant experiences that convert, in retail and other physical environments. It articulates the Connected Retail Strategy (CRS) methodology and runs on Lumen, its platform and core brain. HQ: Gijón, Spain. Every page has an English version under ${SITE}/en/
+> NUVsense emplea digital signage, data, IA y retail tech para construir experiencias relevantes que convierten, en retail y otros entornos físicos. Articula la metodología Connected Retail Strategy (CRS) y opera sobre Lumen, su plataforma y cerebro matriz. Sede: Calle Los Prados 166, Edificio Impulsa, Gijón (España). Contacto: info@altairsense.com
+> English: NUVsense uses digital signage, data, AI and retail tech to build relevant experiences that convert, in retail and other physical environments. It articulates the Connected Retail Strategy (CRS) methodology and runs on Lumen, its platform and core brain. HQ: Gijón, Spain. Every page has an English version under ${SITE}/en/
 
 ## Soluciones
 ${E.sol}

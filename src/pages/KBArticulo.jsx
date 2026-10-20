@@ -65,8 +65,8 @@ export default function KBArticulo({ slug }) {
     inLanguage: lang,
     datePublished: article.created_at,
     ...(image ? { image } : {}),
-    author: { '@type': 'Organization', name: 'Galernai', url: SITE_URL },
-    publisher: { '@type': 'Organization', name: 'Galernai', logo: { '@type': 'ImageObject', url: `${SITE_URL}/brand/galernai-avatar.png` } }
+    author: { '@type': 'Organization', name: 'NUVsense', url: SITE_URL },
+    publisher: { '@type': 'Organization', name: 'NUVsense', logo: { '@type': 'ImageObject', url: `${SITE_URL}/brand/nuvsense-avatar.png` } }
   }
 
   return (

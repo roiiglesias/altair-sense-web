@@ -42,8 +42,8 @@ export default function Partners() {
       <Seo
         title={t.nav.partners}
         description={pick(
-          'Ecosistema de partners tecnológicos de Galernai en digital signage, retail media y retail tech.',
-          "Galernai's technology partner ecosystem in digital signage, retail media and retail tech."
+          'Ecosistema de partners tecnológicos de NUVsense en digital signage, retail media y retail tech.',
+          "NUVsense's technology partner ecosystem in digital signage, retail media and retail tech."
         )}
         path="/partners"
       />

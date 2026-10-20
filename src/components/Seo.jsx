@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter, buildUrl } from '../lib/router.jsx'
 
-const SITE_NAME = 'Galernai'
+const SITE_NAME = 'NUVsense'
 const SITE_URL = 'https://galernai.com'
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`
 

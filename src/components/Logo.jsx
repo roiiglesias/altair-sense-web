@@ -1,34 +1,34 @@
-// Logo de Galernai — usa los SVG oficiales del kit de marca (texto trazado, sin fuente).
-// variant: 'onDark' (lima, sobre verde negro) | 'onLight' (musgo, sobre fondo claro).
-// Reglas: lima solo sobre oscuro; no recolorear ni estirar.
+// Logo de NUVsense — PNG oficiales del kit de marca (versión 3d).
+// variant: 'onDark' (NUV claro + sense lima, sobre verde negro) | 'onLight' (NUV negro + sense musgo, sobre fondo claro).
+// Reglas: no recolorear ni estirar.
 
 const sources = {
-  onDark: '/brand/galernai-logo-lima.svg',
-  onLight: '/brand/galernai-logo-musgo.svg'
+  onDark: '/brand/nuvsense-logo-oscuro.png',
+  onLight: '/brand/nuvsense-logo-claro.png'
 }
 
 const heights = {
-  sm: 'h-10',
-  md: 'h-14',
-  lg: 'h-20 md:h-24'
+  sm: 'h-7',
+  md: 'h-10',
+  lg: 'h-14 md:h-16'
 }
 
 export default function Logo({ variant = 'onDark', size = 'md', className = '' }) {
   return (
     <img
       src={sources[variant]}
-      alt="Galernai"
+      alt="NUVsense"
       className={`${heights[size]} w-auto select-none ${className}`}
       draggable="false"
     />
   )
 }
 
-export function LogoIcon({ className = '', variant = 'onDark' }) {
+export function LogoIcon({ className = '' }) {
   return (
     <img
-      src={variant === 'onLight' ? '/brand/galernai-isotipo-musgo.svg' : '/brand/galernai-isotipo-lima.svg'}
-      alt="Galernai"
+      src="/brand/nuvsense-avatar.png"
+      alt="NUVsense"
       className={className}
       draggable="false"
     />

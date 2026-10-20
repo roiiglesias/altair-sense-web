@@ -1,4 +1,4 @@
--- Galernai — esquema Supabase
+-- NUVsense — esquema Supabase
 -- Ejecutar en el SQL Editor del proyecto Supabase (free tier vale).
 
 -- 1. Mensajes de contacto ---------------------------------------------------
