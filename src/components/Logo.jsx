@@ -1,10 +1,16 @@
-// Logo de NUVsense — PNG oficiales del kit de marca (versión 3d).
-// variant: 'onDark' (NUV claro + sense lima, sobre verde negro) | 'onLight' (NUV negro + sense musgo, sobre fondo claro).
-// Reglas: no recolorear ni estirar.
+// Logo de NUVsense — SVG oficiales del kit de marca (texto trazado, sin fuente).
+// variant: 'onDark' (NUV hueso + sense lima, sobre verdenegro) | 'onLight' (NUV verdenegro + sense musgo, sobre fondo claro).
+// Reglas del kit: sin recuadros alrededor; lima solo sobre verdenegro; no mover el punto, no recolorear ni estirar.
+// Tamaño mínimo 90 px de ancho; por debajo, usar el símbolo (LogoIcon).
 
 const sources = {
-  onDark: '/brand/nuvsense-logo-oscuro.png',
-  onLight: '/brand/nuvsense-logo-claro.png'
+  onDark: '/brand/nuvsense-logo-oscuro.svg',
+  onLight: '/brand/nuvsense-logo-claro.svg'
+}
+
+const symbols = {
+  onDark: '/brand/nuvsense-simbolo-oscuro.svg',
+  onLight: '/brand/nuvsense-simbolo-claro.svg'
 }
 
 const heights = {
@@ -24,13 +30,6 @@ export default function Logo({ variant = 'onDark', size = 'md', className = '' }
   )
 }
 
-export function LogoIcon({ className = '' }) {
-  return (
-    <img
-      src="/brand/nuvsense-avatar.png"
-      alt="NUVsense"
-      className={className}
-      draggable="false"
-    />
-  )
+export function LogoIcon({ className = '', variant = 'onDark' }) {
+  return <img src={symbols[variant]} alt="NUVsense" className={className} draggable="false" />
 }
