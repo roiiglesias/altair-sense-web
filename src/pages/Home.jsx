@@ -2,6 +2,7 @@ import { Link } from '../lib/router.jsx'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow, PulseDot, Divider } from '../components/Bits.jsx'
 import Seo from '../components/Seo.jsx'
+import SectionBackdrop from '../components/SectionBackdrop.jsx'
 import HeroSlideshow from '../components/HeroSlideshow.jsx'
 import ConnectionDiagram from '../components/ConnectionDiagram.jsx'
 import { HomeStoryIntro, HomeStoryMethod } from '../components/HomeStory.jsx'
@@ -104,8 +105,9 @@ export default function Home() {
       <HomeStoryMethod />
 
       {/* SECTORES TEASER */}
-      <section className="bg-as-black text-as-cream py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-14 items-center">
+      <section className="relative overflow-hidden bg-as-black text-as-cream py-20 md:py-28">
+        <SectionBackdrop src="/sectores/retail-media-marca.jpg" opacity="opacity-20" />
+        <div className="relative max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-14 items-center">
           <div>
             <Eyebrow>{pick('Sectores', 'Sectors')}</Eyebrow>
             <Divider className="my-5" />

@@ -1,3 +1,4 @@
+import SectionBackdrop from '../components/SectionBackdrop.jsx'
 import { useEffect } from 'react'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { Eyebrow } from '../components/Bits.jsx'
@@ -144,6 +145,14 @@ export default function Soluciones() {
                     {pick('Ver líneas y niveles de servicio técnico', 'See technical service lines and levels')} <ArrowRight size={15} />
                   </Link>
                 )}
+                {it.photo && (
+                  <img
+                    src={it.photo}
+                    alt={it.photoAlt}
+                    loading="lazy"
+                    className="mt-6 w-full max-w-2xl rounded-xl border border-as-stone"
+                  />
+                )}
                 {it.image && (
                   <img
                     src={it.image}
@@ -157,8 +166,9 @@ export default function Soluciones() {
         </div>
       </section>
 
-      <section className="bg-as-black text-as-cream py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-5 md:px-8">
+      <section className="relative overflow-hidden bg-as-black text-as-cream py-20 md:py-28">
+        <SectionBackdrop />
+        <div className="relative max-w-7xl mx-auto px-5 md:px-8">
           <Eyebrow>{pick('Por qué lo hacemos', 'Why we do it')}</Eyebrow>
           <h2 className="font-display font-extrabold text-3xl md:text-4xl mt-3 max-w-2xl">
             {pick('Todo apunta al mismo resultado', 'It all points to the same outcome')}

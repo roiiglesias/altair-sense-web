@@ -61,6 +61,8 @@ export function solutionSections(pick) {
         'Our CMS and retail media strategy help build solid in-store and out-of-store communication: useful for supermarkets, DIY, sports, pet care, perfumery and cosmetics, and any retailer distributing multiple brands.'
       ),
       image: '/brand/retail-media-diagram.jpg',
+      photo: '/sectores/retail-media-entrada.jpg',
+      photoAlt: pick('Pantalla de retail media a la entrada de un supermercado con oferta de aceite de oliva y código QR', 'Retail media screen at a supermarket entrance with an olive oil offer and QR code'),
       points: [
         pick('Estrategia de contenidos por punto de contacto', 'Content strategy per touchpoint'),
         pick('Supermercados, bricolaje, deporte, petcare, perfumería', 'Supermarkets, DIY, sports, pet care, perfumery'),

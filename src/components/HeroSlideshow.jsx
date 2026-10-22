@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 
 const SLIDES = [
   '/sectores/fashion-retail.jpg',
+  '/sectores/retail-media-entrada.jpg',
   '/sectores/supermercados.jpg',
   '/sectores/farmacias.jpg',
   '/sectores/automocion.jpg',
+  '/sectores/retail-media-pasillo.jpg',
   '/sectores/hoteles.jpg',
   '/sectores/deportivas.jpg'
 ]
