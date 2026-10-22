@@ -1,7 +1,7 @@
 -- Noticia: NUVsense en el III Congreso URJC (20 nov 2026). Ejecutar en el editor SQL de Supabase.
 insert into news_posts (slug, published_at, title_es, title_en, excerpt_es, excerpt_en, body_es, body_en, is_published)
 values (
-  'galernai-congreso-moda-cosmetica-belleza-retail-urjc',
+  'nuvsense-congreso-moda-cosmetica-belleza-retail-urjc',
   '2026-10-19T12:00:00+02:00',
   'NUVsense participa en el III Congreso Internacional de Moda, Cosmética, Belleza y Retail',
   'NUVsense takes part in the III International Congress on Fashion, Cosmetics, Beauty and Retail',

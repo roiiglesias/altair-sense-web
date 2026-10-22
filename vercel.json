@@ -1,4 +1,10 @@
 {
+  "redirects": [
+    { "source": "/downloads/galernai-:file", "destination": "/downloads/nuvsense-:file", "permanent": true },
+    { "source": "/downloads/altair-sense-:file", "destination": "/downloads/nuvsense-:file", "permanent": true },
+    { "source": "/noticias/galernai-congreso-moda-cosmetica-belleza-retail-urjc", "destination": "/noticias/nuvsense-congreso-moda-cosmetica-belleza-retail-urjc", "permanent": true },
+    { "source": "/en/news/galernai-congreso-moda-cosmetica-belleza-retail-urjc", "destination": "/en/news/nuvsense-congreso-moda-cosmetica-belleza-retail-urjc", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/(.*)", "destination": "/index.html" }

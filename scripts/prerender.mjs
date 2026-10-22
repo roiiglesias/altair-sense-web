@@ -32,7 +32,7 @@ async function fetchRows(table, fields) {
   if (!url || !key) return []
   try {
     const r = await fetch(`${url}/rest/v1/${table}?select=${fields}&is_published=eq.true`, { headers: { apikey: key, Authorization: `Bearer ${key}` } })
-    return r.ok ? JSON.parse((await r.text()).replace(/\/downloads\/altair-sense-/g, '/downloads/galernai-').replace(/Altair Sense(?!, S\.L\.)/g, 'NUVsense').replace(/Galernai(?!\.com)/g, 'NUVsense')) : []
+    return r.ok ? JSON.parse((await r.text()).replace(/\/downloads\/altair-sense-/g, '/downloads/nuvsense-').replace(/Altair Sense(?!, S\.L\.)/g, 'NUVsense').replace(/Galernai(?!\.com)/g, 'NUVsense')) : []
   } catch { return [] }
 }
 const news = await fetchRows('news_posts', 'slug,title_es,title_en,excerpt_es,excerpt_en,body_es,body_en,published_at,cover_image_url')
