@@ -98,7 +98,7 @@ function buildPages(lang) {
   add('/partners', L('Partners', 'Partners'),
     L('Ecosistema de partners tecnológicos de NUVsense en digital signage, retail media y retail tech.', "NUVsense's technology partner ecosystem in digital signage, retail media and retail tech."),
     L('Tecnología en la que confiamos', 'Technology we trust'),
-    [['ul', ['Navori Labs', 'Visiotech', 'Hisense', 'Unilumin', 'Hikvision', 'Milesight', 'Flame Analytics']]])
+    [['ul', ['Navori Labs', 'Visiotech', 'Hisense', 'Unilumin', 'Hikvision', 'Milesight', 'Flame Analytics', 'Visualart']]])
 
   add('/contacto', L('Contacto', 'Contact'),
     L('Habla con NUVsense sobre digital signage, retail media, control de inventario o mantenimiento para tu retail.', 'Talk to NUVsense about digital signage, retail media, inventory control or maintenance for your retail business.'),

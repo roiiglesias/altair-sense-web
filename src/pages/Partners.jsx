@@ -8,13 +8,14 @@ import Seo from '../components/Seo.jsx'
 // oscuro (public/partners/*.png). Cuando haya más, añádelos aquí y a la
 // carpeta public/partners/.
 const CORE_PARTNERS = [
-  { name: 'Navori Labs', logo: '/partners/navori-labs.png' },
-  { name: 'Visiotech', logo: '/partners/visiotech.png' },
-  { name: 'Hisense', logo: '/partners/hisense.png' },
-  { name: 'Unilumin', logo: '/partners/unilumin.png' },
-  { name: 'Hikvision', logo: '/partners/hikvision.png' },
-  { name: 'Milesight', logo: '/partners/milesight.png' },
-  { name: 'Flame Analytics', logo: '/partners/flame-analytics.png' }
+  { name: 'Navori Labs', logo: '/partners/navori-labs.png', w: 171, h: 29 },
+  { name: 'Visiotech', logo: '/partners/visiotech.png', w: 90, h: 54 },
+  { name: 'Hisense', logo: '/partners/hisense.png', w: 173, h: 29 },
+  { name: 'Unilumin', logo: '/partners/unilumin.png', w: 166, h: 30 },
+  { name: 'Hikvision', logo: '/partners/hikvision.png', w: 190, h: 24 },
+  { name: 'Milesight', logo: '/partners/milesight.png', w: 134, h: 37 },
+  { name: 'Flame Analytics', logo: '/partners/flame-analytics.png', w: 158, h: 31 },
+  { name: 'Visualart', logo: '/partners/visualart.png', w: 190, h: 22 }
 ]
 
 export default function Partners() {
@@ -77,8 +78,8 @@ export default function Partners() {
           <p className="text-xs font-bold tracking-[0.22em] uppercase text-as-lime mb-10">{pick('Ecosistema de partners certificados', 'Certified partner ecosystem')}</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-14 items-center">
             {CORE_PARTNERS.map((p) => (
-              <div key={p.name} className="flex items-center justify-center h-14 opacity-70 hover:opacity-100 transition-opacity">
-                <img src={p.logo} alt={p.name} className="max-h-10 md:max-h-12 max-w-full object-contain" />
+              <div key={p.name} className="flex items-center justify-center h-16 opacity-70 hover:opacity-100 transition-opacity">
+                <img src={p.logo} alt={p.name} width={p.w} height={p.h} className="max-w-full h-auto object-contain" />
               </div>
             ))}
           </div>
@@ -91,9 +92,9 @@ export default function Partners() {
                   href={p.url || undefined}
                   target={p.url ? '_blank' : undefined}
                   rel={p.url ? 'noreferrer' : undefined}
-                  className="flex items-center justify-center h-14 opacity-70 hover:opacity-100 transition-opacity"
+                  className="flex items-center justify-center h-16 opacity-70 hover:opacity-100 transition-opacity"
                 >
-                  <img src={p.logo_url} alt={p.name} className="max-h-10 md:max-h-12 max-w-full object-contain" />
+                  <img src={p.logo_url} alt={p.name} className="max-h-11 max-w-[11rem] object-contain" />
                 </a>
               ))}
             </div>
