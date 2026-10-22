@@ -6,5 +6,7 @@ export function rebrandText(text) {
   return text
     .replace(/\/downloads\/altair-sense-/g, '/downloads/nuvsense-')
     .replace(/Altair Sense(?!, S\.L\.)/g, 'NUVsense')
+    .replace(/https:\/\/(www\.)?galernai\.com/g, 'https://www.nuvsense.com')
+    .replace(/https:\/\/lumen\.galernai\.com/g, 'https://lumen.nuvsense.com')
     .replace(/Galernai(?!\.com)/g, 'NUVsense')
 }

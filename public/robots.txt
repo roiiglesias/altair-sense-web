@@ -19,4 +19,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://galernai.com/sitemap.xml
+Sitemap: https://www.nuvsense.com/sitemap.xml

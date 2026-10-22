@@ -10,7 +10,7 @@ import { serviceLevels, serviceLines } from '../src/data/servicios.js'
 import { legalPage } from '../src/data/legal.js'
 import { markdownToHtml } from '../src/lib/markdown.js'
 
-const SITE = 'https://galernai.com'
+const SITE = 'https://www.nuvsense.com'
 const DIST = 'dist'
 const EN_SLUGS = { soluciones: 'solutions', sectores: 'sectors', servicios: 'services', nosotros: 'about', contacto: 'contact', noticias: 'news', 'aviso-legal': 'legal-notice', privacidad: 'privacy' }
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -32,7 +32,7 @@ async function fetchRows(table, fields) {
   if (!url || !key) return []
   try {
     const r = await fetch(`${url}/rest/v1/${table}?select=${fields}&is_published=eq.true`, { headers: { apikey: key, Authorization: `Bearer ${key}` } })
-    return r.ok ? JSON.parse((await r.text()).replace(/\/downloads\/altair-sense-/g, '/downloads/nuvsense-').replace(/Altair Sense(?!, S\.L\.)/g, 'NUVsense').replace(/Galernai(?!\.com)/g, 'NUVsense')) : []
+    return r.ok ? JSON.parse((await r.text()).replace(/\/downloads\/altair-sense-/g, '/downloads/nuvsense-').replace(/Altair Sense(?!, S\.L\.)/g, 'NUVsense').replace(/https:\/\/lumen\.galernai\.com/g, 'https://lumen.nuvsense.com').replace(/https:\/\/(www\.)?galernai\.com/g, 'https://www.nuvsense.com').replace(/Galernai(?!\.com)/g, 'NUVsense')) : []
   } catch { return [] }
 }
 const news = await fetchRows('news_posts', 'slug,title_es,title_en,excerpt_es,excerpt_en,body_es,body_en,published_at,cover_image_url')
@@ -149,8 +149,8 @@ let count = 0
 for (const lang of ['es', 'en']) {
   const { pages } = buildPages(lang)
   const nav = lang === 'en'
-    ? [['/en', 'NUVsense'], ['/en/solutions', 'Solutions'], ['/en/sectors', 'Sectors'], ['/en/services', 'Technical services'], ['/en/lumen', 'Lumen'], ['https://lumen.galernai.com', 'Lumen access'], ['/en/contact', 'Contact']]
-    : [['/', 'NUVsense'], ['/soluciones', 'Soluciones'], ['/sectores', 'Sectores'], ['/servicios', 'Servicios técnicos'], ['/lumen', 'Lumen'], ['https://lumen.galernai.com', 'Acceso a Lumen'], ['/contacto', 'Contacto']]
+    ? [['/en', 'NUVsense'], ['/en/solutions', 'Solutions'], ['/en/sectors', 'Sectors'], ['/en/services', 'Technical services'], ['/en/lumen', 'Lumen'], ['https://lumen.nuvsense.com', 'Lumen access'], ['/en/contact', 'Contact']]
+    : [['/', 'NUVsense'], ['/soluciones', 'Soluciones'], ['/sectores', 'Sectores'], ['/servicios', 'Servicios técnicos'], ['/lumen', 'Lumen'], ['https://lumen.nuvsense.com', 'Acceso a Lumen'], ['/contacto', 'Contacto']]
   for (const p of pages) {
     const url = SITE + (urlPath(p.path, lang) === '/' ? '/' : urlPath(p.path, lang))
     const esUrl = SITE + (p.path === '/' ? '/' : p.path)
@@ -205,7 +205,7 @@ const llms = `# NUVsense
 ${E.sol}
 - [Servicios técnicos y niveles de servicio](${SITE}/servicios): siete servicios técnicos, tres niveles (N1 remoto, N2 análisis, N3 fabricante) y SLA de 4 h, 8 h, NBD y 2NBD
 - [Lumen](${SITE}/lumen): plataforma de CRM, pedidos, facturación, inventario, ticketing y mantenimiento
-- [Acceso a Lumen](https://lumen.galernai.com): aplicación de Lumen para clientes y equipo
+- [Acceso a Lumen](https://lumen.nuvsense.com): aplicación de Lumen para clientes y equipo
 
 ## Sectores
 ${E.sec}
@@ -224,7 +224,7 @@ ${news.map((n) => `- [${n.title_es}](${SITE}/noticias/${n.slug}): ${n.excerpt_es
 ${N.sol}
 - [Technical services and service levels](${SITE}/en/services): seven technical services, three levels (N1 remote, N2 analysis, N3 manufacturer) and SLAs of 4 h, 8 h, NBD and 2NBD
 - [Lumen](${SITE}/en/lumen): CRM, orders, invoicing, inventory, ticketing and maintenance platform
-- [Lumen access](https://lumen.galernai.com): the Lumen application for clients and team
+- [Lumen access](https://lumen.nuvsense.com): the Lumen application for clients and team
 
 ### Sectors
 ${N.sec}
