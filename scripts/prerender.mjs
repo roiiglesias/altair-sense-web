@@ -38,6 +38,11 @@ async function fetchRows(table, fields) {
 const news = await fetchRows('news_posts', 'slug,title_es,title_en,excerpt_es,excerpt_en,body_es,body_en,published_at,cover_image_url')
 const kb = await fetchRows('kb_articles', 'slug,title_es,title_en,summary_es,summary_en,body_es,body_en,category,author,published_at,created_at,cover_image_url,cover_alt_es,cover_alt_en&order=published_at.desc.nullslast')
 const authorLd = (name) => (name && name !== 'Equipo NUVsense' ? { '@type': 'Person', name, worksFor: { '@type': 'Organization', name: 'NUVsense', url: SITE } } : { '@type': 'Organization', name: 'NUVsense', url: SITE })
+const fmtDate = (d, lang, long = true) => (d ? new Date(d).toLocaleDateString(lang === 'en' ? 'en-GB' : 'es-ES', { day: long ? 'numeric' : '2-digit', month: long ? 'long' : 'short', year: 'numeric' }) : '')
+const byline = (d, name, lang) => {
+  const who = name && name !== 'Equipo NUVsense' ? (lang === 'en' ? `By ${name}` : `Por ${name}`) : (lang === 'en' ? 'By the NUVsense team' : 'Por el equipo de NUVsense')
+  return `<p>${d ? `<time datetime="${esc(d)}">${esc(fmtDate(d, lang))}</time> · ` : ''}${esc(who)}</p>`
+}
 const absImg = (u) => (!u ? null : u.startsWith('http') ? u : SITE + (u.startsWith('/') ? '' : '/') + u)
 
 // Estructura común: cada página se define una vez con textos ES/EN
@@ -123,11 +128,12 @@ function buildPages(lang) {
     [['html', kb.map((a) => `<article><h2><a href="${kbHref(a)}">${esc(T(a, 'title'))}</a></h2>${a.cover_image_url ? `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">` : ''}<p>${esc(T(a, 'summary') || '')}</p></article>`).join('\n')]],
     [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: kb.map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + kbHref(a), name: T(a, 'title') })) }])
 
-  news.forEach((n) => add(`/noticias/${n.slug}`, T(n, 'title'), T(n, 'excerpt') || T(n, 'title'), T(n, 'title'), [['p', T(n, 'body') || '']],
+  news.forEach((n) => add(`/noticias/${n.slug}`, T(n, 'title'), T(n, 'excerpt') || T(n, 'title'), T(n, 'title'), [['html', byline(n.published_at, null, lang)], ['p', T(n, 'body') || '']],
     [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: T(n, 'title'), inLanguage: lang, datePublished: n.published_at, publisher: { '@type': 'Organization', name: 'NUVsense' }, ...(n.cover_image_url ? { image: absImg(n.cover_image_url) } : {}) }],
     n.cover_image_url ? { image: absImg(n.cover_image_url), type: 'article' } : undefined))
   kb.forEach((a) => add(`/knowledge-base/${a.slug}`, T(a, 'title'), T(a, 'summary') || T(a, 'title'), T(a, 'title'),
     [...(a.cover_image_url ? [['html', `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">`]] : []),
+      ['html', byline(a.published_at || a.created_at, a.author, lang)],
       ['html', markdownToHtml(T(a, 'body') || '')]],
     [{ '@context': 'https://schema.org', '@type': 'TechArticle', headline: T(a, 'title'), inLanguage: lang, description: T(a, 'summary'),
       datePublished: a.published_at || a.created_at, dateModified: a.published_at || a.created_at,
