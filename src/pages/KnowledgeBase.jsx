@@ -152,8 +152,8 @@ function ArticleCard({ a, featured = false, caseStudy = false }) {
   const summary = lang === 'es' ? a.summary_es : a.summary_en || a.summary_es
   const alt = (lang === 'es' ? a.cover_alt_es : a.cover_alt_en) || ''
   const body = lang === 'es' ? a.body_es : a.body_en || a.body_es
-  const date = a.created_at
-    ? new Date(a.created_at).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+  const date = (a.published_at || a.created_at)
+    ? new Date(a.published_at || a.created_at).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
     : null
 
   return (

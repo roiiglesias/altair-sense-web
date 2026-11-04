@@ -8,7 +8,7 @@ import { getSectors } from '../src/data/sectors.js'
 import { solutionSections } from '../src/data/solutions.js'
 import { serviceLevels, serviceLines } from '../src/data/servicios.js'
 import { legalPage } from '../src/data/legal.js'
-import { markdownToHtml } from '../src/lib/markdown.js'
+import { markdownToHtml, extractFaq } from '../src/lib/markdown.js'
 
 const SITE = 'https://www.nuvsense.com'
 const DIST = 'dist'
@@ -36,7 +36,8 @@ async function fetchRows(table, fields) {
   } catch { return [] }
 }
 const news = await fetchRows('news_posts', 'slug,title_es,title_en,excerpt_es,excerpt_en,body_es,body_en,published_at,cover_image_url')
-const kb = await fetchRows('kb_articles', 'slug,title_es,title_en,summary_es,summary_en,body_es,body_en,category,created_at,cover_image_url,cover_alt_es,cover_alt_en&order=created_at.desc')
+const kb = await fetchRows('kb_articles', 'slug,title_es,title_en,summary_es,summary_en,body_es,body_en,category,author,published_at,created_at,cover_image_url,cover_alt_es,cover_alt_en&order=published_at.desc.nullslast')
+const authorLd = (name) => (name && name !== 'Equipo NUVsense' ? { '@type': 'Person', name, worksFor: { '@type': 'Organization', name: 'NUVsense', url: SITE } } : { '@type': 'Organization', name: 'NUVsense', url: SITE })
 const absImg = (u) => (!u ? null : u.startsWith('http') ? u : SITE + (u.startsWith('/') ? '' : '/') + u)
 
 // Estructura común: cada página se define una vez con textos ES/EN
@@ -102,7 +103,7 @@ function buildPages(lang) {
 
   add('/contacto', L('Contacto', 'Contact'),
     L('Habla con NUVsense sobre digital signage, retail media, control de inventario o mantenimiento para tu retail.', 'Talk to NUVsense about digital signage, retail media, inventory control or maintenance for your retail business.'),
-    L('Hablemos', "Let's talk"), [['p', 'info@altairsense.com · Calle Los Prados 166, Edificio Impulsa, Gijón, España']])
+    L('Hablemos', "Let's talk"), [['p', 'info@altairsense.com'], ['p', L('Proyectos desplegados en España, Portugal, Francia, Italia, Alemania y Reino Unido, además de Norteamérica y Latinoamérica.', 'Projects deployed in Spain, Portugal, France, Italy, Germany and the United Kingdom, as well as North America and Latin America.')]])
 
   // Páginas legales (texto completo en el HTML)
   ;['aviso-legal', 'privacidad', 'cookies'].forEach((k) => {
@@ -128,10 +129,13 @@ function buildPages(lang) {
   kb.forEach((a) => add(`/knowledge-base/${a.slug}`, T(a, 'title'), T(a, 'summary') || T(a, 'title'), T(a, 'title'),
     [...(a.cover_image_url ? [['html', `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">`]] : []),
       ['html', markdownToHtml(T(a, 'body') || '')]],
-    [{ '@context': 'https://schema.org', '@type': 'TechArticle', headline: T(a, 'title'), inLanguage: lang, description: T(a, 'summary'), datePublished: a.created_at,
+    [{ '@context': 'https://schema.org', '@type': 'TechArticle', headline: T(a, 'title'), inLanguage: lang, description: T(a, 'summary'),
+      datePublished: a.published_at || a.created_at, dateModified: a.published_at || a.created_at,
+      mainEntityOfPage: SITE + urlPath(`/knowledge-base/${a.slug}`, lang),
       ...(a.cover_image_url ? { image: absImg(a.cover_image_url) } : {}),
-      author: { '@type': 'Organization', name: 'NUVsense', url: SITE },
-      publisher: { '@type': 'Organization', name: 'NUVsense', logo: { '@type': 'ImageObject', url: `${SITE}/brand/nuvsense-avatar.png` } } }],
+      author: authorLd(a.author),
+      publisher: { '@type': 'Organization', name: 'NUVsense', logo: { '@type': 'ImageObject', url: `${SITE}/brand/nuvsense-avatar.png` } } },
+      ...(extractFaq(T(a, 'body') || '').length ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: extractFaq(T(a, 'body') || '').map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }] : [])],
     { image: absImg(a.cover_image_url), type: 'article' }))
 
   return { pages, sectors, solutions }
@@ -198,8 +202,8 @@ const linksOf = (b, lang) => ({
 const E = linksOf(es, 'es'); const N = linksOf(en, 'en')
 const llms = `# NUVsense
 
-> NUVsense emplea digital signage, data, IA y retail tech para construir experiencias relevantes que convierten, en retail y otros entornos físicos. Articula la metodología Connected Retail Strategy (CRS) y opera sobre Lumen, su plataforma y cerebro matriz. Sede: Calle Los Prados 166, Edificio Impulsa, Gijón (España). Contacto: info@altairsense.com
-> English: NUVsense uses digital signage, data, AI and retail tech to build relevant experiences that convert, in retail and other physical environments. It articulates the Connected Retail Strategy (CRS) methodology and runs on Lumen, its platform and core brain. HQ: Gijón, Spain. Every page has an English version under ${SITE}/en/
+> NUVsense emplea digital signage, data, IA y retail tech para construir experiencias relevantes que convierten, en retail y otros entornos físicos. Articula la metodología Connected Retail Strategy (CRS) y opera sobre Lumen, su plataforma y cerebro matriz. Equipo con 20 años de experiencia y proyectos en España, Portugal, Francia, Italia, Alemania y Reino Unido, además de Norteamérica y Latinoamérica. Contacto: info@altairsense.com
+> English: NUVsense uses digital signage, data, AI and retail tech to build relevant experiences that convert, in retail and other physical environments. It articulates the Connected Retail Strategy (CRS) methodology and runs on Lumen, its platform and core brain. A team with 20 years of experience and projects in Spain, Portugal, France, Italy, Germany and the United Kingdom, as well as North America and Latin America. Every page has an English version under ${SITE}/en/
 
 ## Soluciones
 ${E.sol}

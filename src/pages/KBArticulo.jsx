@@ -4,7 +4,7 @@ import { Link } from '../lib/router.jsx'
 import { supabase } from '../lib/supabaseClient.js'
 import Seo, { SITE_URL } from '../components/Seo.jsx'
 import Cover, { absoluteImage } from '../components/Cover.jsx'
-import { markdownToHtml, readingMinutes } from '../lib/markdown.js'
+import { markdownToHtml, readingMinutes, extractFaq } from '../lib/markdown.js'
 import { ArrowLeft, Clock, Loader2 } from 'lucide-react'
 
 export default function KBArticulo({ slug }) {
@@ -54,8 +54,10 @@ export default function KBArticulo({ slug }) {
   const summary = lang === 'es' ? article.summary_es : article.summary_en || article.summary_es
   const coverAlt = (lang === 'es' ? article.cover_alt_es : article.cover_alt_en) || ''
   const image = absoluteImage(article.cover_image_url)
-  const date = article.created_at
-    ? new Date(article.created_at).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+  const published = article.published_at || article.created_at
+  const named = article.author && article.author !== 'Equipo NUVsense'
+  const date = published
+    ? new Date(published).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
     : null
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -63,15 +65,24 @@ export default function KBArticulo({ slug }) {
     headline: title,
     description: summary,
     inLanguage: lang,
-    datePublished: article.created_at,
+    datePublished: published,
+    dateModified: published,
+    mainEntityOfPage: `${SITE_URL}${lang === 'en' ? '/en' : ''}/knowledge-base/${article.slug}`,
     ...(image ? { image } : {}),
-    author: { '@type': 'Organization', name: 'NUVsense', url: SITE_URL },
+    author: named
+      ? { '@type': 'Person', name: article.author, worksFor: { '@type': 'Organization', name: 'NUVsense', url: SITE_URL } }
+      : { '@type': 'Organization', name: 'NUVsense', url: SITE_URL },
     publisher: { '@type': 'Organization', name: 'NUVsense', logo: { '@type': 'ImageObject', url: `${SITE_URL}/brand/nuvsense-avatar.png` } }
   }
 
+  const faq = extractFaq(body)
+  const faqJsonLd = faq.length
+    ? { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }
+    : null
+
   return (
     <article className="bg-as-cream">
-      <Seo title={title} description={summary} path={`/knowledge-base/${article.slug}`} type="article" image={image} jsonLd={articleJsonLd} />
+      <Seo title={title} description={summary} path={`/knowledge-base/${article.slug}`} type="article" image={image} jsonLd={faqJsonLd ? [articleJsonLd, faqJsonLd] : articleJsonLd} />
 
       <header className="bg-as-black text-as-cream">
         <div className="max-w-4xl mx-auto px-5 md:px-8 pt-12 md:pt-16 pb-28 md:pb-40">
@@ -80,7 +91,8 @@ export default function KBArticulo({ slug }) {
           </Link>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-wide text-as-cream/60">
             {article.category && <span className="text-as-lime">{article.category}</span>}
-            {date && <span>{date}</span>}
+            {date && <time dateTime={published}>{date}</time>}
+            <span>{named ? pick(`Por ${article.author}`, `By ${article.author}`) : pick('Por el equipo de NUVsense', 'By the NUVsense team')}</span>
             <span className="inline-flex items-center gap-1.5"><Clock size={13} /> {readingMinutes(body)} min</span>
           </div>
           <h1 className="font-display font-extrabold text-3xl md:text-5xl leading-tight mt-4 max-w-3xl">{title}</h1>

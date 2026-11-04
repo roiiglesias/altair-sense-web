@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 # Buscadores de IA: bienvenidos (queremos aparecer en sus respuestas)
 User-agent: GPTBot
