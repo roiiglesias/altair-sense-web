@@ -110,3 +110,21 @@ export function readingMinutes(md = '') {
   const words = markdownToText(md).split(' ').filter(Boolean).length
   return Math.max(1, Math.round(words / 220))
 }
+
+
+// Extrae pares pregunta/respuesta de la sección "Preguntas frecuentes" / "Frequently asked questions"
+// (## título de sección y ### cada pregunta). Sirve para el JSON-LD FAQPage.
+export function extractFaq(md = '') {
+  const text = String(md || '').replace(/\r\n?/g, '\n')
+  const m = text.match(/^##\s+(?:Preguntas frecuentes|Frequently asked questions)\s*$/im)
+  if (!m) return []
+  const rest = text.slice(m.index + m[0].length).split(/^##\s+(?!#)/m)[0]
+  const parts = rest.split(/^###\s+/m).slice(1)
+  return parts
+    .map((part) => {
+      const [q, ...body] = part.split('\n')
+      const a = body.join(' ').replace(/\s+/g, ' ').replace(/[*_`]/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').trim()
+      return { q: q.replace(/[*_`]/g, '').trim(), a }
+    })
+    .filter((f) => f.q && f.a)
+}

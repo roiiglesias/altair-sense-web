@@ -23,42 +23,42 @@ const SECTOR_SLUGS = [
   'restauracion', 'inmobiliarias'
 ]
 
-async function fetchSlugs(table) {
+async function fetchSlugs(table, dateField) {
   const url = process.env.VITE_SUPABASE_URL
   const key = process.env.VITE_SUPABASE_ANON_KEY
   if (!url || !key) return []
   try {
-    const r = await fetch(`${url}/rest/v1/${table}?select=slug&is_published=eq.true`, {
+    const r = await fetch(`${url}/rest/v1/${table}?select=slug,${dateField}&is_published=eq.true`, {
       headers: { apikey: key, Authorization: `Bearer ${key}` }
     })
     if (!r.ok) return []
-    return (await r.json()).map((x) => x.slug).filter(Boolean)
+    return (await r.json()).filter((x) => x.slug).map((x) => [x.slug, x[dateField] ? String(x[dateField]).slice(0, 10) : null])
   } catch {
     return []
   }
 }
 
 export default async function handler(req, res) {
-  const [news, kb] = await Promise.all([fetchSlugs('news_posts'), fetchSlugs('kb_articles')])
+  const [news, kb] = await Promise.all([fetchSlugs('news_posts', 'published_at'), fetchSlugs('kb_articles', 'published_at')])
 
   const urls = [
     ...STATIC,
     ...SECTOR_SLUGS.map((s) => [`/sectores/${s}`, '0.8']),
-    ...news.map((s) => [`/noticias/${s}`, '0.6']),
-    ...kb.map((s) => [`/knowledge-base/${s}`, '0.6'])
+    ...news.map(([s, d]) => [`/noticias/${s}`, '0.6', d]),
+    ...kb.map(([s, d]) => [`/knowledge-base/${s}`, '0.6', d])
   ]
 
-  const entry = (loc, p, pr) => `  <url>
-    <loc>${loc}</loc>
+  const entry = (loc, p, pr, d) => `  <url>
+    <loc>${loc}</loc>${d ? `\n    <lastmod>${d}</lastmod>` : ''}
     <xhtml:link rel="alternate" hreflang="es" href="${BASE}${p === '/' ? '/' : p}" />
     <xhtml:link rel="alternate" hreflang="en" href="${BASE}${enPath(p)}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="${BASE}${p === '/' ? '/' : p}" />
     <priority>${pr}</priority>
   </url>`
 
-  const body = urls.flatMap(([p, pr]) => [
-    entry(`${BASE}${p === '/' ? '/' : p}`, p, pr),
-    entry(`${BASE}${enPath(p)}`, p, pr)
+  const body = urls.flatMap(([p, pr, d]) => [
+    entry(`${BASE}${p === '/' ? '/' : p}`, p, pr, d),
+    entry(`${BASE}${enPath(p)}`, p, pr, d)
   ]).join('\n')
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

@@ -68,21 +68,17 @@ export default function Contacto() {
 
             <div className="mt-10 border-t border-as-stone pt-8">
               <h3 className="text-xs font-bold tracking-[0.2em] text-as-moss uppercase mb-3">
-                {pick('Oficina', 'Office')}
+                {pick('Dónde trabajamos', 'Where we work')}
               </h3>
-              <a
-                href="https://maps.google.com/?q=Calle+Los+Prados+166,+Edificio+Impulsa,+Gijón,+España"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-start gap-3 text-as-black/75 hover:text-as-moss transition"
-              >
+              <p className="flex items-start gap-3 text-as-black/75">
                 <MapPin size={18} className="mt-0.5 shrink-0" />
                 <span>
-                  NUVsense HQ<br />
-                  Calle Los Prados 166, Edificio Impulsa<br />
-                  Gijón, España
+                  {pick(
+                    'Proyectos desplegados en España, Portugal, Francia, Italia, Alemania y Reino Unido, además de Norteamérica y Latinoamérica.',
+                    'Projects deployed in Spain, Portugal, France, Italy, Germany and the United Kingdom, as well as North America and Latin America.'
+                  )}
                 </span>
-              </a>
+              </p>
             </div>
 
           </div>
