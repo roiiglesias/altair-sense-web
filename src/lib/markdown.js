@@ -5,6 +5,8 @@
 // Admite: ## y ### títulos, párrafos, listas (- / 1.), tablas con |, **negrita**,
 // *cursiva* y enlaces [texto](https://... o /ruta).
 
+import { buildUrl } from './urls.js'
+
 const esc = (s = '') =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
@@ -31,7 +33,60 @@ export function slugify(text) {
     .replace(/^-+|-+$/g, '')
 }
 
-export function markdownToHtml(md = '') {
+
+// Enlaces internos contextuales: enlaza la PRIMERA aparición de cada término clave en el
+// cuerpo (nunca en títulos, tablas ni dentro de otro enlace) y no enlaza un artículo a sí mismo.
+const AUTOLINKS = {
+  es: [
+    [/\bConnected Retail Strategy\b/i, '/knowledge-base/que-es-connected-retail-strategy'],
+    [/\bretail media\b/i, '/knowledge-base/retail-media-en-tienda-fisica-que-demostrar'],
+    [/\bLumen\b/, '/lumen'],
+    [/\bSLA\b/, '/servicios'],
+    [/\b(?:cl[ií]nicas|parafarmacia)\b/i, '/knowledge-base/carteleria-digital-salud-clinicas-parafarmacia-perfumeria'],
+    [/diagn[oó]stico de tienda/i, '/contacto']
+  ],
+  en: [
+    [/\bConnected Retail Strategy\b/i, '/knowledge-base/que-es-connected-retail-strategy'],
+    [/\b(?:in-store )?retail media\b/i, '/knowledge-base/retail-media-en-tienda-fisica-que-demostrar'],
+    [/\bLumen\b/, '/lumen'],
+    [/\bSLAs?\b/, '/servicios'],
+    [/\b(?:clinics|parapharmacy)\b/i, '/knowledge-base/carteleria-digital-salud-clinicas-parafarmacia-perfumeria'],
+    [/store diagnos(?:tic|is)/i, '/contacto']
+  ]
+}
+
+function autolink(html, lang, selfSlug) {
+  const rules = (AUTOLINKS[lang] || AUTOLINKS.es)
+    .filter(([, logical]) => !selfSlug || logical !== `/knowledge-base/${selfSlug}`)
+    .map(([re, logical]) => ({ re, href: buildUrl(logical, lang), used: false }))
+  let skip = 0
+  return html.split(/(<[^>]+>)/).map((part) => {
+    if (part.startsWith('<')) {
+      if (/^<(a|h[1-6]|th|code)[\s>]/i.test(part)) skip += 1
+      else if (/^<\/(a|h[1-6]|th|code)>/i.test(part)) skip -= 1
+      return part
+    }
+    if (skip > 0 || !part.trim()) return part
+    let out = ''
+    let rest = part
+    for (;;) {
+      let best = null
+      for (const r of rules) {
+        if (r.used) continue
+        const m = r.re.exec(rest)
+        if (m && (!best || m.index < best.m.index)) best = { r, m }
+      }
+      if (!best) break
+      best.r.used = true
+      out += `${rest.slice(0, best.m.index)}<a href="${best.r.href}">${best.m[0]}</a>`
+      rest = rest.slice(best.m.index + best.m[0].length)
+    }
+    return out + rest
+  }).join('')
+}
+
+// opts.lang activa los enlaces internos contextuales; opts.selfSlug evita autoenlazar el propio artículo.
+export function markdownToHtml(md = '', opts = {}) {
   const lines = String(md || '').replace(/\r\n?/g, '\n').split('\n')
   const out = []
   let para = []
@@ -91,7 +146,8 @@ export function markdownToHtml(md = '') {
     para.push(t)
   }
   flush()
-  return out.join('\n')
+  const html = out.join('\n')
+  return opts.lang ? autolink(html, opts.lang, opts.selfSlug) : html
 }
 
 // Texto plano (para descripciones, JSON-LD o recuentos de palabras)

@@ -9,19 +9,13 @@ import { solutionSections } from '../src/data/solutions.js'
 import { serviceLevels, serviceLines } from '../src/data/servicios.js'
 import { legalPage } from '../src/data/legal.js'
 import { markdownToHtml, extractFaq } from '../src/lib/markdown.js'
+import { buildUrl } from '../src/lib/urls.js'
 
 const SITE = 'https://www.nuvsense.com'
 const DIST = 'dist'
-const EN_SLUGS = { soluciones: 'solutions', sectores: 'sectors', servicios: 'services', nosotros: 'about', contacto: 'contact', noticias: 'news', 'aviso-legal': 'legal-notice', privacidad: 'privacy' }
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-function urlPath(logical, lang) {
-  if (lang !== 'en') return logical
-  if (logical === '/') return '/en'
-  const parts = logical.split('/')
-  if (EN_SLUGS[parts[1]]) parts[1] = EN_SLUGS[parts[1]]
-  return '/en' + parts.join('/')
-}
+const urlPath = buildUrl
 
 const template = readFileSync(join(DIST, 'index.html'), 'utf8')
 
@@ -63,7 +57,8 @@ function buildPages(lang) {
     [
       ['p', L('Empleamos digital signage, data, IA y retail tech para construir experiencias relevantes que convierten, en cualquier país en el que operes.', 'We use digital signage, data, AI and retail tech to build relevant experiences that convert, in any country you operate in.')],
       ['h2', L('Soluciones', 'Solutions')], ['ul', solutions.map((s) => s.title)],
-      ['h2', L('Sectores', 'Sectors')], ['ul', sectors.map((s) => `${s.title}: ${s.tagline}`)]
+      ['h2', L('Sectores', 'Sectors')], ['ul', sectors.map((s) => `${s.title}: ${s.tagline}`)],
+      ['h2', L('Guías recientes', 'Latest guides')], ['html', `<ul>${kb.slice(0, 3).map((a) => `<li><a href="${urlPath('/knowledge-base/' + a.slug, lang)}">${esc(lang === 'en' ? a.title_en || a.title_es : a.title_es)}</a></li>`).join('')}</ul>`]
     ])
 
   add('/soluciones', L('Digital Signage, Retail Media y Retail Tech: soluciones', 'Digital Signage, Retail Media and Retail Tech solutions'),
@@ -123,6 +118,11 @@ function buildPages(lang) {
 
   const T = (r, k) => (lang === 'en' ? r[`${k}_en`] || r[`${k}_es`] : r[`${k}_es`])
   add('/noticias', L('Noticias', 'News'), L('Noticias de NUVsense sobre digital signage, retail media y retail tech.', 'NUVsense news on digital signage, retail media and retail tech.'), L('Noticias', 'News'), [['ul', news.map((n) => T(n, 'title'))]])
+  const relatedHtml = (a) => {
+    const others = kb.filter((o) => o.slug !== a.slug).slice(0, 3)
+    if (!others.length) return ''
+    return `<aside><h2>${L('Sigue leyendo', 'Keep reading')}</h2><ul>${others.map((o) => `<li><a href="${urlPath('/knowledge-base/' + o.slug, lang)}">${esc(T(o, 'title'))}</a>: ${esc(T(o, 'summary') || '')}</li>`).join('')}</ul><p>${L('¿Quieres ver cómo se aplica en tu tienda?', 'Want to see how this applies to your store?')} <a href="${urlPath('/contacto', lang)}">${L('Solicita un diagnóstico de tienda', 'Request a store diagnostic')}</a></p></aside>`
+  }
   const kbHref = (a) => urlPath(`/knowledge-base/${a.slug}`, lang)
   add('/knowledge-base', 'Knowledge Base', L('Guías, casos de éxito y descargables de NUVsense sobre digital signage, retail media y retail tech.', 'NUVsense guides, case studies and downloads on digital signage, retail media and retail tech.'), 'Knowledge Base',
     [['html', kb.map((a) => `<article><h2><a href="${kbHref(a)}">${esc(T(a, 'title'))}</a></h2>${a.cover_image_url ? `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">` : ''}<p>${esc(T(a, 'summary') || '')}</p></article>`).join('\n')]],
@@ -134,7 +134,8 @@ function buildPages(lang) {
   kb.forEach((a) => add(`/knowledge-base/${a.slug}`, T(a, 'title'), T(a, 'summary') || T(a, 'title'), T(a, 'title'),
     [...(a.cover_image_url ? [['html', `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">`]] : []),
       ['html', byline(a.published_at || a.created_at, a.author, lang)],
-      ['html', markdownToHtml(T(a, 'body') || '')]],
+      ['html', markdownToHtml(T(a, 'body') || '', { lang, selfSlug: a.slug })],
+      ['html', relatedHtml(a)]],
     [{ '@context': 'https://schema.org', '@type': 'TechArticle', headline: T(a, 'title'), inLanguage: lang, description: T(a, 'summary'),
       datePublished: a.published_at || a.created_at, dateModified: a.published_at || a.created_at,
       mainEntityOfPage: SITE + urlPath(`/knowledge-base/${a.slug}`, lang),
@@ -226,7 +227,7 @@ ${E.sec}
 - [Contacto](${SITE}/contacto)
 
 ## Contenido
-${kb.map((a) => `- [${a.title_es}](${SITE}/knowledge-base/${a.slug}): ${a.summary_es || ''}`).join('\n') || `- [Knowledge Base](${SITE}/knowledge-base)`}
+${kb.map((a) => `- [${a.title_es}](${SITE}${urlPath('/knowledge-base/' + a.slug, 'es')}): ${a.summary_es || ''}`).join('\n') || `- [Knowledge Base](${SITE}/knowledge-base)`}
 ${news.map((n) => `- [${n.title_es}](${SITE}/noticias/${n.slug}): ${n.excerpt_es || ''}`).join('\n')}
 
 ## English
@@ -245,7 +246,7 @@ ${N.sec}
 - [Contact](${SITE}/en/contact)
 
 ### Content
-${kb.map((a) => `- [${a.title_en || a.title_es}](${SITE}/en/knowledge-base/${a.slug}): ${a.summary_en || ''}`).join('\n')}
+${kb.map((a) => `- [${a.title_en || a.title_es}](${SITE}${urlPath('/knowledge-base/' + a.slug, 'en')}): ${a.summary_en || ''}`).join('\n')}
 ${news.map((n) => `- [${n.title_en || n.title_es}](${SITE}/en/news/${n.slug}): ${n.excerpt_en || ''}`).join('\n')}
 `
 writeFileSync(join(DIST, 'llms.txt'), llms)

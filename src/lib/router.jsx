@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react'
+import { EN_SLUGS, parseUrl, buildUrl } from './urls.js'
 
 const RouterCtx = createContext(null)
 
@@ -6,43 +7,7 @@ const RouterCtx = createContext(null)
 // el inglés vive bajo /en/... con sus propias URLs (y hreflang) para SEO.
 export const BASE = ''
 
-// Las URLs antiguas /hide/... redirigen a la raíz.
-const LEGACY = '/hide'
-
-// Primer segmento de la ruta lógica (español) -> slug en inglés
-export const EN_SLUGS = {
-  soluciones: 'solutions',
-  sectores: 'sectors',
-  servicios: 'services',
-  nosotros: 'about',
-  contacto: 'contact',
-  noticias: 'news',
-  'aviso-legal': 'legal-notice',
-  privacidad: 'privacy'
-}
-const ES_FROM_EN = Object.fromEntries(Object.entries(EN_SLUGS).map(([es, en]) => [en, es]))
-
-function mapFirstSegment(path, table) {
-  const parts = path.split('/')
-  if (parts[1] && table[parts[1]]) parts[1] = table[parts[1]]
-  return parts.join('/')
-}
-
-// URL real -> { lang, logical }  (logical = ruta en español sin prefijo)
-export function parseUrl(pathname) {
-  let p = pathname
-  if (p === LEGACY || p === `${LEGACY}/`) p = '/'
-  else if (p.startsWith(`${LEGACY}/`)) p = p.slice(LEGACY.length)
-  if (p === '/en' || p === '/en/') return { lang: 'en', logical: '/' }
-  if (p.startsWith('/en/')) return { lang: 'en', logical: mapFirstSegment(p.slice(3), ES_FROM_EN) }
-  return { lang: 'es', logical: p }
-}
-
-// ruta lógica + idioma -> URL real
-export function buildUrl(logical, lang) {
-  if (lang !== 'en') return logical
-  return logical === '/' ? '/en' : '/en' + mapFirstSegment(logical, EN_SLUGS)
-}
+export { EN_SLUGS, parseUrl, buildUrl }
 
 export function RouterProvider({ children }) {
   const [state, setState] = useState(() => {
