@@ -1,15 +1,11 @@
 // Sitemap dinámico bilingüe: cada página en español (raíz) y en inglés (/en/...),
 // con alternates hreflang. Incluye noticias y artículos de Knowledge Base publicados.
 
-const BASE = 'https://www.nuvsense.com'
-const EN_SLUGS = { soluciones: 'solutions', sectores: 'sectors', servicios: 'services', nosotros: 'about', contacto: 'contact', noticias: 'news', 'aviso-legal': 'legal-notice', privacidad: 'privacy' }
+import { buildUrl } from '../src/lib/urls.js'
 
-const enPath = (p) => {
-  if (p === '/') return '/en'
-  const parts = p.split('/')
-  if (EN_SLUGS[parts[1]]) parts[1] = EN_SLUGS[parts[1]]
-  return '/en' + parts.join('/')
-}
+const BASE = 'https://www.nuvsense.com'
+
+const enPath = (p) => buildUrl(p, 'en')
 
 const STATIC = [
   ['/', '1.0'], ['/soluciones', '0.9'], ['/sectores', '0.9'], ['/servicios', '0.9'], ['/lumen', '0.9'],

@@ -6,10 +6,29 @@ import SectionBackdrop from '../components/SectionBackdrop.jsx'
 import HeroSlideshow from '../components/HeroSlideshow.jsx'
 import ConnectionDiagram from '../components/ConnectionDiagram.jsx'
 import { HomeStoryIntro, HomeStoryMethod } from '../components/HomeStory.jsx'
+import { useEffect, useState } from 'react'
+import { supabase } from '../lib/supabaseClient.js'
 import { ArrowRight } from 'lucide-react'
 
 export default function Home() {
-  const { pick, t } = useLang()
+  const { pick, t, lang } = useLang()
+  const [guides, setGuides] = useState([])
+
+  useEffect(() => {
+    let active = true
+    async function loadGuides() {
+      if (!supabase) return
+      const { data } = await supabase
+        .from('kb_articles')
+        .select('slug,title_es,title_en,summary_es,summary_en,published_at')
+        .eq('is_published', true)
+        .order('published_at', { ascending: false, nullsFirst: false })
+        .limit(3)
+      if (active && data) setGuides(data)
+    }
+    loadGuides()
+    return () => { active = false }
+  }, [])
 
   const stats = [
     { n: '+40', l: pick('clientes retail activos', 'active retail clients') },
@@ -103,6 +122,30 @@ export default function Home() {
       </section>
 
       <HomeStoryMethod />
+
+      {guides.length > 0 && (
+        <section className="bg-as-cream py-20 md:py-24">
+          <div className="max-w-7xl mx-auto px-5 md:px-8">
+            <Eyebrow>{pick('Guías recientes', 'Latest guides')}</Eyebrow>
+            <Divider className="my-5" />
+            <h2 className="font-display font-extrabold text-3xl md:text-4xl leading-tight max-w-2xl">
+              {pick('Lo que aprendemos en tienda, por escrito', 'What we learn in store, in writing')}
+            </h2>
+            <div className="mt-10 grid md:grid-cols-3 gap-6">
+              {guides.map((g) => (
+                <Link key={g.slug} to={`/knowledge-base/${g.slug}`} className="group block rounded-2xl border border-as-stone bg-white p-6 hover:border-as-moss transition">
+                  <h3 className="font-display font-bold text-lg leading-snug group-hover:text-as-moss transition">{lang === 'es' ? g.title_es : g.title_en || g.title_es}</h3>
+                  <p className="mt-3 text-sm text-as-black/60 leading-relaxed">{lang === 'es' ? g.summary_es : g.summary_en || g.summary_es}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-as-moss font-bold text-sm">{pick('Leer guía', 'Read guide')} <ArrowRight size={14} /></span>
+                </Link>
+              ))}
+            </div>
+            <Link to="/knowledge-base" className="mt-8 inline-flex items-center gap-2 text-as-moss font-bold hover:text-as-black transition">
+              {pick('Ver todas las guías', 'See all guides')} <ArrowRight size={16} />
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* SECTORES TEASER */}
       <section className="relative overflow-hidden bg-as-black text-as-cream py-20 md:py-28">

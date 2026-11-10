@@ -63,6 +63,31 @@
       "source": "/en/news/galernai-congreso-moda-cosmetica-belleza-retail-urjc",
       "destination": "/en/news/nuvsense-congreso-moda-cosmetica-belleza-retail-urjc",
       "permanent": true
+    },
+    {
+      "source": "/en/knowledge-base/que-es-connected-retail-strategy",
+      "destination": "/en/knowledge-base/what-is-connected-retail-strategy",
+      "permanent": true
+    },
+    {
+      "source": "/en/knowledge-base/carteleria-digital-salud-clinicas-parafarmacia-perfumeria",
+      "destination": "/en/knowledge-base/digital-signage-health-clinics-parapharmacy-perfumery",
+      "permanent": true
+    },
+    {
+      "source": "/en/knowledge-base/retail-media-en-tienda-fisica-que-demostrar",
+      "destination": "/en/knowledge-base/in-store-retail-media-what-to-prove",
+      "permanent": true
+    },
+    {
+      "source": "/en/knowledge-base/carteleria-digital-sala-espera-clinica",
+      "destination": "/en/knowledge-base/clinic-waiting-room-digital-signage",
+      "permanent": true
+    },
+    {
+      "source": "/en/knowledge-base/carteleria-digital-perfumerias-belleza-2026",
+      "destination": "/en/knowledge-base/digital-signage-perfumeries-beauty-2026",
+      "permanent": true
     }
   ],
   "rewrites": [
