@@ -85,12 +85,18 @@ export default function NoticiaDetalle({ slug }) {
   )
 }
 
-// Convierte las URL del texto en enlaces (el cuerpo de las noticias es texto plano).
+// Convierte en enlaces tanto [texto](url) como las URL sueltas (el cuerpo de las noticias es texto plano).
 function linkify(text) {
   if (!text) return null
-  return text.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
-    /^https?:\/\//.test(part)
-      ? <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-as-moss underline break-all hover:text-as-black">{part}</a>
+  const cls = 'text-as-moss underline hover:text-as-black'
+  return text.split(/(\[[^\]]+\]\((?:https?:\/\/|\/)[^\s)]+\)|https?:\/\/[^\s]+)/g).map((part, i) => {
+    const md = part.match(/^\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)]+)\)$/)
+    if (md) {
+      const ext = md[2].startsWith('http')
+      return <a key={i} href={md[2]} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className={cls}>{md[1]}</a>
+    }
+    return /^https?:\/\//.test(part)
+      ? <a key={i} href={part} target="_blank" rel="noopener noreferrer" className={`${cls} break-all`}>{part}</a>
       : part
-  )
+  })
 }

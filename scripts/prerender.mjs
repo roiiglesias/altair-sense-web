@@ -128,8 +128,8 @@ function buildPages(lang) {
     [['html', kb.map((a) => `<article><h2><a href="${kbHref(a)}">${esc(T(a, 'title'))}</a></h2>${a.cover_image_url ? `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">` : ''}<p>${esc(T(a, 'summary') || '')}</p></article>`).join('\n')]],
     [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: kb.map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + kbHref(a), name: T(a, 'title') })) }])
 
-  news.forEach((n) => add(`/noticias/${n.slug}`, T(n, 'title'), T(n, 'excerpt') || T(n, 'title'), T(n, 'title'), [['html', byline(n.published_at, null, lang)], ['p', T(n, 'body') || '']],
-    [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: T(n, 'title'), inLanguage: lang, datePublished: n.published_at, publisher: { '@type': 'Organization', name: 'NUVsense' }, ...(n.cover_image_url ? { image: absImg(n.cover_image_url) } : {}) }],
+  news.forEach((n) => add(`/noticias/${n.slug}`, T(n, 'title'), T(n, 'excerpt') || T(n, 'title'), T(n, 'title'), [['html', byline(n.published_at, null, lang)], ['html', markdownToHtml(T(n, 'body') || '')]],
+    [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: T(n, 'title'), inLanguage: lang, datePublished: n.published_at, dateModified: n.published_at, description: T(n, 'excerpt'), author: authorLd(null), publisher: { '@type': 'Organization', name: 'NUVsense' }, ...(n.cover_image_url ? { image: absImg(n.cover_image_url) } : {}) }],
     n.cover_image_url ? { image: absImg(n.cover_image_url), type: 'article' } : undefined))
   kb.forEach((a) => add(`/knowledge-base/${a.slug}`, T(a, 'title'), T(a, 'summary') || T(a, 'title'), T(a, 'title'),
     [...(a.cover_image_url ? [['html', `<img src="${esc(a.cover_image_url)}" alt="${esc(T(a, 'cover_alt') || '')}" width="1600" height="900">`]] : []),
