@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter, buildUrl } from '../lib/router.jsx'
+import { seoTitle } from '../lib/urls.js'
 
 const SITE_NAME = 'NUVsense'
 const SITE_URL = 'https://www.nuvsense.com'
@@ -44,7 +45,7 @@ export default function Seo({
 }) {
   const { lang } = useRouter()
   useEffect(() => {
-    const fullTitle = title ? `${title} · ${SITE_NAME}` : `${SITE_NAME} — ${lang === 'en' ? 'Digital Signage, Retail Media and Retail Tech' : 'Digital Signage, Retail Media y Retail Tech'}`
+    const fullTitle = title ? seoTitle(title) : `${SITE_NAME} — ${lang === 'en' ? 'Digital Signage, Retail Media and Retail Tech' : 'Digital Signage, Retail Media y Retail Tech'}`
     const realPath = buildUrl(path, lang)
     const esUrl = `${SITE_URL}${buildUrl(path, 'es')}`
     const enUrl = `${SITE_URL}${buildUrl(path, 'en')}`

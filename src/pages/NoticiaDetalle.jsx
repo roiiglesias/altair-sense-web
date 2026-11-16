@@ -54,6 +54,8 @@ export default function NoticiaDetalle({ slug }) {
     description: excerpt,
     image: post.cover_image_url || undefined,
     datePublished: post.published_at || undefined,
+    dateModified: post.published_at || undefined,
+    author: { '@type': 'Organization', name: 'NUVsense', url: SITE_URL },
     publisher: { '@type': 'Organization', name: 'NUVsense' }
   }
 

@@ -1,16 +1,17 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext.jsx'
-import { Link } from '../lib/router.jsx'
+import { Link, buildUrl } from '../lib/router.jsx'
 import { supabase } from '../lib/supabaseClient.js'
 import Seo, { SITE_URL } from '../components/Seo.jsx'
 import Cover, { absoluteImage } from '../components/Cover.jsx'
 import { markdownToHtml, readingMinutes, extractFaq } from '../lib/markdown.js'
-import { ArrowLeft, Clock, Loader2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Clock, Loader2 } from 'lucide-react'
 
 export default function KBArticulo({ slug }) {
   const { pick, t, lang } = useLang()
   const [article, setArticle] = useState(null)
   const [notFound, setNotFound] = useState(false)
+  const [related, setRelated] = useState([])
 
   useEffect(() => {
     let active = true
@@ -31,7 +32,25 @@ export default function KBArticulo({ slug }) {
   }, [slug])
 
   const body = article ? (lang === 'es' ? article.body_es : article.body_en || article.body_es) : ''
-  const html = useMemo(() => markdownToHtml(body), [body])
+  const html = useMemo(() => markdownToHtml(body, { lang, selfSlug: slug }), [body, lang, slug])
+
+  // Otras guías publicadas (enlazado interno al final del artículo)
+  useEffect(() => {
+    let active = true
+    async function loadRelated() {
+      if (!supabase) return
+      const { data } = await supabase
+        .from('kb_articles')
+        .select('slug,title_es,title_en,summary_es,summary_en,published_at')
+        .eq('is_published', true)
+        .neq('slug', slug)
+        .order('published_at', { ascending: false, nullsFirst: false })
+        .limit(3)
+      if (active && data) setRelated(data)
+    }
+    loadRelated()
+    return () => { active = false }
+  }, [slug])
 
   if (notFound) {
     return (
@@ -67,7 +86,7 @@ export default function KBArticulo({ slug }) {
     inLanguage: lang,
     datePublished: published,
     dateModified: published,
-    mainEntityOfPage: `${SITE_URL}${lang === 'en' ? '/en' : ''}/knowledge-base/${article.slug}`,
+    mainEntityOfPage: `${SITE_URL}${buildUrl(`/knowledge-base/${article.slug}`, lang)}`,
     ...(image ? { image } : {}),
     author: named
       ? { '@type': 'Person', name: article.author, worksFor: { '@type': 'Organization', name: 'NUVsense', url: SITE_URL } }
@@ -110,6 +129,27 @@ export default function KBArticulo({ slug }) {
 
       <div className="max-w-3xl mx-auto px-5 md:px-8 py-12 md:py-16">
         <div className="md-body" dangerouslySetInnerHTML={{ __html: html }} />
+        {related.length > 0 && (
+          <aside className="mt-14 pt-8 border-t border-as-stone">
+            <h2 className="font-display font-extrabold text-xl mb-5">{pick('Sigue leyendo', 'Keep reading')}</h2>
+            <ul className="space-y-4">
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <Link to={`/knowledge-base/${r.slug}`} className="group block">
+                    <span className="font-bold text-as-black group-hover:text-as-moss transition">{lang === 'es' ? r.title_es : r.title_en || r.title_es}</span>
+                    <span className="block text-sm text-as-black/60 mt-1">{lang === 'es' ? r.summary_es : r.summary_en || r.summary_es}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-sm">
+              {pick('¿Quieres ver cómo se aplica en tu tienda? ', 'Want to see how this applies to your store? ')}
+              <Link to="/contacto" className="inline-flex items-center gap-1 text-as-moss font-bold">
+                {pick('Solicita un diagnóstico de tienda', 'Request a store diagnostic')} <ArrowRight size={14} />
+              </Link>
+            </p>
+          </aside>
+        )}
         <div className="mt-14 pt-8 border-t border-as-stone">
           <Link to="/knowledge-base" className="inline-flex items-center gap-2 text-as-moss font-bold text-sm hover:text-as-black transition">
             <ArrowLeft size={16} /> {pick('Ver todas las guías', 'See all guides')}
