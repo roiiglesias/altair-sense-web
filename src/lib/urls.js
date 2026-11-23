@@ -20,7 +20,9 @@ export const KB_EN_SLUGS = {
   'carteleria-digital-salud-clinicas-parafarmacia-perfumeria': 'digital-signage-health-clinics-parapharmacy-perfumery',
   'retail-media-en-tienda-fisica-que-demostrar': 'in-store-retail-media-what-to-prove',
   'carteleria-digital-sala-espera-clinica': 'clinic-waiting-room-digital-signage',
-  'carteleria-digital-perfumerias-belleza-2026': 'digital-signage-perfumeries-beauty-2026'
+  'carteleria-digital-perfumerias-belleza-2026': 'digital-signage-perfumeries-beauty-2026',
+  'desplegar-pantallas-decenas-tiendas-que-falla-y-como-se-prepara': 'rolling-out-screens-dozens-of-stores-what-goes-wrong-how-to-prepare',
+  'pantallas-centros-salud-hospitales-experiencia-paciente-hl7': 'screens-health-centres-hospitals-patient-experience-hl7'
 }
 
 const ES_FROM_EN = Object.fromEntries(Object.entries(EN_SLUGS).map(([es, en]) => [en, es]))
